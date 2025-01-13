@@ -1,0 +1,92 @@
+.formSection {
+  flex-direction: column;
+  gap: 5px;
+  width: 30vw;
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-top: 0px;
+}
+.inlineFields {
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  width: 100%;
+}
+
+label {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: black;
+}
+
+input,
+textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+  outline: none;
+  width: 95%;
+  box-sizing: border-box;
+
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+input {
+  height: 20px;
+}
+input:focus,
+textarea:focus {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.checkcontent {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.checkBox {
+  margin-left: 20px;
+}
+
+.label {
+  color: grey;
+}
+.reachOutButton {
+  position: relative;
+  background-color: black;
+  color: #d9ff0f;
+  border-radius: 6px;
+  font-weight: 100;
+  box-shadow: 0 0 10px 2px #d9ff0f;
+  border: none;
+  width: auto;
+  font-size: 1em;
+  padding: 10px 10px;
+  cursor: pointer;
+}
+
+.error {
+  position: relativee;
+  left: 0%;
+  color: orangered;
+}
+@media (max-width: 580px) {
+  .checkcontent {
+    gap: 5px;
+    width: 280px;
+  }
+  .reachOutButton {
+    margin-left: 25px;
+  }
+  .formSection {
+    width: 272px;
+  }
+  .iconsContainer {
+    margin-bottom: 12px;
+  }
+}

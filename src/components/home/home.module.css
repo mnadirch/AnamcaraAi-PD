@@ -1,0 +1,484 @@
+.container {
+  display: flex;
+
+  padding: 20px;
+  gap: 30px;
+  margin-top: 0px;
+  margin: 10px 9%;
+  width: auto;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+}
+.fogLayer {
+  z-index: -10;
+}
+.textSection {
+  flex: 1;
+  flex-direction: column;
+  gap: 0px;
+}
+.sometext {
+  color: #d9ff0f;
+}
+.inputContent {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+.iconsContent {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 15px;
+}
+.styledinput {
+  background-color: rgb(0, 0, 0);
+  width: 70%;
+  padding: 20px;
+  border: 1px solid #000000;
+  border-radius: 4px;
+}
+.btnSubscribe {
+  position: relative;
+  background-color: black;
+  color: #d9ff0f;
+  border-radius: 6px;
+  font-weight: 100;
+  box-shadow: 0 0 10px 2px #d9ff0f;
+  border: none;
+  width: auto;
+  font-size: 1em;
+  padding: 5px 5px;
+}
+.modelSection {
+  flex: 1;
+  position: relative;
+  height: max-content;
+  width: max-content;
+}
+
+.aiAnimation {
+  height: 53dvh;
+  width: 40dvw;
+  border-radius: 8px;
+}
+
+.mainImage {
+  width: 100%;
+  height: auto;
+}
+
+.buttonSection {
+  display: flex;
+  flex-direction: row;
+  gap: 45px;
+}
+
+.buttonSection > button {
+  border-radius: 25px;
+}
+
+.randomImage1,
+.randomImage2,
+.randomImage3 {
+  position: absolute;
+  object-fit: cover;
+}
+
+.randomImage1 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.9);
+  z-index: 3;
+}
+
+.randomImage2 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 25%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.9);
+  z-index: 1;
+}
+
+.randomImage3 {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 15%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.9);
+  z-index: 2;
+}
+.randomImage1,
+.randomImage2,
+.randomImage3:hover {
+  cursor: pointer;
+}
+.heading > h1 {
+  font-size: 1em;
+  color: #d9ff0f;
+  text-shadow: 0px 0px #d9ff0f;
+}
+
+.sometext {
+  font-size: 1em;
+
+  color: #d9ff0f;
+  text-shadow: 0px 0px #d9ff0f;
+}
+.animatedborderbutton {
+  position: relative;
+  top: 30%;
+  left: 20%;
+  padding: 4px 6px;
+  font-size: 20px;
+  color: #fff;
+  background-color: black;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.animatedborderbutton::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #9ef01a;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  border-radius: 25px;
+  pointer-events: none;
+  animation: animateborder 3s linear infinite;
+  box-shadow: 0 0 15px 8px rgba(255, 255, 255, 0.7);
+  z-index: 0;
+}
+video::-webkit-media-controls {
+  display: none;
+}
+@keyframes animateborder {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    /* Start from top-left, showing only top border */
+  }
+
+  25% {
+    clip-path: inset(0 0 100% 0);
+    /* Reveal right border */
+  }
+
+  50% {
+    clip-path: inset(0 0 0 100%);
+    /* Reveal bottom border */
+  }
+
+  75% {
+    clip-path: inset(100% 0 0 0);
+    /* Reveal left border */
+  }
+
+  100% {
+    clip-path: inset(0 100% 0 0);
+    /* Return to top-left */
+  }
+}
+
+.animatedborderbutton2 {
+  position: absolute;
+
+  padding: 10px 20px;
+  font-size: 20px;
+  color: #fff;
+  overflow: hidden;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  height: 100px;
+  width: 200px;
+  z-index: 1;
+  background-color: black;
+  justify-content: center;
+  align-items: center;
+}
+
+.bubble1 {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #9ef01a;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: floatBubbles 2s infinite;
+  bottom: -5%;
+  left: 2%;
+}
+
+.bubble3 {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #9ef01a;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: floatBubbles0 2s infinite;
+
+  animation-delay: 1s;
+  bottom: -5%;
+  left: 38%;
+}
+.bubble4 {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #9ef01a;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: floatBubbles0 2s infinite;
+  bottom: -5%;
+  left: 50%;
+}
+.bubble5 {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #9ef01a;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: floatBubbles0 2s infinite;
+
+  animation-delay: 0.5s;
+  bottom: -5%;
+  left: 78%;
+}
+.bubble6 {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #9ef01a;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: floatBubbles2 2s infinite;
+
+  animation-delay: 1s;
+  bottom: -5%;
+  left: 90%;
+}
+.bubble7 {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #9ef01a;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: floatBubbles3 2s infinite;
+
+  animation-delay: 0.5s;
+  top: 45%;
+  left: -5%;
+}
+.bubble8 {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #9ef01a;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: floatBubbles3 2s infinite;
+
+  animation-delay: 1s;
+  top: 20%;
+  left: -5%;
+}
+.bubble9 {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #9ef01a;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: floatBubbles4 2s infinite;
+  animation-delay: 0.5s;
+  top: 45%;
+  right: -5%;
+}
+.bubble10 {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #9ef01a;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: floatBubbles4 2s infinite;
+  animation-delay: 1s;
+  top: 20%;
+  right: -5%;
+}
+.bubble11 {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #9ef01a;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: floatBubbles5 2s infinite;
+  animation-delay: 0s;
+  top: -10%;
+  right: 30%;
+}
+.bubble12 {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #9ef01a;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: floatBubbles5 2s infinite;
+  animation-delay: 1s;
+  top: -10%;
+  right: 45%;
+}
+.bubble13 {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #9ef01a;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: floatBubbles5 2s infinite;
+  animation-delay: 0.5s;
+  top: -10%;
+  right: 65%;
+}
+@keyframes floatBubbles {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(40px, -20px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(120px, -40px) scale(0.1);
+    opacity: 0;
+  }
+}
+@keyframes floatBubbles2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-40px, -20px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-90px, 0px) scale(0.1);
+    opacity: 0;
+  }
+}
+@keyframes floatBubbles0 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(0px, -20px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0px, -80px) scale(0.1);
+    opacity: 0;
+  }
+}
+
+@keyframes floatBubbles3 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(40px, 0px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(130px, 0px) scale(0.1);
+    opacity: 0;
+  }
+}
+@keyframes floatBubbles4 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-20px, 0px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-40px, 0px) scale(0.1);
+    opacity: 0;
+  }
+}
+@keyframes floatBubbles5 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(0px, 20px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0px, 65px) scale(0.1);
+    opacity: 0;
+  }
+}
+
+.endAnimation {
+  animation: animateimages 10s;
+  transition: 10s;
+}
+@keyframes animateimages {
+  0% {
+    translate: -10 10;
+  }
+  50% {
+    translate: -5 5;
+  }
+  100% {
+    translate: -0 0;
+  }
+}
+
+@media (max-width: 580px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    min-width: 90dvw;
+    max-width: 100dvw;
+  }
+
+  .buttonSection > button {
+    border-radius: 25px;
+    border-width: 2px;
+  }
+
+  .aiAnimation {
+    border-radius: 8px;
+    width: 80dvw;
+    height: 50dvh;
+  }
+}
