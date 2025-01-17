@@ -25,10 +25,14 @@ function App() {
               <Suspense>
               <StartUpPage />
               </Suspense>
-         // <Main/>
           }
         />
-
+          <Route
+          path="/main"
+          element={
+            <Main/>
+          }
+        />
         <Route>
           <Route
             path="/home"
@@ -94,9 +98,7 @@ function App() {
         <Route
             path="/resources/blog"
             element={
-              <Layout>
                 <Blog />
-              </Layout>
             }
           />
 

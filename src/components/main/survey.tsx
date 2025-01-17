@@ -65,6 +65,12 @@ const Survey: React.FC<SurveyProps> = ({ onSkipToMain }) => {
     setMCQQuestion(randomMCQ);
   }, []);
 
+  // const handleButtonClick = () => {
+  //   navigate("/home"); // Navigate to the home page
+  // };
+
+
+
   return (
     <div
       id="survey-area"
@@ -180,6 +186,7 @@ const Survey: React.FC<SurveyProps> = ({ onSkipToMain }) => {
         {/* Final Button */}
         <div className="flex flex-wrap items-center gap-4">
           <button
+            onClick={handleButtonClick} // Call the function on click
             className="px-4 sm:px-6 py-2 text-sm sm:text-lg font-bold text-black bg-[#ADFF00] rounded-lg hover:bg-black hover:text-white border-2 border-[#BCFF9D] transition-all"
             style={{
               boxShadow: "0px 0px 15px #3FA604",

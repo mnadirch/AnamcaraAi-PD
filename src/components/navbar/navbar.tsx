@@ -31,8 +31,10 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full z-50 bg-[#000000] shadow-lg text-white flex items-center justify-between px-5 py-3">
-      {/* Logo */}
+<div
+  className="fixed top-0 left-0 w-full z-50 shadow-lg text-white flex items-center justify-between px-5 py-3"
+  style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}
+>      {/* Logo */}
       <div
         className="flex items-center cursor-pointer"
         onClick={() => handleNavigate("/home")}
@@ -92,7 +94,8 @@ const Navbar: React.FC = () => {
 
             {/* Dropdown Menu */}
             {link.hasDropdown && isResourcesOpen && (
-              <div className="absolute top-full left-0 bg-[#000000] text-white shadow-lg rounded-lg mt-2 w-48">
+              <div className="absolute top-full left-0 text-white shadow-lg rounded-lg mt-2 w-48"
+               style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}>
                 {dropdownLinks.map((dropdownLink, idx) => (
                   <a
                     key={idx}
@@ -115,8 +118,10 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Call-to-Action Button */}
-      <div className="relative flex justify-center items-center min-w-[216px] min-h-[60px] h-full overflow-hidden rounded-full">
-        <button className="relative px-6 py-2 text-[#ADFF00] bg-black font-medium cursor-pointer border-[#ADFF00] transition-all duration-300 hover:bg-[#ADFF00] hover:text-black">
+      <div className="relative flex justify-center items-center min-w-[216px] min-h-[60px] h-full overflow-hidden ">
+        <button className="relative px-6 py-2 text-[#ADFF00] font-medium cursor-pointer border-[#ADFF00] transition-all duration-300 hover:bg-[#ADFF00] hover:text-black" 
+
+>
           Get Connected
           <div
             className="absolute inset-0 border-2 border-[#ADFF00] animate-border pointer-events-none"
