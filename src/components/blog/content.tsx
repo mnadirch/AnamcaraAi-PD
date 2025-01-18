@@ -8,8 +8,8 @@ interface ContentProps {
     id: number;
     heading: string;
     content: string;
-    imageSrc: string; // Add the correct image source per content item
-    details: string; // Additional details like author, date, etc.
+    imageSrc: string; 
+    details: string; 
   }[];
 }
 
@@ -72,10 +72,10 @@ const Content: React.FC<ContentProps> = ({ activeCard, contents }) => {
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        Image1={modalData.imageSrc} // Pass the image source here
+        Image1={modalData.imageSrc}
         title={modalData.title}
         details={modalData.details}
-        content={modalData.content} // This is now recognized
+        content={modalData.content} 
       />
 
     </div>

@@ -3,7 +3,7 @@ import { lazy, Suspense } from "react";
 
 import Layout from "./components/layout/layout";
 import Blog from "./pages/blog/blog";
-const  Main =   lazy(() => import("./pages/main/main"));
+const Main = lazy(() => import("./pages/main/main"));
 const StartUpPage = lazy(() => import("./components/startup/startup"));
 const Home = lazy(() => import("./pages/home/home"));
 const CommingSoon = lazy(() => import("./components/commingSoon/commingsoon"));
@@ -22,15 +22,17 @@ function App() {
         <Route
           path="/"
           element={
-              <Suspense>
+            <Suspense>
               <StartUpPage />
-              </Suspense>
+            </Suspense>
           }
         />
-          <Route
+         <Route
           path="/main"
           element={
-            <Main/>
+            <Suspense>
+              <Main/>
+            </Suspense>
           }
         />
         <Route>
@@ -96,14 +98,16 @@ function App() {
         </Route>
 
         <Route
-            path="/resources/blog"
-            element={
-                <Blog />
-            }
-          />
+          path="/resources/blog"
+          element={
+            <Blog />
+          }
+        />
 
         <Route path="*" element={<PageNotFound />} />
+        
       </Routes>
+
     </Router>
   );
 }

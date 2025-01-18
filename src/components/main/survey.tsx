@@ -1,5 +1,5 @@
 import React, { useEffect, useState, MouseEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import data from "../../assets/data/questions.json";
 
 interface Question {
@@ -15,6 +15,7 @@ const Survey: React.FC<SurveyProps> = ({ onSkipToMain }) => {
   const [tfQuestion, setTFQuestion] = useState<Question | null>(null);
   const [mcqQuestion, setMCQQuestion] = useState<Question | null>(null);
   const [hoveredOption, setHoveredOption] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   // Generate stars for the background
   const stars = Array.from({ length: 150 }, () => ({
@@ -65,11 +66,9 @@ const Survey: React.FC<SurveyProps> = ({ onSkipToMain }) => {
     setMCQQuestion(randomMCQ);
   }, []);
 
-  // const handleButtonClick = () => {
-  //   navigate("/home"); // Navigate to the home page
-  // };
-
-
+  const handleButtonClick = () => {
+    navigate("/home"); // Navigate to the home page
+  };
 
   return (
     <div
@@ -196,7 +195,9 @@ const Survey: React.FC<SurveyProps> = ({ onSkipToMain }) => {
           </button>
           <Link
             onClick={onSkipToMain}
-            className="text-white text-sm sm:text-lg font-medium cursor-pointer" to={""}          >
+            className="text-white text-sm sm:text-lg font-medium cursor-pointer"
+            to={""}
+          >
             SKIP TO MAIN PAGE →
           </Link>
         </div>

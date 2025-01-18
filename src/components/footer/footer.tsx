@@ -4,7 +4,7 @@ import Ai_bottom from "../../assets/images/footerimages/AI_bottom.png";
 import metaverse from "../../assets/images/footerimages/Metaverse_bottom.png";
 import robotics from "../../assets/images/footerimages/Robot_bottom.jpeg";
 import logo from "../../assets/images/navabarlogo/ANAMCARA AI LOGO ICON TRANSPARENT 2.png";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import aiTabAnimation from "../../assets/animation/footerlockanimations/aiTab.json";
 import metaverseTabAnimation from "../../assets/animation/footerlockanimations/metaverseTab.json";
 import roboticsTabAnimation from "../../assets/animation/footerlockanimations/roboticsTab.json";
@@ -13,22 +13,11 @@ import Lottie from "react-lottie";
 const Footer: FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const navigate = useNavigate();
-
   const updateStatus = (index: number) => {
-    console.log("Click on content");
-    setActiveIndex(index);
-
-    // Navigate based on the index
-    // if (index === 0) {
-    //   navigate("/home");
-    if (index === 1) 
-      navigate("/main");
-    // } else if (index === 2) {
-    //   navigate("/metaverse");
-    // } else if (index === 3) {
-    //   navigate("/robotics");
-    // }
+    if (index === 1) navigate("/main");
   };
+
+
 
   const images = [logo, Ai_bottom, metaverse, robotics];
   const defaultOptions = [
@@ -72,11 +61,10 @@ const Footer: FC = () => {
                 {title}
               </h1>
               <p
-                className={`${styles.secondaryText} ${
-                  activeIndex === index
+                className={`${styles.secondaryText} ${activeIndex === index
                     ? styles.secondaryText
                     : styles.secondaryText
-                }`}
+                  }`}
               >
                 {index === 0 && "Anamcara AI"}
                 {index === 1 && "Intelligent future"}
@@ -94,11 +82,12 @@ const Footer: FC = () => {
 
               <div className={styles.lottieanimation}>
                 <Lottie
-                  style={{ opacity: 1 }}
                   options={defaultOptions[index]}
                   height={40}
                   width={40}
+                  isClickToPauseDisabled={true}
                 />
+
               </div>
             </div>
           </div>
