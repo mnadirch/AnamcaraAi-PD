@@ -435,8 +435,7 @@ const blogDetailModal: React.FC<ModalProps> = ({
                 style={{
                   fontFamily: 'Mowaq, sans-serif',
                   boxShadow: "0px 0px 10px #3FA604",
-                  width: "12
-                  0px",
+                  width: "120px"
                 }}>
                 Subscribe
               </button>
