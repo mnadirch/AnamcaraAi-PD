@@ -45,8 +45,6 @@ const blogDetailModal: React.FC<ModalProps> = ({
   onClose,
   Image1,
   title,
-  details,
-  content,
 
 }) => {
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -83,6 +81,7 @@ const blogDetailModal: React.FC<ModalProps> = ({
     To overcome the problem, some companies are exploring new methods powered by 'synthetic data',
     write Cade Metz & Tripp Mickle.
   `;
+  console.log(contentText);
   const [isUpvoted, setIsUpvoted] = useState(false);
   const [isDownvoted, setIsDownvoted] = useState(false);
   const [isShared, setIsShared] = useState(false);
