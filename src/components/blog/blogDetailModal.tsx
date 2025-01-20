@@ -75,6 +75,13 @@ const blogDetailModal: React.FC<ModalProps> = ({
   };
 
   if (!isOpen) return null;
+
+  const contentText = `
+    Tech giants are running out of data used to train AI systems.
+    To overcome the problem, some companies are exploring new methods powered by 'synthetic data',
+    write Cade Metz & Tripp Mickle.
+  `;
+  console.log(contentText);
   const [isUpvoted, setIsUpvoted] = useState(false);
   const [isDownvoted, setIsDownvoted] = useState(false);
   const [isShared, setIsShared] = useState(false);
@@ -427,7 +434,7 @@ const blogDetailModal: React.FC<ModalProps> = ({
                 style={{
                   fontFamily: 'Mowaq, sans-serif',
                   boxShadow: "0px 0px 10px #3FA604",
-                  width: "120px",
+                  width: "120px"
                 }}>
                 Subscribe
               </button>

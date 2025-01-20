@@ -4,7 +4,7 @@ import Ai_bottom from "../../assets/images/footerimages/AI_bottom.png";
 import metaverse from "../../assets/images/footerimages/Metaverse_bottom.png";
 import robotics from "../../assets/images/footerimages/Robot_bottom.jpeg";
 import logo from "../../assets/images/navabarlogo/ANAMCARA AI LOGO ICON TRANSPARENT 2.png";
-import { useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import aiTabAnimation from "../../assets/animation/footerlockanimations/aiTab.json";
 import metaverseTabAnimation from "../../assets/animation/footerlockanimations/metaverseTab.json";
 import roboticsTabAnimation from "../../assets/animation/footerlockanimations/roboticsTab.json";
