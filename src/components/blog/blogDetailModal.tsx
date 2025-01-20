@@ -45,8 +45,6 @@ const blogDetailModal: React.FC<ModalProps> = ({
   onClose,
   Image1,
   title,
-  details,
-  content,
 
 }) => {
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -77,12 +75,6 @@ const blogDetailModal: React.FC<ModalProps> = ({
   };
 
   if (!isOpen) return null;
-
-  const contentText = `
-    Tech giants are running out of data used to train AI systems.
-    To overcome the problem, some companies are exploring new methods powered by 'synthetic data',
-    write Cade Metz & Tripp Mickle.
-  `;
   const [isUpvoted, setIsUpvoted] = useState(false);
   const [isDownvoted, setIsDownvoted] = useState(false);
   const [isShared, setIsShared] = useState(false);
