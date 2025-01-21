@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
-
 import Layout from "./components/layout/layout";
 import Blog from "./pages/blog/blog";
 const Main = lazy(() => import("./pages/main/main"));
@@ -15,6 +14,9 @@ const OurSolution = lazy(() => import("./pages/ourSolutions/oursolution"));
 const Features = lazy(() => import("./pages/features/features"));
 const Resources = lazy(() => import("./pages/resources/resources"));
 const About = lazy(() => import("./pages/about/about"));
+import Loading from "./components/loading/loading";
+
+
 function App() {
   return (
     <Router>
@@ -27,11 +29,11 @@ function App() {
             </Suspense>
           }
         />
-         <Route
+        <Route
           path="/main"
           element={
-            <Suspense>
-              <Main/>
+            <Suspense fallback={<Loading />}>
+              <Main />
             </Suspense>
           }
         />
@@ -66,7 +68,6 @@ function App() {
             path="/features"
             element={
               <Layout>
-                {" "}
                 <Features />
               </Layout>
             }
@@ -100,12 +101,14 @@ function App() {
         <Route
           path="/resources/blog"
           element={
-            <Blog />
+            <Layout>
+              <Blog />             
+               </Layout>
           }
         />
 
         <Route path="*" element={<PageNotFound />} />
-        
+
       </Routes>
 
     </Router>
