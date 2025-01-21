@@ -15,6 +15,7 @@ const Features = lazy(() => import("./pages/features/features"));
 const Resources = lazy(() => import("./pages/resources/resources"));
 const About = lazy(() => import("./pages/about/about"));
 import Loading from "./components/loading/loading";
+import styles from "./components/layout/layout.module.css";
 
 
 function App() {
@@ -32,11 +33,14 @@ function App() {
         <Route
           path="/main"
           element={
-            <Suspense fallback={<Loading />}>
-              <Main />
-            </Suspense>
+            <div className={styles.childContent}>
+              <Suspense fallback={<Loading />}>
+                <Main />
+              </Suspense>
+            </div>
           }
         />
+
         <Route>
           <Route
             path="/home"
@@ -102,8 +106,8 @@ function App() {
           path="/resources/blog"
           element={
             <Layout>
-              <Blog />             
-               </Layout>
+              <Blog />
+            </Layout>
           }
         />
 
