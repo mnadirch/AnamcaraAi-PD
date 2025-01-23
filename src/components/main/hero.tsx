@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent, useRef } from "react";
+import React, { useState, MouseEvent } from "react";
 import { motion } from "framer-motion";
 import starryBg from "../../assets/images/main/stars.png";
 
