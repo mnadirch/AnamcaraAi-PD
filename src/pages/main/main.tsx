@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent } from "react";
+import React, { useState, MouseEvent,useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Hero from "../../components/main/hero";
 import Landing from "../../components/main/landing";
@@ -8,12 +8,13 @@ import dullLogo from "../../assets/images/main/dull.png";
 import shineLogo from "../../assets/images/main/ANAMCARA AI LOGO ICON TRANSPARENT 7.png";
 import starryBg from "../../assets/images/main/stars.png";
 import useWindowSize from "./useWindowSIze"; // <-- import the hook (adjust path if needed)
+import Audio from "../../components/main/audio";
+
 
 type Phase = "hero" | "landing" | "survey";
 
 const Main: React.FC = () => {
   const [phase, setPhase] = useState<Phase>("hero");
-
   // 1) Use custom hook to detect screen width
   const { width } = useWindowSize();
 
@@ -77,6 +78,7 @@ const Main: React.FC = () => {
       ))}
     </div>
   );
+
 
   return (
     <div
@@ -242,7 +244,7 @@ const Main: React.FC = () => {
             onClick={() => handlePhaseChange("landing")}
           >
             {renderStarsLayer("hero-area")}
-            <Hero />
+            <Hero audio={<Audio />}/>
           </motion.div>
         )}
 

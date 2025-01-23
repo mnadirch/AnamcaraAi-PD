@@ -1,8 +1,12 @@
-import React, { useState, MouseEvent } from "react";
+import React, { useState, MouseEvent, useRef } from "react";
 import { motion } from "framer-motion";
 import starryBg from "../../assets/images/main/stars.png";
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  audio: React.ReactNode;  // Define the expected prop type
+} 
+
+const Hero: React.FC<HeroProps> = ({ audio }) => {
   const [welcomeText] = useState<string>("WELCOME");
   const [humanText] = useState<string>("HUMAN  ...");
 
@@ -48,6 +52,9 @@ const Hero: React.FC = () => {
       }
     });
   };
+
+
+  
 
   return (
     <div
@@ -156,72 +163,73 @@ const Hero: React.FC = () => {
         - On small screens: Stacked (relative, below WELCOME)
         - On md+ screens: Use original absolute positioning on the right
       */}
+    
       <motion.div
-        className="
-          /* Mobile layout: fill half the screen height, relative positioning */
-          relative w-full h-1/2 
-          flex justify-center items-center 
-          z-20
+      className="
+        relative w-full h-1/2 
+        flex justify-center items-center 
+        z-20
+        md:absolute 
+        md:h-full
+      "
+      style={{
+        right: "5%", // Only applies at md+ due to 'md:absolute'
+        width: "30%",
+      }}
+      id="human-area"
+      onMouseMove={(e) => handleMouseMove(e, "human-area")}
+      onMouseLeave={() => handleMouseLeave("human-area")}
+    >
+      
 
-          /* Desktop layout: original absolute positioning on the right */
-          md:absolute 
-          md:h-full
-        "
+      {/* Stars */}
+      <div className="absolute inset-0 z-10 pointer-events-auto overflow-hidden">
+        {stars.map((star, index) => (
+          <motion.div
+            key={`human-star-${index}`}
+            className="absolute rounded-full"
+            style={{
+              top: `${star.y}%`,
+              left: `${star.x}%`,
+              width: "0.4rem",
+              height: "0.4rem",
+              backgroundColor: "#00000000",
+              transition: "background-color 0.3s ease",
+            }}
+            id={`human-area-star-${index}`}
+          />
+        ))}
+      </div>
+      {audio}
+      {/* HUMAN Text */}
+      <motion.h1
+        className="absolute font-bold tracking-wide text-[#ADFF00]"
         style={{
-          right: "5%", // Only applies at md+ due to 'md:absolute'
-          width: "30%",
+          fontSize: "clamp(3rem, 5vw, 7rem)",
+          whiteSpace: "nowrap",
         }}
-        id="human-area"
-        onMouseMove={(e) => handleMouseMove(e, "human-area")}
-        onMouseLeave={() => handleMouseLeave("human-area")}
       >
-        {/* Stars */}
-        <div className="absolute inset-0 z-10 pointer-events-auto overflow-hidden">
-          {stars.map((star, index) => (
-            <motion.div
-              key={`human-star-${index}`}
-              className="absolute rounded-full"
-              style={{
-                top: `${star.y}%`,
-                left: `${star.x}%`,
-                width: "0.4rem",
-                height: "0.4rem",
-                backgroundColor: "#00000000",
-                transition: "background-color 0.3s ease",
-              }}
-              id={`human-area-star-${index}`}
-            />
-          ))}
-        </div>
+        {humanText.split("").map((letter, i) => (
+          <motion.span
+            key={i}
+            className="inline-block"
+            custom={i}
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: (index) => ({
+                opacity: 1,
+                transition: { delay: 1.5 + index * 0.2 },
+              }),
+            }}
+          >
+            {letter}
+          </motion.span>
+        ))}
+      </motion.h1>
+    </motion.div>
 
-        {/* HUMAN Text (same transitions as before) */}
-        <motion.h1
-          className="absolute font-bold tracking-wide text-[#ADFF00]"
-          style={{
-            fontSize: "clamp(3rem, 5vw, 7rem)",
-            whiteSpace: "nowrap",
-          }}
-        >
-          {humanText.split("").map((letter, i) => (
-            <motion.span
-              key={i}
-              className="inline-block"
-              custom={i}
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: { opacity: 0 },
-                visible: (index) => ({
-                  opacity: 1,
-                  transition: { delay: 1.5 + index * 0.2 },
-                }),
-              }}
-            >
-              {letter}
-            </motion.span>
-          ))}
-        </motion.h1>
-      </motion.div>
     </div>
   );
 };
