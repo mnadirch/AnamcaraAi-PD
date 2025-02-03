@@ -8,7 +8,6 @@ import share from "../../assets/icons/Vector (4).png";
 import bookmark from "../../assets/icons/Vector (5).png";
 import comments from "../../assets/icons/Vector (6).png";
 import view from "../../assets/icons/circum_read.png";
-import starryBg from "../../assets/images/main/stars.png";
 import pic from "../../assets/images/headimages/Ellipse 90.png";
 import insta from "../../assets/icons/Group (1).png";
 import fb from "../../assets/icons/Group.png";
@@ -19,6 +18,7 @@ import filledup from "../../assets/icons/Vector (8).png";
 import filledshare from "../../assets/icons/Vector (12).png";
 import filledbookmark from "../../assets/icons/Vector (10).png";
 import data from "../../assets/data/blog.json";
+import starryBg from "../../assets/images/main/stars.png";
 
 
 
@@ -33,12 +33,7 @@ interface ModalProps {
 
 }
 
-const stars = Array.from({ length: 150 }, () => ({
-  x: Math.random() * 100,
-  y: Math.random() * 100,
-}));
 
-const hoverRadius = 10;
 
 const blogDetailModal: React.FC<ModalProps> = ({
   isOpen,
@@ -47,33 +42,6 @@ const blogDetailModal: React.FC<ModalProps> = ({
   title,
 
 }) => {
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const modal = e.currentTarget;
-    const rect = modal.getBoundingClientRect();
-    const mouseX = ((e.clientX - rect.left) / rect.width) * 100;
-    const mouseY = ((e.clientY - rect.top) / rect.height) * 100;
-
-    stars.forEach((star, i) => {
-      const distance = Math.sqrt(
-        Math.pow(star.x - mouseX, 2) + Math.pow(star.y - mouseY, 2)
-      );
-      const starElement = document.getElementById(`modal-star-${i}`);
-      if (starElement) {
-        starElement.style.backgroundColor =
-          distance <= hoverRadius ? "white" : "#00000000";
-      }
-    });
-  };
-
-  const handleMouseLeave = () => {
-    stars.forEach((_, i) => {
-      const starElement = document.getElementById(`modal-star-${i}`);
-      if (starElement) {
-        starElement.style.backgroundColor = "#00000000";
-      }
-    });
-  };
-
   if (!isOpen) return null;
 
   const contentText = `
@@ -150,27 +118,9 @@ const blogDetailModal: React.FC<ModalProps> = ({
       <div className=" rounded-lg shadow-lg max-w-4xl w-full p-6 relative text-white overflow-hidden"
         style={{
           backgroundImage: `url(${starryBg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
         }}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}>
-        {/* Star Background */}
-        <div className="absolute inset-0 pointer-events-none" >
-          {stars.map((star, index) => (
-            <div
-              key={index}
-              id={`modal-star-${index}`}
-              className="absolute w-1 h-1 rounded-full"
-              style={{
-                top: `${star.y}%`,
-                left: `${star.x}%`,
-                backgroundColor: "#00000000",
-                transition: "background-color 0.2s ease",
-              }}
-            ></div>
-          ))}
-        </div>
+    >
+      
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -180,10 +130,7 @@ const blogDetailModal: React.FC<ModalProps> = ({
         </button>
 
         {/* Scrollable Container */}
-        <div className="max-h-[80vh] overflow-y-auto no-scrollbar px-4"
-          style={{
-            backgroundColor: "rgba(255, 255, 255, 0.09)", // White with 9% opacity
-          }}>
+        <div className="max-h-[80vh] overflow-y-auto no-scrollbar px-4">
           {/* Image */}
           <img
             src={Image1}

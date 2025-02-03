@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
       >
         <img src={logo} alt="Logo" className="w-16 h-auto" />
         <span className="ml-3 text-xl font-bold tracking-wide text-white">
-          ANAMCARA.AI
+          ANAMCARA AI
         </span>
       </div>
 
@@ -56,7 +56,7 @@ const Navbar: React.FC = () => {
       {/* Links */}
       <div
         className={`${isMenuOpen ? "flex" : "hidden"
-          } lg:flex flex-col lg:flex-row items-center gap-5 lg:gap-8 absolute lg:static top-14 left-1/2 transform -translate-x-1/2 lg:translate-x-0 bg-[#000000] lg:bg-transparent p-4 lg:p-0 rounded lg:rounded-none`}
+          } lg:flex flex-col lg:flex-row items-center gap-12 lg:gap-20 absolute lg:static top-14 left-1/2 transform -translate-x-1/2 lg:translate-x-0 bg-[#000000] lg:bg-transparent p-4 lg:p-0 rounded lg:rounded-none`}
       >
         {links.map((link, index) => (
           <div key={index} className="relative">
@@ -119,7 +119,7 @@ const Navbar: React.FC = () => {
 
       {/* Call-to-Action Button */}
       <div className="relative flex justify-center items-center min-w-[216px] min-h-[60px] h-full overflow-hidden ">
-        <button className="relative px-6 py-2 text-[#ADFF00] font-medium cursor-pointer border-[#ADFF00] transition-all duration-300 hover:bg-[#ADFF00] hover:text-black" 
+        <button className="relative px-6 py-2 text-[#ADFF00] font-medium cursor-pointer border-[#ADFF00] transition-all duration-300 bg-[#ADFF00] text-black hover:bg-[black] hover:text-white" 
 
 >
           Get Connected
