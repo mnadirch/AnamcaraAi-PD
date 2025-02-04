@@ -20,27 +20,19 @@ import filledbookmark from "../../assets/icons/Vector (10).png";
 import data from "../../assets/data/blog.json";
 import starryBg from "../../assets/images/main/stars.png";
 
-
-
-
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   Image1: string;
   title: string;
-  details: string;
   content: string; // Add this missing property
-
 }
-
-
 
 const blogDetailModal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
   Image1,
   title,
-
 }) => {
   if (!isOpen) return null;
 
@@ -117,10 +109,11 @@ const blogDetailModal: React.FC<ModalProps> = ({
     >
       <div className=" rounded-lg shadow-lg max-w-4xl w-full p-6 relative text-white overflow-hidden"
         style={{
-          backgroundImage: `url(${starryBg})`,
+          //backgroundImage: `url(${starryBg})`,
+          backgroundColor: "black",
         }}
-    >
-      
+      >
+
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -137,38 +130,23 @@ const blogDetailModal: React.FC<ModalProps> = ({
             alt={title}
             className="rounded-md w-full max-h-96 object-cover mb-6"
           />
-
           {/* Title */}
-          <h1 className="text-3xl md:text-4xl font-bold mb-2">{title}</h1>
-
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">{title}</h1>
           {/* Metadata and Icons */}
           <div className="flex items-center justify-between text-white text-sm mb-6">
-
             {/* Left Metadata */}
             <div className="flex items-center space-x-6" style={{ fontFamily: 'Mowaq, sans-serif' }}>
-              <div className="flex items-center Mowaq">
+              <div className="flex items-center">
                 <img src={author} alt="Author Icon" className="w-4 h-4 mr-2" />
                 <span>Author Name</span>
               </div>
               <div className="flex items-center">
                 <img src={calender} alt="Calendar Icon" className="w-4 h-4 mr-2" />
-                <span>12 April, 2024</span>
-              </div>
-              <div
-                className="flex items-center cursor-pointer"
-                onClick={handleLikeClick}
-              >
-                <img
-                  src={isLiked ? filledheart : heart}
-                  alt="Like Icon"
-                  className="w-4 h-4 mr-2"
-                />
-                <span>{likeCount}</span>
+                <span>12 April 2024</span>
               </div>
             </div>
-
             {/* Right Action Icons */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 ml-6">
               <button
                 className="hover:text-white transition flex items-center"
                 onClick={() => handleIconClick("upvote")}
@@ -222,7 +200,6 @@ const blogDetailModal: React.FC<ModalProps> = ({
               </button>
             </div>
           </div>
-
 
 
           {/* Main Content */}
