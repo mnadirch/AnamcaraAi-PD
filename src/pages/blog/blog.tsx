@@ -4,10 +4,12 @@ import Content from "../../components/blog/content";
 import Cards from "../../components/blog/cards";
 import backgroundImage1 from "../../assets/images/backgrounds/pexels-cookiecutter-1148820.png";
 import backgroundImage2 from "../../assets/images/backgrounds/pexels-pixabay-40185 1.png";
-import backgroundImage3 from "../../assets/images/backgrounds/markus-spiske-AaEQmoufHLk-unsplash.jpg";
-import backgroundImage4 from "../../assets/images/backgrounds/glenn-carstens-peters-npxXWgQ33ZQ-unsplash.jpg";
-import backgroundImage5 from "../../assets/images/backgrounds/ales-nesetril-Im7lZjxeLhg-unsplash.jpg";
-import backgroundImage6 from "../../assets/images/backgrounds/adi-goldstein-EUsVwEOsblE-unsplash.jpg";
+import backgroundImage3 from "../../assets/images/backgrounds/markus-spiske-AaEQmoufHLk-unsplash.png";
+import backgroundImage4 from "../../assets/images/backgrounds/glenn-carstens-peters-npxXWgQ33ZQ-unsplash.png";
+import backgroundImage5 from "../../assets/images/backgrounds/ales-nesetril-Im7lZjxeLhg-unsplash.png";
+import backgroundImage6 from "../../assets/images/backgrounds/markus-spiske-iar-afB0QQw-unsplash.png";
+import backgroundImage7 from "../../assets/images/backgrounds/donald-giannatti-Wj1D-qiOseE-unsplash.png";
+
 
 const Blog: React.FC = () => {
   const [activeCard, setActiveCard] = useState<number>(0);
@@ -38,7 +40,7 @@ const Blog: React.FC = () => {
         newImage = backgroundImage6;
         break;
       case 6:
-        newImage = backgroundImage2;
+        newImage = backgroundImage7;
         break;
       default:
         newImage = backgroundImage1;

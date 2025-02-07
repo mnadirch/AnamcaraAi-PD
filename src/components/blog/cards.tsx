@@ -64,22 +64,20 @@ const Cards: React.FC<CardsProps> = ({ activeCard, setActiveCard }) => {
                 onTouchEnd={stopDrag}
             >
                 {cards
-                    .sort((a, b) => (a.id === activeCard ? -1 : b.id === activeCard ? 1 : 0)) 
+                    .sort((a, b) => (a.id === activeCard ? -1 : b.id === activeCard ? 1 : 0))
                     .map((card) => (
                         <div
                             key={card.id}
                             onClick={() => setActiveCard(card.id)}
                             className="relative bg-[#505050] min-h-[200px] bg-opacity-65 text-white p-6 rounded-xl shadow-lg group overflow-hidden cursor-pointer transition-all duration-500 w-[75%] mx-auto font-400"
                             style={{ fontFamily: '"Calibri", sans-serif' }}
-                            >
+                        >
                             {/* Top Line */}
                             <div className="h-[2px] w-full bg-gray-400 group-hover:bg-[#ADFF00] transition-all duration-300 mb-4"></div>
-                            {/* Card Title */}
                             {/* Card Title */}
                             <h3 className="text-lg font-bold transition-transform duration-700 group-hover:translate-y-[-5px]">
                                 {card.title}
                             </h3>
-
                             {/* Card Description */}
                             <p className="text-sm mt-2 transition-transform duration-400 group-hover:translate-y-[-3px]">
                                 {card.description}

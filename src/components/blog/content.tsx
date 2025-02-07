@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import Modal from "./blogDetailModal";
 import Image1 from "../../assets/images/backgrounds/pexels-cookiecutter-1148820.png";
 import backgroundImage2 from "../../assets/images/backgrounds/pexels-pixabay-40185 1.png";
-import backgroundImage3 from "../../assets/images/backgrounds/markus-spiske-AaEQmoufHLk-unsplash.jpg";
-import backgroundImage4 from "../../assets/images/backgrounds/glenn-carstens-peters-npxXWgQ33ZQ-unsplash.jpg";
-import backgroundImage5 from "../../assets/images/backgrounds/ales-nesetril-Im7lZjxeLhg-unsplash.jpg";
-import backgroundImage6 from "../../assets/images/backgrounds/adi-goldstein-EUsVwEOsblE-unsplash.jpg";
+import backgroundImage3 from "../../assets/images/backgrounds/markus-spiske-AaEQmoufHLk-unsplash.png";
+import backgroundImage4 from "../../assets/images/backgrounds/glenn-carstens-peters-npxXWgQ33ZQ-unsplash.png";
+import backgroundImage5 from "../../assets/images/backgrounds/ales-nesetril-Im7lZjxeLhg-unsplash.png";
+import backgroundImage6 from "../../assets/images/backgrounds/markus-spiske-iar-afB0QQw-unsplash.png";
+import backgroundImage7 from "../../assets/images/backgrounds/donald-giannatti-Wj1D-qiOseE-unsplash.png";
+
 import { FaThumbsUp, FaBell, FaComment, FaShare, FaBookmark } from "react-icons/fa";
 
 interface ContentProps {
@@ -62,7 +64,7 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
       heading: "AI-Powered Cybersecurity Advances",
       content:
         "AI reduces cyberattack response times significantly. Advanced machine learning models detect and neutralize cyber threats in real-time, helping businesses and governments secure their data against evolving digital threats.",
-      imageSrc: backgroundImage2, // reusing backgroundImage2
+      imageSrc: backgroundImage7, // reusing backgroundImage2
     },
   ];
 
