@@ -120,7 +120,7 @@ const BlogDetailModal: React.FC<ModalProps> = ({
   };
 
   return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
       <div
         className="rounded-lg shadow-lg max-w-4xl w-full p-6 relative text-white overflow-hidden"
         style={{
@@ -138,7 +138,7 @@ const BlogDetailModal: React.FC<ModalProps> = ({
 
         {/* Scrollable Container */}
         <div className="max-h-[80vh] overflow-y-auto no-scrollbar px-4 pl-16" ref={scrollableRef}>
-        {/* Image */}
+          {/* Image */}
           <img
             src={Image1}
             alt={title}
@@ -344,13 +344,15 @@ const BlogDetailModal: React.FC<ModalProps> = ({
             {/* Green Line */}
             <div className="border-t-2 border-[#ADFF00] mt-2"></div>
           </div>
-
+  <div className="relative flex justify-center my-4">
+              <Reactions />
+            </div>
           {/* Comment Input */}
           <div
             className="flex flex-col space-y-4 mb-6"
             style={{ fontFamily: "Mowaq, sans-serif" }}
           >
-             <Reactions/>
+          
             <div className="flex items-center space-x-4 w-full">
               <img
                 src={pic}
@@ -447,11 +449,11 @@ const BlogDetailModal: React.FC<ModalProps> = ({
             <div className="pt-6"></div>
           </div>
         </div>
-          {/* <RightSideIconsBar> with scrollToTop callback */}
-          <SideBar onScrollToTop={scrollToTop} /></div>
+        {/* <RightSideIconsBar> with scrollToTop callback */}
+        <SideBar onScrollToTop={scrollToTop} /></div>
     </div>
-  
-    
+
+
   );
 };
 
