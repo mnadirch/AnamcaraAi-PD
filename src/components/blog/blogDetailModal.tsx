@@ -344,15 +344,15 @@ const BlogDetailModal: React.FC<ModalProps> = ({
             {/* Green Line */}
             <div className="border-t-2 border-[#ADFF00] mt-2"></div>
           </div>
-  <div className="relative flex justify-center my-4">
-              <Reactions />
-            </div>
+          <div className="relative flex justify-center my-4">
+            <Reactions />
+          </div>
           {/* Comment Input */}
           <div
             className="flex flex-col space-y-4 mb-6"
             style={{ fontFamily: "Mowaq, sans-serif" }}
           >
-          
+
             <div className="flex items-center space-x-4 w-full">
               <img
                 src={pic}
