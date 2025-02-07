@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../../components/navbar/navbar";
 import Content from "../../components/blog/content";
 import Cards from "../../components/blog/cards";
@@ -9,50 +9,13 @@ import backgroundImage4 from "../../assets/images/backgrounds/glenn-carstens-pet
 import backgroundImage5 from "../../assets/images/backgrounds/ales-nesetril-Im7lZjxeLhg-unsplash.jpg";
 import backgroundImage6 from "../../assets/images/backgrounds/adi-goldstein-EUsVwEOsblE-unsplash.jpg";
 
-
-
 const Blog: React.FC = () => {
   const [activeCard, setActiveCard] = useState<number>(0);
-  const [prevImage, setPrevImage] = useState<string>(backgroundImage1);
   const [currentImage, setCurrentImage] = useState<string>(backgroundImage1);
   const [nextImage, setNextImage] = useState<string | null>(null);
-  const [transitionActive, setTransitionActive] = useState<boolean>(false);
-  const cardsRef = useRef<HTMLDivElement>(null);
-  const isDragging = useRef(false);
-  const startY = useRef(0);
-  const scrollTop = useRef(0);
   const [fadeIn, setFadeIn] = useState<boolean>(false);
 
-
-  const startDrag = (e: React.MouseEvent | React.TouchEvent) => {
-    isDragging.current = true;
-    startY.current = "touches" in e ? e.touches[0].clientY : e.clientY;
-    scrollTop.current = cardsRef.current?.scrollTop || 0;
-    document.body.style.userSelect = "none"; // Prevent text selection
-  };
-
-  const onDrag = (e: React.MouseEvent | React.TouchEvent) => {
-    if (!isDragging.current || !cardsRef.current) return;
-    const currentY = "touches" in e ? e.touches[0].clientY : e.clientY;
-    const distance = startY.current - currentY;
-    cardsRef.current.scrollTop = scrollTop.current + distance;
-  };
-
-  const stopDrag = () => {
-    isDragging.current = false;
-    document.body.style.userSelect = ""; // Re-enable text selection
-  };
-
-  const cards = [
-    { id: 0, title: "GPT-5 Unveiled", description: "OpenAI has launched GPT-5 with major improvements in logical reasoning and problem-solving.OpenAI has launched GPT-5 with major improvements in logical reasoning and problem-solving." },
-    { id: 1, title: "AI Breakthrough", description: "Google's AI assistant can now understand and respond to text, voice, and images simultaneously." },
-    { id: 2, title: "Quantum Computing Advances", description: "IBM achieves a major milestone in quantum computing, improving error correction and stability." },
-    { id: 3, title: "Self-Driving Cars", description: "Tesla and Waymo introduce new fleets of fully autonomous vehicles for major cities." },
-    { id: 4, title: "AI in Healthcare", description: "Researchers develop AI that predicts diseases with 95% accuracy from patient records." },
-    { id: 5, title: "Robotics Revolution", description: "Boston Dynamics releases next-gen robots with human-like dexterity and adaptability." },
-    { id: 6, title: "Cybersecurity AI", description: "AI-powered cybersecurity tools improve attack detection, reducing response time by 70%." },
-  ];
-
+  // Array of content objects for the blog (used in Content component and for background images)
   const contents = [
     {
       id: 0,
@@ -98,37 +61,35 @@ const Blog: React.FC = () => {
     },
   ];
 
-// When activeCard changes, set up the next background image for transition
-useEffect(() => {
-  if (contents[activeCard]) {
-    const newImage = contents[activeCard].imageSrc;
-    if (newImage !== currentImage) {
-      setNextImage(newImage);
+  // Set up the next background image when the active card changes
+  useEffect(() => {
+    if (contents[activeCard]) {
+      const newImage = contents[activeCard].imageSrc;
+      if (newImage !== currentImage) {
+        setNextImage(newImage);
+      }
     }
-  }
-}, [activeCard, contents, currentImage]);
+  }, [activeCard, contents, currentImage]);
 
-// When a nextImage is set, trigger the fade-in and then update the current background
-useEffect(() => {
-  if (nextImage) {
-    // Use requestAnimationFrame to ensure the overlay div is rendered with initial opacity
-    requestAnimationFrame(() => {
-      setFadeIn(true);
-    });
-    const timer = setTimeout(() => {
-      setCurrentImage(nextImage);
-      setNextImage(null);
-      setFadeIn(false);
-    }, 1000); // This duration should match the CSS transition duration (1000ms here)
-    return () => clearTimeout(timer);
-  }
-}, [nextImage]);
+  // Trigger a fade-in transition for the background image change
+  useEffect(() => {
+    if (nextImage) {
+      requestAnimationFrame(() => {
+        setFadeIn(true);
+      });
+      const timer = setTimeout(() => {
+        setCurrentImage(nextImage);
+        setNextImage(null);
+        setFadeIn(false);
+      }, 1000); // Duration should match your CSS transition (1000ms)
+      return () => clearTimeout(timer);
+    }
+  }, [nextImage]);
 
   return (
     <div className="relative w-screen h-screen flex flex-col">
       {/* Background Image(s) */}
       <div className="absolute inset-0 w-full h-full z-0">
-        {/* Base background */}
         <div
           className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out"
           style={{ 
@@ -137,8 +98,7 @@ useEffect(() => {
             opacity: 1
           }}
         ></div>
-          {/* Overlay for new background image (if available) */}
-          {nextImage && (
+        {nextImage && (
           <div
             className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out ${fadeIn ? 'opacity-100' : 'opacity-0'}`}
             style={{ 
@@ -148,46 +108,16 @@ useEffect(() => {
           ></div>
         )}
       </div>
+
       {/* Navbar */}
       <Navbar />
 
-      {/* Main Blog Layout */}
+      {/* Main Layout */}
       <div className="relative z-10 flex flex-row items-center justify-center min-h-screen px-6 text-white gap-8">
+        {/* Cards component now handles all its internal logic */}
+        <Cards activeCard={activeCard} setActiveCard={setActiveCard} />
 
-        {/* Cards Section (Scrollable behind Navbar) */}
-        <div className="w-full md:w-1/4 flex flex-col items-center relative">
-          {/* Scroll Up Button */}
-          <button
-            onClick={() => cardsRef.current?.scrollBy({ top: -200, behavior: "smooth" })}
-            className="text-[#ADFF00] text-3xl absolute -top-10 z-10"
-          >
-            ▲
-          </button>
-
-          {/* Cards Section (Fixed Scrollable Area) */}
-          <div
-            ref={cardsRef}
-            className="overflow-y-auto max-h-[60vh] flex flex-col space-y-4 scroll-smooth no-scrollbar mt-6"
-            onMouseDown={startDrag}
-            onMouseMove={onDrag}
-            onMouseUp={stopDrag}
-            onMouseLeave={stopDrag}
-            onTouchStart={startDrag}
-            onTouchMove={onDrag}
-            onTouchEnd={stopDrag}
-          >
-            <Cards cards={cards} activeCard={activeCard} setActiveCard={setActiveCard} />
-          </div>
-
-          {/* Scroll Down Button */}
-          <button
-            onClick={() => cardsRef.current?.scrollBy({ top: 200, behavior: "smooth" })}
-            className="text-[#ADFF00] text-3xl mt-4"
-          >
-            ▼
-          </button>
-        </div>
-        {/* Content Section (Centered) */}
+        {/* Content Section */}
         <div className="w-full md:w-2/3 h-auto p-6 flex items-center justify-center">
           <Content activeCard={activeCard} contents={contents} />
         </div>

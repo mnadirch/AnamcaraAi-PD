@@ -38,13 +38,13 @@ const Reactions: React.FC = () => {
   const ReactionItem: React.FC<ReactionItemProps> = ({ icon, name }) => (
     <motion.div variants={variants}>
       <div
-        className="group relative w-11 h-11 rounded-full bg-white cursor-pointer transition-transform duration-200 transform hover:scale-125"
+        className="group relative w-11 h-11 rounded-full bg-black cursor-pointer transition-transform duration-200 transform hover:scale-125"
         data-reaction-name={name}
       >
         <img src={icon} alt={name} className="w-full h-full" />
         <span className="absolute top-[-25px] left-1/2 -translate-x-1/2 px-1 text-xs bg-white text-gray-600 rounded-sm capitalize font-normal opacity-0 group-hover:opacity-100 transition-opacity"
-        style={{ fontFamily: '"Calibri", sans-serif' }}
->
+          style={{ fontFamily: '"Calibri", sans-serif' }}
+        >
           {name}
         </span>
       </div>
@@ -56,13 +56,13 @@ const Reactions: React.FC = () => {
       <div>
         <section className="mx-auto">
           {/* Like button thumb */}
-          <span className="relative inline-flex items-center justify-center text-center w-[100px] font-semibold text-gray-600 py-4 px-5 rounded-full shadow-[0_0px_20px_-2px_rgba(0,0,0,0.2)] cursor-pointer">
+          <span className="relative inline-flex items-center justify-center text-center w-[100px] py-4 px-5 rounded-full cursor-pointer">
             {/* Reactions wrapper is always visible */}
             <motion.div
               initial="visible"
               animate="visible"
               variants={variants}
-              className="absolute w-[350px] p-2 mt-2 rounded-full bg-white shadow-[0_5px_20px_-2px_rgba(0,0,0,0.2)] flex justify-between items-center"
+              className="absolute w-[350px] p-2 mt-2 rounded-full  shadow-[0_5px_20px_-2px_rgba(0,0,0,0.2)] flex justify-between items-center"
             >
               <ReactionItem name="like" icon={likeIcon} />
               <ReactionItem name="love" icon={loveIcon} />
