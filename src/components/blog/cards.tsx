@@ -42,7 +42,7 @@ const Cards: React.FC<CardsProps> = ({ activeCard, setActiveCard }) => {
     };
 
     return (
-        <div className="w-full md:w-1/4 flex flex-col items-center relative">
+        <div className="w-full md:w-2/4 flex flex-col items-center relative">
             {/* Scroll Up Button */}
             <button
                 onClick={() => cardsRef.current?.scrollBy({ top: -200, behavior: "smooth" })}
@@ -54,7 +54,7 @@ const Cards: React.FC<CardsProps> = ({ activeCard, setActiveCard }) => {
             {/* Scrollable Cards Container */}
             <div
                 ref={cardsRef}
-                className="overflow-y-auto max-h-[60vh] flex flex-col space-y-4 scroll-smooth no-scrollbar mt-6"
+                className="overflow-y-auto max-h-[50vh] flex flex-col space-y-4 scroll-smooth no-scrollbar mt-6 w-full md:w-3/4"
                 onMouseDown={startDrag}
                 onMouseMove={onDrag}
                 onMouseUp={stopDrag}
@@ -64,12 +64,12 @@ const Cards: React.FC<CardsProps> = ({ activeCard, setActiveCard }) => {
                 onTouchEnd={stopDrag}
             >
                 {cards
-                    .sort((a, b) => (a.id === activeCard ? -1 : b.id === activeCard ? 1 : 0)) // Bring the active card to the top
+                    .sort((a, b) => (a.id === activeCard ? -1 : b.id === activeCard ? 1 : 0)) 
                     .map((card) => (
                         <div
                             key={card.id}
                             onClick={() => setActiveCard(card.id)}
-                            className="relative bg-[#505050] min-h-[200px] bg-opacity-65 text-white p-6 rounded-xl shadow-lg group overflow-hidden cursor-pointer transition-all duration-500 w-[75%] mx-auto"
+                            className="relative bg-[#505050] min-h-[200px] bg-opacity-65 text-white p-6 rounded-xl shadow-lg group overflow-hidden cursor-pointer transition-all duration-500 w-[75%] mx-auto font-400"
                             style={{ fontFamily: '"Calibri", sans-serif' }}
                             >
                             {/* Top Line */}
