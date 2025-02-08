@@ -5,9 +5,9 @@ import Landing from "../../components/main/landing";
 import Survey from "../../components/main/survey";
 import robotFace from "../../assets/images/main/robot.png";
 import dullLogo from "../../assets/images/main/dull.png";
-import shineLogo from "../../assets/images/main/ANAMCARA AI LOGO ICON TRANSPARENT 7.png";
+import shineLogo from "../../assets/images/main/ANAMCARA AI LOGO ICON TRANSPARENT 1.png";
 import starryBg from "../../assets/images/main/stars.png";
-import useWindowSize from "./useWindowSIze"; // <-- import the hook (adjust path if needed)
+import useWindowSize from "./useWindowSIze";
 import Audio from "../../components/main/audio";
 
 
@@ -157,15 +157,14 @@ const Main: React.FC = () => {
           -- DESKTOP RENDERING (≥768px) WITH MOTION --
           Your original <motion.div> with transitions.
         */
-        <motion.div
+          <motion.div
           id="robot-area"
           className={`
-      relative w-full h-[50vh]
-      md:absolute md:top-0 md:left-0 md:w-1/2 md:h-full
-      flex justify-center items-center
-      overflow-hidden
-      z-10
-    `}
+            relative w-full h-[50vh]
+            md:absolute md:top-0 md:left-0 md:w-1/2 md:h-full
+            flex justify-center items-center
+            overflow-hidden z-10
+          `}
           initial={{ x: "50%" }}
           animate={{
             x:
@@ -180,44 +179,48 @@ const Main: React.FC = () => {
           onMouseLeave={() => handleMouseLeave("robot-area")}
         >
           {renderStarsLayer("robot-area")}
-
-          {/* Robot + Logos */}
-          <div className="relative z-10 flex justify-center items-center">
+        
+          {/* Responsive Container with Aspect Ratio */}
+          <div className="relative z-10 w-full max-w-[950px] aspect-square">
+            {/* Robot Image */}
             <img
               src={robotFace}
               alt="Robot"
-              className="
-    w-[950px] h-[950px] object-contain"
+              className="absolute inset-0 w-full h-full object-contain"
             />
-            {/* Shine Logo */}
+        
+            {/* Shine Logo – Fixed Size */}
             <img
               src={shineLogo}
               alt="Shine Logo"
-              className="
-          absolute
-          top-[25%]
-          left-1/2
-          -translate-x-1/2
-          -translate-y-1/2
-          animate-blink-shine
-        "
+              className="absolute animate-blink-shine"
+              style={{
+                top: "25%",         // 25% from the top of the container
+                left: "50%",        // centered horizontally
+                transform: "translate(-50%, -50%)",
+                width: "450px",     // Fixed width remains 450px
+                pointerEvents: "none",
+              }}
             />
-            {/* Dull Logo */}
+        
+            {/* Dull Logo – Fixed Size */}
             <img
               src={dullLogo}
               alt="Dull Logo"
-              className="
-          absolute
-          top-[25%]
-          left-1/2
-          -translate-x-1/2
-          -translate-y-1/2
-          w-[90px] h-[90px]
-          animate-blink-dull
-        "
+              className="absolute animate-blink-dull"
+              style={{
+                top: "25%",         // 25% from the top of the container
+                left: "50%",        // centered horizontally
+                transform: "translate(-50%, -50%)",
+                width: "90px",      // Fixed width remains 90px
+                pointerEvents: "none",
+              }}
             />
           </div>
         </motion.div>
+        
+        
+
       )}
       {/* RIGHT SECTION (Hero, Landing, Survey) */}
       <div
@@ -244,7 +247,7 @@ const Main: React.FC = () => {
             onClick={() => handlePhaseChange("landing")}
           >
             {renderStarsLayer("hero-area")}
-            <Hero audio={<Audio />}/>
+            <Hero audio={<Audio />} />
           </motion.div>
         )}
 
