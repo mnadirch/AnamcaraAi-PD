@@ -15,6 +15,11 @@ const Survey: React.FC<SurveyProps> = ({ onSkipToMain }) => {
   const [tfQuestion, setTFQuestion] = useState<Question | null>(null);
   const [mcqQuestion, setMCQQuestion] = useState<Question | null>(null);
   const [hoveredOption, setHoveredOption] = useState<number | null>(null);
+  const [selectedTF, setSelectedTF] = useState<string | null>(null);
+  const [selectedMCQ, setSelectedMCQ] = useState<number | null>(null);
+  const [selectedSave, setSelectedSave] = useState<string | null>(null);
+
+
   const navigate = useNavigate();
 
   // Generate stars for the background
@@ -103,28 +108,22 @@ const Survey: React.FC<SurveyProps> = ({ onSkipToMain }) => {
               {tfQuestion.question}
             </h1>
             <div className="flex flex-wrap gap-4">
-              {tfQuestion.answers.map((answer, idx) => (
-                <button
-                  key={idx}
-                  className="px-6 py-2 text-lg font-medium bg-transparent rounded-full transition-all"
-                  style={{
-                    border: "2px solid #ADFF00",
-                    color: "#ADFF00",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = "black";
-                    e.currentTarget.style.backgroundColor = "#ADFF00";
-                    e.currentTarget.style.color = "black";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "#BCFF9D";
-                    e.currentTarget.style.backgroundColor = "transparent";
-                    e.currentTarget.style.color = "#BCFF9D";
-                  }}
-                >
-                  {answer}
-                </button>
-              ))}
+              {tfQuestion.answers.map((answer, idx) => {
+                const isSelected = selectedTF === answer;
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => setSelectedTF(answer)}
+                    className={`w-32 text-center px-6 py-2 text-lg font-medium rounded-full transition-all 
+              ${isSelected
+                        ? "bg-[#ADFF00] text-black border-2 border-black"
+                        : "bg-transparent text-[#ADFF00] border-2 border-[#BCFF9D] hover:bg-[#ADFF00] hover:text-black hover:border-black"
+                      }`}
+                  >
+                    {answer}
+                  </button>
+                );
+              })}
             </div>
           </div>
         )}
@@ -138,22 +137,24 @@ const Survey: React.FC<SurveyProps> = ({ onSkipToMain }) => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {mcqQuestion.answers.map((answer, idx) => {
                 const optionLetter = String.fromCharCode(65 + idx);
+                const isSelected = selectedMCQ === idx;
                 const isHovered = hoveredOption === idx;
+                const isActive = isSelected || isHovered; // If either hovered or selected, apply the active style
 
                 return (
                   <div
                     key={idx}
                     className="flex items-center space-x-4 cursor-pointer group"
+                    onClick={() => setSelectedMCQ(idx)} // Update selection on click
                     onMouseEnter={() => setHoveredOption(idx)}
                     onMouseLeave={() => setHoveredOption(null)}
                   >
                     <div
-                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 flex items-center justify-center transition-all"
-                      style={{
-                        borderColor: isHovered ? "black" : "#BCFF9D",
-                        backgroundColor: isHovered ? "#ADFF00" : "transparent",
-                        color: isHovered ? "black" : "#ADFF00",
-                      }}
+                      className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 flex items-center justify-center transition-all
+                ${isActive
+                          ? "bg-[#ADFF00] text-black border-black"
+                          : "bg-transparent text-[#ADFF00] border-[#BCFF9D]"
+                        }`}
                     >
                       {optionLetter}
                     </div>
@@ -171,14 +172,22 @@ const Survey: React.FC<SurveyProps> = ({ onSkipToMain }) => {
             Who would you rather save?
           </h1>
           <div className="flex flex-wrap gap-4">
-            {["Self", "Partner", "Friend", "Parent"].map((answer, idx) => (
-              <button
-                key={idx}
-                className="px-6 py-2 text-lg font-medium text-[#ADFF00] bg-transparent border border-[#BCFF9D] rounded-full hover:bg-[#ADFF00] hover:text-black transition-all"
-              >
-                {answer}
-              </button>
-            ))}
+            {["Self", "Partner", "Friend", "Parent"].map((answer, idx) => {
+              const isSelected = selectedSave === answer;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => setSelectedSave(answer)} // Update selection on click
+                  className={`w-32 text-center px-6 py-2 text-lg font-medium rounded-full transition-all
+                ${isSelected
+                      ? "bg-[#ADFF00] text-black border-2 border-black"
+                      : "bg-transparent text-[#ADFF00] border border-[#BCFF9D] hover:bg-[#ADFF00] hover:text-black"
+                    }`}
+                >
+                  {answer}
+                </button>
+              );
+            })}
           </div>
         </div>
 
