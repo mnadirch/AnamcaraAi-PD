@@ -1,0 +1,30 @@
+/* ====== Responsive Headings ====== */
+@media (min-width: 640px) { /* sm */
+    .landing-title {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (min-width: 768px) { /* md */
+    .landing-title {
+      font-size: 3rem;
+    }
+  }
+  
+  @media (min-width: 1024px) { /* lg */
+    .landing-title {
+      font-size: 4rem;
+    }
+  }
+  
+  @media (min-width: 1280px) { /* xl */
+    .landing-title {
+      font-size: 5rem;
+    }
+  }
+
+  @media (min-width: 1536px) { /* 2xl */
+    .landing-title {
+      font-size: 5rem;
+    }
+  }

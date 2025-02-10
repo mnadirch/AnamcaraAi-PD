@@ -79,7 +79,6 @@ const Main: React.FC = () => {
     </div>
   );
 
-
   return (
     <div
       className="
@@ -96,75 +95,67 @@ const Main: React.FC = () => {
     >
       {/* Robot Section */}
       {width < 768 ? (
-        /* 
-          -- MOBILE RENDERING (no motion) --
-          Just a regular <div> with no transitions.
-        */
+        // MOBILE RENDERING (no motion)
         <div
           id="robot-area"
-          className="
-      relative w-full h-[50vh]
-      flex justify-center items-center
-      overflow-hidden
-      z-10
-    "
+          className="relative w-full h-screen flex justify-center items-center z-10"
           onMouseMove={(e) => handleMouseMove(e, "robot-area")}
           onMouseLeave={() => handleMouseLeave("robot-area")}
         >
           {renderStarsLayer("robot-area")}
+          {/* Position Audio absolutely so it’s not in the normal flex order */}
+            <Audio />
 
           {/* Robot + Logos */}
-          <div className="relative z-10 flex justify-center items-center">
+          <div className="relative w-full max-w-[600px] aspect-square top-1/2 left-1/2 transform -translate-x-[45%] -translate-y-1/2">
+            {/* Robot Image */}
             <img
               src={robotFace}
               alt="Robot"
-              className="
-          w-[300px] h-[300px]
-          object-contain
-        "
+              className="h-full object-contain w-auto"
+              style={{ width: "530px" }}
             />
+
             {/* Shine Logo */}
             <img
               src={shineLogo}
               alt="Shine Logo"
-              className="
-          absolute
-          top-[25%]
-          left-1/2
-          -translate-x-1/2
-          -translate-y-1/2
-          animate-blink-shine
-        "
+              className="absolute animate-blink-shine"
+              style={{
+                top: "25%",
+                left: "45%",
+                transform: "translate(-50%, -50%)",
+                width: "450px",
+                pointerEvents: "none",
+              }}
             />
-            {/* Dull Logo */}
+
+            {/* Dull Logo – Anchored at the same position */}
             <img
               src={dullLogo}
               alt="Dull Logo"
-              className="
-          absolute
-          top-[25%]
-          left-1/2
-          -translate-x-1/2
-          -translate-y-1/2
-          w-[50px] h-[50px]
-          animate-blink-dull
-        "
+              className="absolute animate-blink-dull"
+              style={{
+                top: "25%",
+                left: "45%",
+                transform: "translate(-50%, -50%)",
+                width: "65px",
+                height: "65px",
+                pointerEvents: "none",
+              }}
             />
           </div>
         </div>
       ) : (
-        /*
-          -- DESKTOP RENDERING (≥768px) WITH MOTION --
-          Your original <motion.div> with transitions.
-        */
-          <motion.div
+        // DESKTOP RENDERING (with motion)
+        <motion.div
           id="robot-area"
           className={`
-            relative w-full h-[50vh]
-            md:absolute md:top-0 md:left-0 md:w-1/2 md:h-full
-            flex justify-center items-center
-            overflow-hidden z-10
-          `}
+          relative w-full h-[50vh]
+          md:absolute md:top-0 md:left-0 md:w-1/2 md:h-full
+          flex justify-center items-center
+          overflow-hidden z-10
+        `}
           initial={{ x: "50%" }}
           animate={{
             x:
@@ -179,7 +170,7 @@ const Main: React.FC = () => {
           onMouseLeave={() => handleMouseLeave("robot-area")}
         >
           {renderStarsLayer("robot-area")}
-        
+
           {/* Responsive Container with Aspect Ratio */}
           <div className="relative z-10 w-full max-w-[950px] aspect-square">
             {/* Robot Image */}
@@ -188,7 +179,7 @@ const Main: React.FC = () => {
               alt="Robot"
               className="absolute inset-0 w-full h-full object-contain"
             />
-        
+
             {/* Shine Logo – Fixed Size */}
             <img
               src={shineLogo}
@@ -202,7 +193,7 @@ const Main: React.FC = () => {
                 pointerEvents: "none",
               }}
             />
-        
+
             {/* Dull Logo – Fixed Size */}
             <img
               src={dullLogo}
@@ -218,10 +209,8 @@ const Main: React.FC = () => {
             />
           </div>
         </motion.div>
-        
-        
-
       )}
+
       {/* RIGHT SECTION (Hero, Landing, Survey) */}
       <div
         className="
@@ -236,33 +225,48 @@ const Main: React.FC = () => {
       >
         {/* Hero Section */}
         {phase === "hero" && (
-          <motion.div
-            id="hero-area"
-            className="relative w-full h-full flex items-center justify-center"
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onMouseMove={(e) => handleMouseMove(e, "hero-area")}
-            onMouseLeave={() => handleMouseLeave("hero-area")}
-            onClick={() => handlePhaseChange("landing")}
-          >
-            {renderStarsLayer("hero-area")}
-            <Hero audio={<Audio />} />
-          </motion.div>
+          width < 768 ? (
+            // Mobile rendering: no motion
+            <div
+              id="hero-area"
+              className="relative w-full h-[75vh] flex items-center justify-center"
+              onMouseMove={(e) => handleMouseMove(e, "hero-area")}
+              onMouseLeave={() => handleMouseLeave("hero-area")}
+              onClick={() => handlePhaseChange("landing")}
+            >
+              {renderStarsLayer("hero-area")}
+              <Hero />
+            </div>
+          ) : (
+            // Desktop rendering: with motion
+            <motion.div
+              id="hero-area"
+              className="relative w-full h-full flex items-center justify-center"
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1 }}
+              onMouseMove={(e) => handleMouseMove(e, "hero-area")}
+              onMouseLeave={() => handleMouseLeave("hero-area")}
+              onClick={() => handlePhaseChange("landing")}
+            >
+              {renderStarsLayer("hero-area")}
+              <Hero audio={<Audio />} />
+            </motion.div>
+          )
         )}
 
         {/* Landing Section */}
         {phase === "landing" && (
           <>
-            {width > 768 ? (
+            {width < 768 ? (
               /* MOBILE / TABLET (under 768px): Absolute positioning */
               <motion.div
                 id="landing-area"
                 className="
-          absolute
-          h-full
-          w-1/2
-          right-0
+          relative
+          w-full
+          h-[75vh]
           flex
           flex-col
           justify-center
@@ -270,6 +274,36 @@ const Main: React.FC = () => {
           text-white
           space-y-6
         "
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1 }}
+                onMouseMove={(e) => handleMouseMove(e, "landing-area")}
+                onMouseLeave={() => handleMouseLeave("landing-area")}
+              >
+                {renderStarsLayer("landing-area")}
+                <Landing
+                  onProceed={() => handlePhaseChange("survey")}
+                  onSkipToMain={() => handlePhaseChange("hero")}
+                />
+              </motion.div>
+
+            ) : (
+              /* DESKTOP (≥768px): Relative positioning, or whatever layout you need */
+              <motion.div
+                id="landing-area"
+                className="
+        absolute
+        h-full
+        w-1/2
+        right-0
+        flex
+        flex-col
+        justify-center
+        items-center
+        text-white
+        space-y-6
+      "
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
                 exit={{ opacity: 0 }}
@@ -284,55 +318,26 @@ const Main: React.FC = () => {
                   onSkipToMain={() => handlePhaseChange("hero")}
                 />
               </motion.div>
-            ) : (
-              /* DESKTOP (≥768px): Relative positioning, or whatever layout you need */
-              <motion.div
-                id="landing-area"
-                className="
-          relative
-          w-full
-          h-full
-          flex
-          flex-col
-          justify-center
-          items-center
-          text-white
-          space-y-6
-        "
-                initial={{ x: "100%" }}
-                animate={{ x: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1 }}
-                onMouseMove={(e) => handleMouseMove(e, "landing-area")}
-                onMouseLeave={() => handleMouseLeave("landing-area")}
-              >
-                {renderStarsLayer("landing-area")}
-                <Landing
-                  onProceed={() => handlePhaseChange("survey")}
-                  onSkipToMain={() => handlePhaseChange("hero")}
-                />
-              </motion.div>
             )}
           </>
         )}
         {/* Survey Section */}
         {phase === "survey" && (
           <>
-            {width > 768 ? (
+            {width < 768 ? (
               <motion.div
                 id="survey-area"
                 className="
-                  absolute
-                  w-1/2
-                  left-0
-                  h-full
-                  flex
-                  flex-col
-                  items-center
-                  justify-center
-                  text-white
-                  space-y-6
-                "
+             relative
+             w-full
+            h-[75vh]
+             flex
+             flex-col
+             items-center
+             justify-center
+             text-white
+             space-y-6
+           "
                 initial={{ x: "-100%" }}
                 animate={{ x: 0 }}
                 exit={{ opacity: 0 }}
@@ -344,19 +349,21 @@ const Main: React.FC = () => {
                 <Survey onSkipToMain={() => handlePhaseChange("hero")} />
               </motion.div>
             ) : (
+
               <motion.div
                 id="survey-area"
                 className="
-                  relative
-                  w-full
-                  h-full
-                  flex
-                  flex-col
-                  items-center
-                  justify-center
-                  text-white
-                  space-y-6
-                "
+                absolute
+                w-1/2
+                left-0
+                h-full
+                flex
+                flex-col
+                items-center
+                justify-center
+                text-white
+                space-y-6
+              "
                 initial={{ x: "-100%" }}
                 animate={{ x: 0 }}
                 exit={{ opacity: 0 }}

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import starryBg from "../../assets/images/main/stars.png";
 
 interface HeroProps {
-  audio: React.ReactNode;  // Define the expected prop type
+  audio?: React.ReactNode;  // Define the expected prop type
 }
 
 const Hero: React.FC<HeroProps> = ({ audio }) => {
@@ -91,13 +91,15 @@ const Hero: React.FC<HeroProps> = ({ audio }) => {
       <motion.div
         className="
           /* Mobile layout: fill half the screen height, relative positioning */
-          relative w-full h-1/2 
+          relative w-full h-[20vh] 
           flex justify-center items-center 
           z-20
 
-          /* Desktop layout: revert to your original absolute positioning */
-          md:absolute 
-          md:h-full
+          // /* Desktop layout: revert to your original absolute positioning */
+           md:absolute 
+           md:h-full
+          border-[3px] border-blue-500 p-3
+
         "
         style={{
           left: "5%", // Only takes effect at md+ because of 'md:absolute'
@@ -128,7 +130,8 @@ const Hero: React.FC<HeroProps> = ({ audio }) => {
 
         {/* WELCOME Text (same transitions as before) */}
         <motion.h1
-          className="absolute font-bold tracking-wide text-[#ADFF00]"
+          className="absolute font-bold tracking-wide text-[#ADFF00]         border-[3px] border-blue-500 p-3
+"
           style={{
             fontFamily: '"Mowaq", sans-serif', // Must be the same font family as above
             fontSize: "clamp(3rem, 5vw, 7rem)",         // Use the same clamp value for consistency
@@ -164,11 +167,12 @@ const Hero: React.FC<HeroProps> = ({ audio }) => {
 
       <motion.div
         className="
-        relative w-full h-1/2 
+        relative w-full h-[20vh] 
         flex justify-center items-center 
         z-20
         md:absolute 
         md:h-full
+        border-[3px] border-blue-500 p-3
       "
         style={{
           right: "5%", // Only applies at md+ due to 'md:absolute'
@@ -197,11 +201,14 @@ const Hero: React.FC<HeroProps> = ({ audio }) => {
               id={`human-area-star-${index}`}
             />
           ))}
+
         </div>
         {audio}
+
         {/* HUMAN Text */}
         <motion.h1
-          className="absolute font-bold tracking-wide text-[#ADFF00]"
+          className="absolute font-bold tracking-wide text-[#ADFF00] border-[3px] border-blue-500 p-3
+"
           style={{
             fontFamily: '"Mowaq", sans-serif', // Set your desired font family here
             fontSize: "clamp(3rem, 5vw, 7rem)",         // Same font size for consistency

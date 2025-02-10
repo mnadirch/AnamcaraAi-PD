@@ -20,7 +20,7 @@ const Audio: React.FC = () => {
         audioRef.current = new window.Audio(audioFile) as HTMLAudioElement;
         audioRef.current.preload = "auto";
         audioRef.current.muted = true;  // Start muted to bypass autoplay restrictions
-  
+
         try {
           await audioRef.current.play();
           audioRef.current.muted = false;  // Unmute after successful play
@@ -29,13 +29,13 @@ const Audio: React.FC = () => {
           console.error("Autoplay blocked:", error);
           setAudioState("paused");
         }
-  
+
         audioRef.current.addEventListener("ended", () => setAudioState("replay"));
       }
     };
-  
+
     initializeAudio();
-  
+
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
@@ -44,9 +44,9 @@ const Audio: React.FC = () => {
       }
     };
   }, []);
-  
-  
-  
+
+
+
 
   const handleAudioControl = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
@@ -65,7 +65,8 @@ const Audio: React.FC = () => {
   }, [audioState]);
 
   return (
-    <div className="absolute top-4 right-4 z-30" onClick={(e) => e.stopPropagation()}>
+    <div className="block absolute top-4 right-4 z-[99999] bg-white border border-black p-2"
+      onClick={(e) => e.stopPropagation()}>
       <img
         src={icons[audioState]}
         alt={audioState}
@@ -74,6 +75,7 @@ const Audio: React.FC = () => {
         onClick={handleAudioControl}
       />
     </div>
+
   );
 };
 
