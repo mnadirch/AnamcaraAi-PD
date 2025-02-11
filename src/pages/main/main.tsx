@@ -9,6 +9,7 @@ import shineLogo from "../../assets/images/main/ANAMCARA AI LOGO ICON TRANSPAREN
 import starryBg from "../../assets/images/main/stars.png";
 import useWindowSize from "./useWindowSIze";
 import Audio from "../../components/main/audio";
+//import './style.css';
 
 
 type Phase = "hero" | "landing" | "survey";
@@ -17,6 +18,7 @@ const Main: React.FC = () => {
   const [phase, setPhase] = useState<Phase>("hero");
   // 1) Use custom hook to detect screen width
   const { width } = useWindowSize();
+
 
   // Generate stars for the background
   const stars = Array.from({ length: 150 }, () => ({
@@ -82,38 +84,40 @@ const Main: React.FC = () => {
   return (
     <div
       className="
-        min-h-screen w-full
+        min-h-screen w-screen
         relative
         bg-cover bg-center
         flex
         flex-col
-        md:flex-row
       "
       style={{
         backgroundImage: `url(${starryBg})`,
       }}
     >
       {/* Robot Section */}
-      {width < 768 ? (
+      {width !== null && width <= 1270 ? (
+
         // MOBILE RENDERING (no motion)
         <div
+          key={width}
           id="robot-area"
-          className="relative w-full h-screen flex justify-center items-center z-10"
+          className="relative w-full h-1/2 flex justify-center items-center z-10 border-[3px] border-blue-500 p-3   bg-red-500
+
+"
           onMouseMove={(e) => handleMouseMove(e, "robot-area")}
           onMouseLeave={() => handleMouseLeave("robot-area")}
         >
           {renderStarsLayer("robot-area")}
           {/* Position Audio absolutely so it’s not in the normal flex order */}
-            <Audio />
+          <Audio />
 
           {/* Robot + Logos */}
-          <div className="relative w-full max-w-[600px] aspect-square top-1/2 left-1/2 transform -translate-x-[45%] -translate-y-1/2">
+          <div className="relative w-full max-w-[600px] flex justify-center items-center border-[3px] border-blue-500 p-3">
             {/* Robot Image */}
             <img
               src={robotFace}
               alt="Robot"
-              className="h-full object-contain w-auto"
-              style={{ width: "530px" }}
+              className="h-full object-contain"
             />
 
             {/* Shine Logo */}
@@ -122,8 +126,8 @@ const Main: React.FC = () => {
               alt="Shine Logo"
               className="absolute animate-blink-shine"
               style={{
-                top: "25%",
-                left: "45%",
+                top: "50%",
+                left: "50%",
                 transform: "translate(-50%, -50%)",
                 width: "450px",
                 pointerEvents: "none",
@@ -136,8 +140,8 @@ const Main: React.FC = () => {
               alt="Dull Logo"
               className="absolute animate-blink-dull"
               style={{
-                top: "25%",
-                left: "45%",
+                top: "50%",
+                left: "50%",
                 transform: "translate(-50%, -50%)",
                 width: "65px",
                 height: "65px",
@@ -225,11 +229,11 @@ const Main: React.FC = () => {
       >
         {/* Hero Section */}
         {phase === "hero" && (
-          width < 768 ? (
+          width !== null && width <= 1270 ? (
             // Mobile rendering: no motion
             <div
               id="hero-area"
-              className="relative w-full h-[75vh] flex items-center justify-center"
+              className="relative w-full min-h-screen flex items-center justify-center"
               onMouseMove={(e) => handleMouseMove(e, "hero-area")}
               onMouseLeave={() => handleMouseLeave("hero-area")}
               onClick={() => handlePhaseChange("landing")}
@@ -259,21 +263,25 @@ const Main: React.FC = () => {
         {/* Landing Section */}
         {phase === "landing" && (
           <>
-            {width < 768 ? (
-              /* MOBILE / TABLET (under 768px): Absolute positioning */
+            {width !== null && width < 1270 ? (
+              /* MOBILE / TABLET (under 768px): Absolute positioning with scrolling */
               <motion.div
+                key={width} // Forces re-render on width change
                 id="landing-area"
                 className="
-          relative
-          w-full
-          h-[75vh]
-          flex
-          flex-col
-          justify-center
-          items-center
-          text-white
-          space-y-6
-        "
+    absolute
+    top-0
+    left-0
+    w-full
+    h-full
+    flex
+    flex-col
+    justify-start
+    items-center
+    text-white
+    space-y-6
+    overflow-y-auto
+  "
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
                 exit={{ opacity: 0 }}
@@ -287,12 +295,12 @@ const Main: React.FC = () => {
                   onSkipToMain={() => handlePhaseChange("hero")}
                 />
               </motion.div>
-
-            ) : (
-              /* DESKTOP (≥768px): Relative positioning, or whatever layout you need */
-              <motion.div
-                id="landing-area"
-                className="
+            )
+              : (
+                /* DESKTOP (≥768px): Relative positioning, or whatever layout you need */
+                <motion.div
+                  id="landing-area"
+                  className="
         absolute
         h-full
         w-1/2
@@ -304,38 +312,38 @@ const Main: React.FC = () => {
         text-white
         space-y-6
       "
-                initial={{ x: "100%" }}
-                animate={{ x: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1 }}
-                onMouseMove={(e) => handleMouseMove(e, "landing-area")}
-                onMouseLeave={() => handleMouseLeave("landing-area")}
-                style={{ right: "7%" }}
-              >
-                {renderStarsLayer("landing-area")}
-                <Landing
-                  onProceed={() => handlePhaseChange("survey")}
-                  onSkipToMain={() => handlePhaseChange("hero")}
-                />
-              </motion.div>
-            )}
+                  initial={{ x: "100%" }}
+                  animate={{ x: 0 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1 }}
+                  onMouseMove={(e) => handleMouseMove(e, "landing-area")}
+                  onMouseLeave={() => handleMouseLeave("landing-area")}
+                  style={{ right: "7%" }}
+                >
+                  {renderStarsLayer("landing-area")}
+                  <Landing
+                    onProceed={() => handlePhaseChange("survey")}
+                    onSkipToMain={() => handlePhaseChange("hero")}
+                  />
+                </motion.div>
+              )}
           </>
         )}
         {/* Survey Section */}
         {phase === "survey" && (
           <>
-            {width < 768 ? (
+            {width !== null && width <= 1270 ? (
               <motion.div
+                key={width}
                 id="survey-area"
                 className="
              relative
              w-full
-            h-[75vh]
+             min-h-screen             
              flex
              flex-col
              items-center
              justify-center
-             text-white
              space-y-6
            "
                 initial={{ x: "-100%" }}

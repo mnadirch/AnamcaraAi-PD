@@ -1,24 +1,26 @@
-// src/pages/main/useWindowSize.ts
-
 import { useState, useEffect } from "react";
 
 function useWindowSize() {
-  const [windowSize, setWindowSize] = useState({
-    width: typeof window !== "undefined" ? window.innerWidth : 1200,
-    height: typeof window !== "undefined" ? window.innerHeight : 800,
+  const [windowSize, setWindowSize] = useState<{
+    width: number | null;
+    height: number | null;
+  }>({
+    width: null, // Initially null to prevent SSR issues
+    height: null,
   });
-
   useEffect(() => {
-    function handleResize() {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
+    if (typeof window !== "undefined") {
+      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+  
+      const handleResize = () => {
+        setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+      };
+  
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
     }
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
   }, []);
+  
 
   return windowSize;
 }

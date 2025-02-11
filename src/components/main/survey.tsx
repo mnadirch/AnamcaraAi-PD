@@ -1,6 +1,7 @@
 import React, { useEffect, useState, MouseEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import data from "../../assets/data/questions.json";
+import './style.css';
 
 interface Question {
   question: string;
@@ -78,7 +79,7 @@ const Survey: React.FC<SurveyProps> = ({ onSkipToMain }) => {
   return (
     <div
       id="survey-area"
-      className="relative flex flex-col justify-center items-center w-full h-screen p-4 md:p-8 lg:p-16"
+      className="relative flex flex-col justify-center items-center w-full h-screen p-4"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >

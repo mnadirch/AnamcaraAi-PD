@@ -1,25 +1,23 @@
 import React, { useState, MouseEvent } from "react";
 import { motion } from "framer-motion";
 import starryBg from "../../assets/images/main/stars.png";
+import "./style.css";
 
 interface HeroProps {
-  audio?: React.ReactNode;  // Define the expected prop type
+  audio?: React.ReactNode;
 }
 
 const Hero: React.FC<HeroProps> = ({ audio }) => {
   const [welcomeText] = useState<string>("WELCOME");
   const [humanText] = useState<string>("HUMAN  ...");
 
-  // Generate more stars for each container
   const stars = Array.from({ length: 150 }, () => ({
-    x: Math.random() * 100, // Random x position within container
-    y: Math.random() * 100, // Random y position within container
+    x: Math.random() * 100,
+    y: Math.random() * 100,
   }));
 
-  // Increased hover radius (in percentage of the container's dimensions)
-  const hoverRadius = 10; // Larger hover effect
+  const hoverRadius = 10;
 
-  // Handle hover logic
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>, areaId: string) => {
     const area = document.getElementById(areaId);
     if (area) {
@@ -33,211 +31,115 @@ const Hero: React.FC<HeroProps> = ({ audio }) => {
         );
         const nearbyStar = document.getElementById(`${areaId}-star-${i}`);
         if (nearbyStar) {
-          if (distance <= hoverRadius) {
-            nearbyStar.style.backgroundColor = "white"; // Highlight star
-          } else {
-            nearbyStar.style.backgroundColor = "#00000000"; // Reset star
-          }
+          nearbyStar.style.backgroundColor = distance <= hoverRadius ? "white" : "#00000000";
         }
       });
     }
   };
 
-  // Reset stars on mouse leave
   const handleMouseLeave = (areaId: string) => {
     stars.forEach((_, i) => {
       const starElement = document.getElementById(`${areaId}-star-${i}`);
       if (starElement) {
-        starElement.style.backgroundColor = "#00000000"; // Reset to transparent
+        starElement.style.backgroundColor = "#00000000";
       }
     });
   };
 
   return (
-    <div
-      className="
-        relative
-        w-full
-        h-screen
-        overflow-hidden
-        flex
-        flex-col
-        items-center
-        justify-center
-        /* We switch to the original absolute positioning only on md+ */
-        md:block
-      "
-      style={{
-        backgroundImage: `url(${starryBg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      {/* Starry Background */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `url(${starryBg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      ></div>
+    <div className="hero-container">
+      {/* Background */}
+      <div className="hero-background"></div>
 
-      {/* 
-        WELCOME Text Block 
-        - On small screens: Stacked (relative)
-        - On md+ screens: Use the original absolute positioning
-      */}
-      <motion.div
-        className="
-          /* Mobile layout: fill half the screen height, relative positioning */
-          relative w-full h-[20vh] 
-          flex justify-center items-center 
-          z-20
-
-          // /* Desktop layout: revert to your original absolute positioning */
-           md:absolute 
-           md:h-full
-          border-[3px] border-blue-500 p-3
-
-        "
-        style={{
-          left: "5%", // Only takes effect at md+ because of 'md:absolute'
-          width: "30%", // Only takes effect at md+ 
-        }}
-        id="welcome-area"
-        onMouseMove={(e) => handleMouseMove(e, "welcome-area")}
-        onMouseLeave={() => handleMouseLeave("welcome-area")}
-      >
-        {/* Stars */}
-        <div className="absolute inset-0 z-10 pointer-events-auto overflow-hidden">
-          {stars.map((star, index) => (
-            <motion.div
-              key={`welcome-star-${index}`}
-              className="absolute rounded-full"
-              style={{
-                top: `${star.y}%`,
-                left: `${star.x}%`,
-                width: "0.4rem",
-                height: "0.4rem",
-                backgroundColor: "#00000000",
-                transition: "background-color 0.3s ease",
-              }}
-              id={`welcome-area-star-${index}`}
-            />
-          ))}
-        </div>
-
-        {/* WELCOME Text (same transitions as before) */}
-        <motion.h1
-          className="absolute font-bold tracking-wide text-[#ADFF00]         border-[3px] border-blue-500 p-3
-"
-          style={{
-            fontFamily: '"Mowaq", sans-serif', // Must be the same font family as above
-            fontSize: "clamp(3rem, 5vw, 7rem)",         // Use the same clamp value for consistency
-            whiteSpace: "nowrap",
-          }}
+      {/* Main Content */}
+      <div className="hero-content">
+        {/* WELCOME Block */}
+        <motion.div
+          className="text-block welcome-block"
+          id="welcome-area"
+          onMouseMove={(e) => handleMouseMove(e, "welcome-area")}
+          onMouseLeave={() => handleMouseLeave("welcome-area")}
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeInOut" }}
         >
-          {welcomeText.split("").map((letter, i) => (
-            <motion.span
-              key={i}
-              className="inline-block"
-              custom={i}
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: { opacity: 0 },
-                visible: (index) => ({
-                  opacity: 1,
-                  transition: { delay: index * 0.2 },
-                }),
-              }}
-            >
-              {letter}
-            </motion.span>
-          ))}
-        </motion.h1>
-      </motion.div>
+          {/* Stars */}
+          <div className="stars-layer">
+            {stars.map((star, index) => (
+              <motion.div
+                key={`welcome-star-${index}`}
+                className="star"
+                style={{ top: `${star.y}%`, left: `${star.x}%` }}
+                id={`welcome-area-star-${index}`}
+              />
+            ))}
+          </div>
 
-      {/* 
-        HUMAN Text Block 
-        - On small screens: Stacked (relative, below WELCOME)
-        - On md+ screens: Use original absolute positioning on the right
-      */}
+          {/* WELCOME Text */}
+          <motion.h1
+            className="text"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
+            {welcomeText}
+          </motion.h1>
+        </motion.div>
 
-      <motion.div
-        className="
-        relative w-full h-[20vh] 
-        flex justify-center items-center 
-        z-20
-        md:absolute 
-        md:h-full
-        border-[3px] border-blue-500 p-3
-      "
-        style={{
-          right: "5%", // Only applies at md+ due to 'md:absolute'
-          width: "30%",
-        }}
-        id="human-area"
-        onMouseMove={(e) => handleMouseMove(e, "human-area")}
-        onMouseLeave={() => handleMouseLeave("human-area")}
-      >
-
-
-        {/* Stars */}
-        <div className="absolute inset-0 z-10 pointer-events-auto overflow-hidden">
-          {stars.map((star, index) => (
-            <motion.div
-              key={`human-star-${index}`}
-              className="absolute rounded-full"
-              style={{
-                top: `${star.y}%`,
-                left: `${star.x}%`,
-                width: "0.4rem",
-                height: "0.4rem",
-                backgroundColor: "#00000000",
-                transition: "background-color 0.3s ease",
-              }}
-              id={`human-area-star-${index}`}
-            />
-          ))}
-
-        </div>
-        {audio}
-
-        {/* HUMAN Text */}
-        <motion.h1
-          className="absolute font-bold tracking-wide text-[#ADFF00] border-[3px] border-blue-500 p-3
-"
-          style={{
-            fontFamily: '"Mowaq", sans-serif', // Set your desired font family here
-            fontSize: "clamp(3rem, 5vw, 7rem)",         // Same font size for consistency
-            whiteSpace: "nowrap",
-          }}
+        {/* HUMAN Block */}
+        <motion.div
+          className="text-block human-block"
+          id="human-area"
+          onMouseMove={(e) => handleMouseMove(e, "human-area")}
+          onMouseLeave={() => handleMouseLeave("human-area")}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeInOut", delay: 0.5 }}
         >
-          {humanText.split("").map((letter, i) => (
-            <motion.span
-              key={i}
-              className="inline-block"
-              custom={i}
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: { opacity: 0 },
-                visible: (index) => ({
-                  opacity: 1,
-                  transition: { delay: 1.5 + index * 0.2 },
-                }),
-              }}
-            >
-              {letter}
-            </motion.span>
-          ))}
-        </motion.h1>
-      </motion.div>
-
+          {/* Stars */}
+          <div className="stars-layer">
+            {stars.map((star, index) => (
+              <motion.div
+                key={`human-star-${index}`}
+                className="star"
+                style={{ top: `${star.y}%`, left: `${star.x}%` }}
+                id={`human-area-star-${index}`}
+              />
+            ))}
+          </div>
+          {audio}
+          {/* HUMAN Text */}
+          <motion.h1
+            className="text"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 1 }}
+          >
+            {humanText.split("").map((letter, i) => (
+              <motion.span
+                key={i}
+                className="inline-block"
+                custom={i}
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: (index) => ({
+                    opacity: 1,
+                    transition: { delay: 1.5 + index * 0.2 },
+                  }),
+                }}
+              >
+                {letter}
+              </motion.span>
+            ))}         
+             </motion.h1>
+        </motion.div>
+      </div>
     </div>
   );
 };
+
+
 
 export default Hero;
