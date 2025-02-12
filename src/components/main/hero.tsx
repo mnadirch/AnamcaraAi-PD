@@ -1,6 +1,5 @@
 import React, { useState, MouseEvent } from "react";
 import { motion } from "framer-motion";
-import starryBg from "../../assets/images/main/stars.png";
 import "./style.css";
 
 interface HeroProps {
@@ -59,9 +58,9 @@ const Hero: React.FC<HeroProps> = ({ audio }) => {
           id="welcome-area"
           onMouseMove={(e) => handleMouseMove(e, "welcome-area")}
           onMouseLeave={() => handleMouseLeave("welcome-area")}
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeInOut" }}
+          // initial={{ opacity: 0, y: -50 }}
+          // animate={{ opacity: 1, y: 0 }}
+          // transition={{ duration: 1, ease: "easeInOut" }}
         >
           {/* Stars */}
           <div className="stars-layer">
@@ -77,12 +76,26 @@ const Hero: React.FC<HeroProps> = ({ audio }) => {
 
           {/* WELCOME Text */}
           <motion.h1
-            className="text"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
+          className="text"
           >
-            {welcomeText}
+            {welcomeText.split("").map((letter, i) => (
+            <motion.span
+              key={i}
+              className="inline-block"
+              custom={i}
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: (index) => ({
+                  opacity: 1,
+                  transition: { delay: index * 0.2 },
+                }),
+              }}
+            >
+              {letter}
+            </motion.span>
+          ))}
           </motion.h1>
         </motion.div>
 
@@ -92,9 +105,6 @@ const Hero: React.FC<HeroProps> = ({ audio }) => {
           id="human-area"
           onMouseMove={(e) => handleMouseMove(e, "human-area")}
           onMouseLeave={() => handleMouseLeave("human-area")}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeInOut", delay: 0.5 }}
         >
           {/* Stars */}
           <div className="stars-layer">
@@ -111,9 +121,6 @@ const Hero: React.FC<HeroProps> = ({ audio }) => {
           {/* HUMAN Text */}
           <motion.h1
             className="text"
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 1 }}
           >
             {humanText.split("").map((letter, i) => (
               <motion.span

@@ -58,21 +58,21 @@
   position: relative;
   z-index: 10;
   transition: all 0.8s ease-in-out;
+  gap: 8rem; /* Add gap for spacing */
 }
 
 /* =============================== */
 /* TEXT BLOCKS (WELCOME & HUMAN) */
 /* =============================== */
 .text-block {
-  width: 40%;
-  height: 60vh;
+  /* width: clamp(30%, 35%, 38%);  Ensures flexibility */
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   border: 3px solid blue;
   padding: 1rem;
-  transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
 }
 
 /* Text inside the blocks */
@@ -115,7 +115,15 @@
   }
 
   .text-block {
-    width: 45%;
+    width: 100%;
+  }
+  .hero-container {
+    height: 80vh;
+  }
+
+  .hero-content {
+    height: 60%;
+    gap: 0rem; /* Add gap for spacing */
   }
 }
 
