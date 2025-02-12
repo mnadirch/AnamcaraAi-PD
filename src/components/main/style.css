@@ -58,7 +58,7 @@
   position: relative;
   z-index: 10;
   transition: all 0.8s ease-in-out;
-  gap: 8rem; /* Add gap for spacing */
+  gap: 20rem; /* Add gap for spacing */
 }
 
 /* =============================== */
@@ -71,7 +71,6 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  border: 3px solid blue;
   padding: 1rem;
 }
 
@@ -138,3 +137,258 @@
   }
 }
 
+
+
+.survey-container {
+  position: relative;
+  width: 100%;
+  height: auto;            /* Allow height to adjust to content */
+  min-height: 100vh;       /* At minimum, cover full viewport height */
+  overflow-y: auto;        /* Enable vertical scrolling if needed */
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+}
+
+/* --- SURVEY CONTENT (Your Original Layout) --- */
+.survey-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 768px;  /* Adjust as needed */
+  display: flex;
+  flex-direction: column;
+  /* The key change: left-align items */
+  align-items: flex-start;
+  text-align: left;
+  color: white;
+  padding-bottom: 3rem;
+}
+
+/* Simulate space-y-12 (3rem margin-top between direct children) */
+.survey-content > * + * {
+  margin-top: 3rem;
+}
+
+/* STARS LAYER */
+/* Tailwind: "absolute inset-0 z-0 pointer-events-none overflow-hidden" */
+.stars-layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* STAR */
+/* Tailwind: "absolute w-1.5 h-1.5 rounded-full" with inline styles for top/left, bg-color and transition */
+.star {
+  position: absolute;
+  width: 0.375rem;  /* 1.5 * 0.25rem = 0.375rem */
+  height: 0.375rem;
+  border-radius: 9999px;  /* rounded-full */
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+/* QUESTION BLOCKS (for both True/False and MCQ) */
+/* Tailwind: "flex flex-col space-y-6" space-y-6 : 1.5rem vertical gap */
+.question-block {
+  display: flex;
+  flex-direction: column;
+   
+}
+.question-block > * + * {
+  margin-top: 1.5rem;
+}
+
+/* QUESTION TEXT */
+/* Tailwind: "text-white text-2xl sm:text-2xl lg:text-2xl font-bold text-left" */
+.survey-question {
+  font-size: 22px;
+  font-weight: bold;
+  font-family: "Orbitron", sans-serif;
+  text-align: left;
+  color: white;
+  text-shadow: 0px 0px 10px #adff00;
+  margin-bottom: 20px;
+}
+
+
+/* BUTTON GROUP (for answer buttons) */
+/* Tailwind: "flex flex-wrap gap-4" => gap-4 = 1rem */
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* SURVEY BUTTONS (for True/False and Static question options) */
+/* Tailwind: "w-32 text-center px-6 py-2 text-lg font-medium rounded-full transition-all" */
+.survey-button {
+  width: 8rem;               
+  text-align: center;
+  padding: 0.5rem 1.5rem;     
+  font-size: 1.125rem;        
+  font-weight: 500;          
+  border-radius: 9999px;      
+  transition: all 0.3s ease;
+}
+
+/* Selected state */
+.survey-button.selected {
+  background-color: #ADFF00;
+  color: black;
+  border: 2px solid black;
+}
+/* Unselected state */
+.survey-button:not(.selected) {
+  background-color: transparent;
+  color: #ADFF00;
+  border: 2px solid #BCFF9D;
+}
+.survey-button:not(.selected):hover {
+  background-color: #ADFF00;
+  color: black;
+  border-color: black;
+}
+
+/* MCQ Grid */
+/* Tailwind: "grid grid-cols-1 sm:grid-cols-2 gap-6" */
+/* For simplicity, we assume a 2-column grid here. */
+.mcq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem; /* gap-6 = 1.5rem */
+}
+
+/* MCQ Option Container */
+/* Tailwind: "flex items-center space-x-4 cursor-pointer group" */
+/* space-x-4 = 1rem horizontal gap */
+.mcq-option {
+  display: flex;
+  align-items: left;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+/* MCQ Circle */
+/* Tailwind: "w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 flex items-center justify-center transition-all" */
+.mcq-circle {
+  width: 2.5rem;   /* w-10 = 2.5rem */
+  height: 2.5rem;  /* h-10 = 2.5rem */
+  border-radius: 9999px;
+  border: 2px solid #BCFF9D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  color: #ADFF00;
+}
+.mcq-option.active .mcq-circle,
+.mcq-option.selected .mcq-circle {
+  background-color: #ADFF00;
+  color: black;
+  border-color: black;
+}
+
+/* MCQ Option Text */
+/* Tailwind: "text-lg font-medium text-white" */
+.mcq-option p {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: white;
+}
+
+/* FINAL BUTTON GROUP */
+/* Tailwind: "flex flex-wrap items-center gap-4" */
+.final-button-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: left;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* FINAL BUTTON (Call-to-Action) */
+/* Tailwind: "px-4 sm:px-6 py-2 text-sm sm:text-lg font-bold text-black bg-[#ADFF00] rounded-lg hover:bg-black hover:text-white border-2 border-[#BCFF9D] transition-all" */
+.final-button {
+  padding: 0.5rem 1rem; /* px-4 = 1rem, py-2 = 0.5rem; ignoring sm:px-6 for simplicity */
+  font-size: 0.875rem;   /* text-sm = 0.875rem; can be adjusted as needed */
+  font-weight: bold;
+  color: black;
+  background-color: #ADFF00;
+  border-radius: 0.5rem; /* rounded-lg ~0.5rem */
+  border: 2px solid #BCFF9D;
+  transition: all 0.3s ease;
+  box-shadow: 0px 0px 15px #3FA604;
+}
+.final-button:hover {
+  background-color: black;
+  color: white;
+}
+
+/* SKIP LINK */
+/* Tailwind: "text-white text-sm sm:text-lg font-medium cursor-pointer" */
+.skip-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
+.skip-link:hover {
+  text-decoration: underline;
+}
+
+/* CUSTOM RESPONSIVENESS */
+/* Since we are replacing Tailwind responsiveness, here are manual breakpoints */
+
+/* For screens up to 1280px */
+@media (max-width: 1280px) {
+  .survey-content {
+    max-width: 85%;
+  }
+}
+
+/* For screens up to 1024px */
+@media (max-width: 1024px) {
+  .survey-content {
+    max-width: 90%;
+  }
+}
+
+/* For screens up to 768px */
+@media (max-width: 768px) {
+  .survey-content {
+    max-width: 95%;
+    padding: 1rem;
+  }
+  .survey-question {
+    font-size: 1.125rem; /* Slightly smaller */
+  }
+  .survey-button {
+    width: 8.75rem; /* slightly smaller than 160px */
+    font-size: 1rem;
+  }
+  .mcq-circle {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+  .final-button {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+  .skip-link {
+    font-size: 0.875rem;
+  }
+}
