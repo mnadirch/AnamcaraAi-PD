@@ -1,22 +1,13 @@
-/* @media screen and (max-width: 1269px) {
-    html, body {
-      overflow-y: auto;
-      height: 100vh;
-      overscroll-behavior: contain;
-      scrollbar-width: thin; 
-      scrollbar-color: gray black;
-    }
-  
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-  
-    ::-webkit-scrollbar-thumb {
-      background: gray;
-      border-radius: 10px;
-    }
-  
-    ::-webkit-scrollbar-track {
-      background: black;
-    }
-} */
+@media (max-width: 400px) {
+  .survey-area{
+    padding-top: 80vh;
+  }
+}
+ 
+@media (max-width: 500px) {
+  .survey-area{
+    padding-top: 40vh;
+  }
+}
+ 
+

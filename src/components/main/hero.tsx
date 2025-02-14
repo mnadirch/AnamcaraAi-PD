@@ -58,9 +58,6 @@ const Hero: React.FC<HeroProps> = ({ audio }) => {
           id="welcome-area"
           onMouseMove={(e) => handleMouseMove(e, "welcome-area")}
           onMouseLeave={() => handleMouseLeave("welcome-area")}
-          // initial={{ opacity: 0, y: -50 }}
-          // animate={{ opacity: 1, y: 0 }}
-          // transition={{ duration: 1, ease: "easeInOut" }}
         >
           {/* Stars */}
           <div className="stars-layer">

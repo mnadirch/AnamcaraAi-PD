@@ -9,7 +9,7 @@ import shineLogo from "../../assets/images/main/ANAMCARA AI LOGO ICON TRANSPAREN
 import starryBg from "../../assets/images/main/stars.png";
 import useWindowSize from "./useWindowSIze";
 import Audio from "../../components/main/audio";
-//import './style.css';
+import "./style.css";
 
 
 type Phase = "hero" | "landing" | "survey";
@@ -81,85 +81,57 @@ const Main: React.FC = () => {
     </div>
   );
 
+  // Helper to render the robot element for mobile.
+  // This will be rendered only when width <= 1270.
+  const renderRobot = () => (
+    <div
+      id="robot-element"
+      className="relative w-full h-auto flex justify-center items-center overflow-hidden"
+      onMouseMove={(e) => handleMouseMove(e, "robot-element")}
+      onMouseLeave={() => handleMouseLeave("robot-element")}
+    >
+      {renderStarsLayer("robot-element")}
+      <div className="relative z-10 flex justify-center items-center">
+        <img
+          src={robotFace}
+          alt="Robot"
+          className="w-[300px] h-[300px] object-contain"
+        />
+        <img
+          src={shineLogo}
+          alt="Shine Logo"
+          className="absolute top-[25%] left-1/2 -translate-x-1/2 -translate-y-1/2 animate-blink-shine"
+          style={{ width: "250px", pointerEvents: "none" }}
+        />
+        <img
+          src={dullLogo}
+          alt="Dull Logo"
+          className="absolute top-[25%] left-1/2 -translate-x-1/2 -translate-y-1/2 animate-blink-dull"
+          style={{ width: "50px", height: "50px", pointerEvents: "none" }}
+        />
+      </div>
+    </div>
+  );
+
   return (
     <div
       className="
-        min-h-screen w-screen
-        relative
-        bg-cover bg-center
-        flex
-        flex-col
-      "
+         min-h-screen w-screen
+    relative
+  "
       style={{
         backgroundImage: `url(${starryBg})`,
       }}
     >
-      {/* Robot Section */}
-      {width !== null && width <= 1270 ? (
-
-        // MOBILE RENDERING (no motion)
-        <div
-          key={width}
-          id="robot-area"
-          className="relative w-full h-1/2 flex justify-center items-center z-10 border-[3px] border-blue-500 p-3   bg-red-500
-
-"
-          onMouseMove={(e) => handleMouseMove(e, "robot-area")}
-          onMouseLeave={() => handleMouseLeave("robot-area")}
-        >
-          {renderStarsLayer("robot-area")}
-          {/* Position Audio absolutely so it’s not in the normal flex order */}
-          <Audio />
-
-          {/* Robot + Logos */}
-          <div className="relative w-full max-w-[600px] flex justify-center items-center border-[3px] border-blue-500 p-3">
-            {/* Robot Image */}
-            <img
-              src={robotFace}
-              alt="Robot"
-              className="h-full object-contain"
-            />
-
-            {/* Shine Logo */}
-            <img
-              src={shineLogo}
-              alt="Shine Logo"
-              className="absolute animate-blink-shine"
-              style={{
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: "450px",
-                pointerEvents: "none",
-              }}
-            />
-
-            {/* Dull Logo – Anchored at the same position */}
-            <img
-              src={dullLogo}
-              alt="Dull Logo"
-              className="absolute animate-blink-dull"
-              style={{
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: "65px",
-                height: "65px",
-                pointerEvents: "none",
-              }}
-            />
-          </div>
-        </div>
-      ) : (
-        // DESKTOP RENDERING (with motion)
+      {width !== null && width > 1270 && (
         <motion.div
           id="robot-area"
           className={`
-          relative w-full h-[50vh]
-          md:absolute md:top-0 md:left-0 md:w-1/2 md:h-full
-          flex justify-center items-center
-          overflow-hidden z-10
-        `}
+      relative w-full h-[50vh]
+      md:absolute md:top-0 md:left-0 md:w-1/2 md:h-full
+      flex justify-center items-center
+      overflow-hidden z-10
+    `}
           initial={{ x: "50%" }}
           animate={{
             x:
@@ -174,40 +146,33 @@ const Main: React.FC = () => {
           onMouseLeave={() => handleMouseLeave("robot-area")}
         >
           {renderStarsLayer("robot-area")}
-
-          {/* Responsive Container with Aspect Ratio */}
           <div className="relative z-10 w-full max-w-[950px] aspect-square">
-            {/* Robot Image */}
             <img
               src={robotFace}
               alt="Robot"
               className="absolute inset-0 w-full h-full object-contain"
             />
-
-            {/* Shine Logo – Fixed Size */}
             <img
               src={shineLogo}
               alt="Shine Logo"
               className="absolute animate-blink-shine"
               style={{
-                top: "25%",         // 25% from the top of the container
-                left: "50%",        // centered horizontally
+                top: "25%",
+                left: "50%",
                 transform: "translate(-50%, -50%)",
-                width: "450px",     // Fixed width remains 450px
+                width: "450px",
                 pointerEvents: "none",
               }}
             />
-
-            {/* Dull Logo – Fixed Size */}
             <img
               src={dullLogo}
               alt="Dull Logo"
               className="absolute animate-blink-dull"
               style={{
-                top: "25%",         // 25% from the top of the container
-                left: "50%",        // centered horizontally
+                top: "25%",
+                left: "50%",
                 transform: "translate(-50%, -50%)",
-                width: "90px",      // Fixed width remains 90px
+                width: "90px",
                 pointerEvents: "none",
               }}
             />
@@ -216,36 +181,34 @@ const Main: React.FC = () => {
       )}
 
       {/* RIGHT SECTION (Hero, Landing, Survey) */}
-      <div
-        className="
-          relative
-          flex-1
-          flex
-          flex-col
-          items-center
-          justify-center
-          overflow-hidden
-        "
-      >
+      <div>
         {/* Hero Section */}
         {phase === "hero" && (
           width !== null && width <= 1270 ? (
             // Mobile rendering: no motion
             <div
               id="hero-area"
-              className="relative w-full min-h-screen flex items-center justify-center"
               onMouseMove={(e) => handleMouseMove(e, "hero-area")}
               onMouseLeave={() => handleMouseLeave("hero-area")}
               onClick={() => handlePhaseChange("landing")}
             >
               {renderStarsLayer("hero-area")}
+              {/* Render robot only on mobile */}
+              {renderRobot()}
+              <Audio />
               <Hero />
             </div>
           ) : (
             // Desktop rendering: with motion
             <motion.div
               id="hero-area"
-              className="relative w-full h-full flex items-center justify-center"
+              className="relative w-full h-full 
+          flex-1
+          flex
+          flex-col
+          items-center
+          justify-center
+        "
               initial={{ opacity: 1 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -273,14 +236,8 @@ const Main: React.FC = () => {
     top-0
     left-0
     w-full
-    h-full
-    flex
-    flex-col
-    justify-start
-    items-center
     text-white
-    space-y-6
-    overflow-y-auto
+    space-y-6 
   "
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
@@ -290,6 +247,7 @@ const Main: React.FC = () => {
                 onMouseLeave={() => handleMouseLeave("landing-area")}
               >
                 {renderStarsLayer("landing-area")}
+                {renderRobot()}
                 <Landing
                   onProceed={() => handlePhaseChange("survey")}
                   onSkipToMain={() => handlePhaseChange("hero")}
@@ -305,13 +263,13 @@ const Main: React.FC = () => {
         h-full
         w-1/2
         right-0
-        flex
-        flex-col
-        justify-center
-        items-center
         text-white
-        space-y-6
-      "
+      flex-1
+      flex
+      flex-col
+      items-center
+      justify-center
+    "
                   initial={{ x: "100%" }}
                   animate={{ x: 0 }}
                   exit={{ opacity: 0 }}
@@ -336,16 +294,8 @@ const Main: React.FC = () => {
               <motion.div
                 key={width}
                 id="survey-area"
-                className="
-             relative
-             w-full
-             min-h-screen             
-             flex
-             flex-col
-             items-center
-             justify-center
-             space-y-6
-           "
+                className="survey-area relative w-full
+             h-auto pt-[10vh]"
                 initial={{ x: "-100%" }}
                 animate={{ x: 0 }}
                 exit={{ opacity: 0 }}
@@ -354,6 +304,8 @@ const Main: React.FC = () => {
                 onMouseLeave={() => handleMouseLeave("survey-area")}
               >
                 {renderStarsLayer("survey-area")}
+                {renderRobot()}
+
                 <Survey onSkipToMain={() => handlePhaseChange("hero")} />
               </motion.div>
             ) : (
@@ -366,6 +318,7 @@ const Main: React.FC = () => {
                 left-0
                 h-full
                 flex
+                flex-1
                 flex-col
                 items-center
                 justify-center

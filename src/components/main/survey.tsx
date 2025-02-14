@@ -10,6 +10,8 @@ interface Question {
 
 interface SurveyProps {
   onSkipToMain: () => void;
+  // robotImage?: string; // Optional prop for the robot image
+
 }
 
 const Survey: React.FC<SurveyProps> = ({ onSkipToMain }) => {
@@ -19,6 +21,7 @@ const Survey: React.FC<SurveyProps> = ({ onSkipToMain }) => {
   const [selectedTF, setSelectedTF] = useState<string | null>(null);
   const [selectedMCQ, setSelectedMCQ] = useState<number | null>(null);
   const [selectedSave, setSelectedSave] = useState<string | null>(null);
+
 
   const navigate = useNavigate();
 
@@ -76,38 +79,77 @@ const Survey: React.FC<SurveyProps> = ({ onSkipToMain }) => {
   };
 
   return (
-    <div id="survey-area" className="survey-container" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+    <div
+      id="survey-area"
+      className="relative p-4 md:p-8 lg:p-16"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
       {/* Stars Layer */}
-      <div className="stars-layer">
+      <div className="absolute inset-0 z-0 pointer-events-none">
         {stars.map((star, index) => (
-          <div key={index} id={`survey-star-${index}`} className="star" style={{ top: `${star.y}%`, left: `${star.x}%` }}></div>
+          <div
+            key={index}
+            id={`survey-star-${index}`}
+            className="absolute w-1.5 h-1.5 rounded-full"
+            style={{
+              top: `${star.y}%`,
+              left: `${star.x}%`,
+              backgroundColor: "#00000000",
+              transition: "background-color 0.3s ease",
+            }}
+          ></div>
         ))}
       </div>
 
+      {/* Render the robot image only if provided
+      {robotImage && (
+        <div className="robot-container flex justify-center items-center mt-20">
+        <img
+          src={robotImage}
+          alt="Robot"
+          className="w-[300px] h-[300px] object-contain"
+        />
+      </div>
+      )} */}
+
       {/* Survey Content */}
-      <div className="survey-content space-y-12">
+      <div className="survey-content relative z-10 space-y-12 max-w-screen-md w-full">
         {/* True/False Question */}
         {tfQuestion && (
-          <div className="question-block space-y-6">
-            <h1 className="text-white text-2xl sm:text-2xl lg:text-2xl font-bold text-left">{tfQuestion.question}</h1>
-            <div className="button-group">
-              {tfQuestion.answers.map((answer, idx) => (
-                <button key={idx} onClick={() => setSelectedTF(answer)} className={`survey-button ${selectedTF === answer ? "selected" : ""}`}>
-                  {answer}
-                </button>
-              ))}
+          <div className="true flex flex-col space-y-6">
+            <h1 className="text-white text-2xl sm:text-2xl lg:text-2xl font-bold text-left">
+              {tfQuestion.question}
+            </h1>
+            <div className="flex flex-wrap gap-4">
+            {tfQuestion.answers.map((answer, idx) => {
+                const isSelected = selectedTF === answer;
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => setSelectedTF(answer)}
+                    className={`w-32 text-center px-6 py-2 text-lg font-medium rounded-full transition-all 
+              ${isSelected
+                        ? "bg-[#ADFF00] text-black border-2 border-black"
+                        : "bg-transparent text-[#ADFF00] border-2 border-[#BCFF9D] hover:bg-[#ADFF00] hover:text-black hover:border-black"
+                      }`}
+                  >
+                    {answer}
+                  </button>
+                );
+              })}
             </div>
           </div>
         )}
 
         {/* MCQ Question */}
         {mcqQuestion && (
-          <div className="flex flex-col space-y-6">
-            <h1 className="text-white text-2xl sm:text-3xl lg:text-2xl font-bold text-left">
+          <div className="mcq flex flex-col space-y-6">
+          <h1 className="mcq-q text-white text-2xl sm:text-3xl lg:text-2xl font-bold text-left">
               {mcqQuestion.question}
             </h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {mcqQuestion.answers.map((answer, idx) => {
+            {mcqQuestion.answers.map((answer, idx) => {
                 const optionLetter = String.fromCharCode(65 + idx);
                 const isSelected = selectedMCQ === idx;
                 const isHovered = hoveredOption === idx;
@@ -139,32 +181,47 @@ const Survey: React.FC<SurveyProps> = ({ onSkipToMain }) => {
         )}
 
         {/* Static Question */}
-        <div className="question-block">
-        <h1 className="text-white text-2xl sm:text-3xl lg:text-2xl font-bold text-left">Who would you rather save?</h1>
-          <div className="button-group">
-            {["Self", "Partner", "Friend", "Parent"].map((answer, idx) => (
-              <button key={idx} onClick={() => setSelectedSave(answer)} className={`survey-button ${selectedSave === answer ? "selected" : ""}`}>
-                {answer}
-              </button>
-            ))}
+        <div className=" static flex flex-col space-y-6">
+          <h1 className="text-white text-2xl sm:text-3xl lg:text-2xl font-bold text-left">
+            Who would you rather save?
+          </h1>
+          <div className=" option flex flex-wrap gap-4">
+          {["Self", "Partner", "Friend", "Parent"].map((answer, idx) => {
+              const isSelected = selectedSave === answer;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => setSelectedSave(answer)} // Update selection on click
+                  className={`w-32 text-center px-6 py-2 text-lg font-medium rounded-full transition-all
+                ${isSelected
+                      ? "bg-[#ADFF00] text-black border-2 border-black"
+                      : "bg-transparent text-[#ADFF00] border border-[#BCFF9D] hover:bg-[#ADFF00] hover:text-black"
+                    }`}
+                >
+                  {answer}
+                </button>
+              );
+            })}
           </div>
         </div>
 
         {/* Final Button */}
-        <div className="button-group">
+        <div className="flex flex-wrap items-center gap-4">
           <button
             onClick={handleButtonClick} // Call the function on click
             className="px-4 sm:px-6 py-2 text-sm sm:text-lg font-bold text-black bg-[#ADFF00] rounded-lg hover:bg-black hover:text-white border-2 border-[#BCFF9D] transition-all"
             style={{
               boxShadow: "0px 0px 15px #3FA604",
             }}
-          >            I HAVE OBLIGED
+          >
+            I HAVE OBLIGED
           </button>
           <Link
             onClick={onSkipToMain}
             className="text-white text-sm sm:text-lg font-medium cursor-pointer"
             to={""}
-          >            SKIP TO MAIN PAGE →
+          >
+            SKIP TO MAIN PAGE →
           </Link>
         </div>
       </div>

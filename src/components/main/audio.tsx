@@ -3,6 +3,7 @@ import playIcon from "../../assets/images/audio/Type=Play.png";
 import pauseIcon from "../../assets/images/audio/Type=Pause.png";
 import replayIcon from "../../assets/images/audio/Type=Replay.png";
 import audioFile from "../../assets/audio/Beth-2024_12_31-6.wav";
+import { Opacity } from "@tsparticles/engine";
 
 const Audio: React.FC = () => {
   const [audioState, setAudioState] = useState<"playing" | "paused" | "replay">("paused");
@@ -19,11 +20,11 @@ const Audio: React.FC = () => {
       if (!audioRef.current) {
         audioRef.current = new window.Audio(audioFile) as HTMLAudioElement;
         audioRef.current.preload = "auto";
-        audioRef.current.muted = true;  // Start muted to bypass autoplay restrictions
+        audioRef.current.muted = true;  
 
         try {
           await audioRef.current.play();
-          audioRef.current.muted = false;  // Unmute after successful play
+          audioRef.current.muted = false;  
           setAudioState("playing");
         } catch (error) {
           console.error("Autoplay blocked:", error);
@@ -65,7 +66,7 @@ const Audio: React.FC = () => {
   }, [audioState]);
 
   return (
-    <div className="block absolute top-4 right-4 z-[99999] bg-white border border-black p-2"
+    <div className="block absolute top-4 right-4 z-[99999] p-2"
       onClick={(e) => e.stopPropagation()}>
       <img
         src={icons[audioState]}
@@ -75,7 +76,6 @@ const Audio: React.FC = () => {
         onClick={handleAudioControl}
       />
     </div>
-
   );
 };
 
