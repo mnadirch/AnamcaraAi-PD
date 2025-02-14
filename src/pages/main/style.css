@@ -1,8 +1,8 @@
-@media (max-width: 400px) {
+ @media (max-width: 400px) {
   .survey-area{
-    padding-top: 80vh;
+    padding-top: 5vh;
   }
-}
+} 
  
 @media (max-width: 500px) {
   .survey-area{
@@ -10,4 +10,9 @@
   }
 }
  
+@media (min-width: 300px) {
+  .survey-area{
+    padding-top: 30vh;
+  }
+}
 

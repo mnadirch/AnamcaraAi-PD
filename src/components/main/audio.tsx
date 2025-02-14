@@ -3,7 +3,6 @@ import playIcon from "../../assets/images/audio/Type=Play.png";
 import pauseIcon from "../../assets/images/audio/Type=Pause.png";
 import replayIcon from "../../assets/images/audio/Type=Replay.png";
 import audioFile from "../../assets/audio/Beth-2024_12_31-6.wav";
-import { Opacity } from "@tsparticles/engine";
 
 const Audio: React.FC = () => {
   const [audioState, setAudioState] = useState<"playing" | "paused" | "replay">("paused");

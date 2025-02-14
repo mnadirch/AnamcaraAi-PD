@@ -81,7 +81,6 @@ const Main: React.FC = () => {
     </div>
   );
 
-  // Helper to render the robot element for mobile.
   // This will be rendered only when width <= 1270.
   const renderRobot = () => (
     <div
@@ -309,7 +308,6 @@ const Main: React.FC = () => {
                 <Survey onSkipToMain={() => handlePhaseChange("hero")} />
               </motion.div>
             ) : (
-
               <motion.div
                 id="survey-area"
                 className="

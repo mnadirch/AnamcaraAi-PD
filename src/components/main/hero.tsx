@@ -102,6 +102,7 @@ const Hero: React.FC<HeroProps> = ({ audio }) => {
           id="human-area"
           onMouseMove={(e) => handleMouseMove(e, "human-area")}
           onMouseLeave={() => handleMouseLeave("human-area")}
+          //style={{right:"3%"}}
         >
           {/* Stars */}
           <div className="stars-layer">
