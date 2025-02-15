@@ -81,7 +81,7 @@ const Survey: React.FC<SurveyProps> = ({ onSkipToMain }) => {
   return (
     <div
       id="survey-area"
-      className="relative p-4 md:p-8 lg:p-16"
+      className="relative p-4 md:p-8 lg:p-16 "
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >

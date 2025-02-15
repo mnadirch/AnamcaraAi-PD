@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent } from "react";
+import React, { useState, MouseEvent, useEffect } from "react";
 import { motion } from "framer-motion";
 import Hero from "../../components/main/hero";
 import Landing from "../../components/main/landing";
@@ -16,6 +16,8 @@ type Phase = "hero" | "landing" | "survey";
 
 const Main: React.FC = () => {
   const [phase, setPhase] = useState<Phase>("hero");
+  const [paddingTop, setPaddingTop] = useState("300px"); // Default padding
+
   // 1) Use custom hook to detect screen width
   const { width } = useWindowSize();
 
@@ -25,6 +27,35 @@ const Main: React.FC = () => {
     x: Math.random() * 100,
     y: Math.random() * 100,
   }));
+
+  useEffect(() => {
+    const updatePadding = () => {
+      if (width !== null && width <= 300) {
+        setPaddingTop("600px");
+      }
+      else if (width !== null && width <= 400) {
+        setPaddingTop("500px");
+      }
+      else if (width !== null && width < 500) {
+        setPaddingTop("350px");
+      } else if (width !== null && width <= 600) {
+        setPaddingTop("400px");
+      } else if (width !== null && width <= 1000) {
+        setPaddingTop("50px");
+      }
+      else if (width !== null && width <= 1260) {
+        setPaddingTop("450px");
+      }
+    };
+    updatePadding(); // Set padding on initial render
+  }, [width]);
+
+  useEffect(() => {
+    document.body.style.overflowX = "hidden";
+    return () => {
+      document.body.style.overflowX = "auto"; // Reset after component unmounts
+    };
+  }, []);
 
   // Hover radius for stars
   const hoverRadius = 10;
@@ -85,12 +116,12 @@ const Main: React.FC = () => {
   const renderRobot = () => (
     <div
       id="robot-element"
-      className="relative w-full h-auto flex justify-center items-center overflow-hidden"
+      className="relative w-full h-auto flex justify-center items-center"
       onMouseMove={(e) => handleMouseMove(e, "robot-element")}
       onMouseLeave={() => handleMouseLeave("robot-element")}
     >
       {renderStarsLayer("robot-element")}
-      <div className="relative z-10 flex justify-center items-center">
+      <div className="relative z-10 flex justify-center items-center pt-5">
         <img
           src={robotFace}
           alt="Robot"
@@ -180,7 +211,7 @@ const Main: React.FC = () => {
       )}
 
       {/* RIGHT SECTION (Hero, Landing, Survey) */}
-      <div>
+      <div >
         {/* Hero Section */}
         {phase === "hero" && (
           width !== null && width <= 1270 ? (
@@ -193,6 +224,7 @@ const Main: React.FC = () => {
             >
               {renderStarsLayer("hero-area")}
               {/* Render robot only on mobile */}
+              <div style={{ paddingTop: "30px" }}></div>
               {renderRobot()}
               <Audio />
               <Hero />
@@ -206,7 +238,7 @@ const Main: React.FC = () => {
           flex
           flex-col
           items-center
-          justify-center
+          justify-center 
         "
               initial={{ opacity: 1 }}
               animate={{ opacity: 1 }}
@@ -267,7 +299,7 @@ const Main: React.FC = () => {
       flex
       flex-col
       items-center
-      justify-center
+      justify-center 
     "
                   initial={{ x: "100%" }}
                   animate={{ x: 0 }}
@@ -294,7 +326,7 @@ const Main: React.FC = () => {
                 key={width}
                 id="survey-area"
                 className="survey-area relative w-full
-             h-auto pt-[10vh]"
+             h-auto "
                 initial={{ x: "-100%" }}
                 animate={{ x: 0 }}
                 exit={{ opacity: 0 }}
@@ -303,6 +335,8 @@ const Main: React.FC = () => {
                 onMouseLeave={() => handleMouseLeave("survey-area")}
               >
                 {renderStarsLayer("survey-area")}
+
+                <div className="blank" style={{ paddingTop }} ></div>
                 {renderRobot()}
 
                 <Survey onSkipToMain={() => handlePhaseChange("hero")} />
