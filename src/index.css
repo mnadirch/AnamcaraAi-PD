@@ -89,8 +89,8 @@ body {
 }
 
 /* Ensure the HTML and body are flexible */
-html, body {
+/* html, body {
   width: 100%;
   height: auto;
   overflow-x: hidden;
-}
+} */
