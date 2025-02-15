@@ -20,7 +20,7 @@ const CommingSoon = () => {
       <BlobCursor />
       <SmokeAnimation />
       <div className={styles.content}>
-        <div className={styles.headingSection}>
+        <div className={styles.headingSection} >
           <span className={styles.text2}>Just</span>
           <span className={styles.text2}>Around</span>
           <span className={styles.text2}>The</span>
