@@ -1,5 +1,5 @@
 import styles from "./startup.module.css";
-
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Model from "../model/earth";
 const StartUpPage = () => {
@@ -7,6 +7,13 @@ const StartUpPage = () => {
   const EnterClickHandler = () => {
     navigate("./home");
   };
+    useEffect(() => {
+      document.body.style.overflowX = "hidden";
+      document.body.style.overflowY = "hidden";
+      return () => {
+        document.body.style.overflowX = "auto"; // Reset after component unmounts
+      };
+    }, []);
   return (
     <div className={styles.container}>
       <Model />

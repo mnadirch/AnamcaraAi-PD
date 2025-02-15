@@ -5,7 +5,7 @@ import backgroundImage2 from "../../assets/images/backgrounds/pexels-pixabay-401
 import backgroundImage3 from "../../assets/images/backgrounds/markus-spiske-AaEQmoufHLk-unsplash.png";
 import backgroundImage4 from "../../assets/images/backgrounds/glenn-carstens-peters-npxXWgQ33ZQ-unsplash.png";
 import backgroundImage5 from "../../assets/images/backgrounds/ales-nesetril-Im7lZjxeLhg-unsplash.png";
-import backgroundImage6 from "../../assets/images/backgrounds/markus-spiske-iar-afB0QQw-unsplashp.png";
+import backgroundImage6 from "../../assets/images/backgrounds/markus-spiske-iar-afB0QQw-unsplash.png";
 import backgroundImage7 from "../../assets/images/backgrounds/donald-giannatti-Wj1D-qiOseE-unsplash.png";
 
 import { FaThumbsUp, FaBell, FaComment, FaShare, FaBookmark } from "react-icons/fa";
