@@ -1,18 +1,19 @@
- @media (max-width: 400px) {
-  .survey-area{
-    padding-top: 5vh;
-  }
-} 
- 
-@media (max-width: 500px) {
-  .survey-area{
-    padding-top: 40vh;
+
+/* @media (max-width: 800px) {
+  .survey-area .blank{
+    padding-top: 10vh;
   }
 }
- 
-@media (min-width: 300px) {
-  .survey-area{
-    padding-top: 30vh;
+
+@media (max-width: 1024px) {
+  .survey-area .blank{
+    padding-top: 70vh;
   }
 }
+
+@media (max-width: 900px) {
+  .survey-area .blank{
+    padding-top: 10vh;
+  }
+} */
 

@@ -87,10 +87,3 @@ body {
   -ms-overflow-style: none; /* Internet Explorer */
   scrollbar-width: none; /* Firefox */
 }
-
-/* Ensure the HTML and body are flexible */
-/* html, body {
-  width: 100%;
-  height: auto;
-  overflow-x: hidden;
-} */

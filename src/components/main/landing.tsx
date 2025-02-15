@@ -44,7 +44,7 @@ const Landing: React.FC<LandingProps> = ({ onProceed, onSkipToMain }) => {
   return (
     <motion.div
     id="landing-area"
-    className=" landing relative w-full h-auto flex flex-col justify-center items-start pl-10 overflow-x-hidden"
+    className=" landing relative w-full h-auto flex flex-col justify-center items-start pl-10 overflow-hidden"
     onMouseMove={handleMouseMove}
   >
     {/* Stars Layer */}
