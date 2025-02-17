@@ -11,6 +11,9 @@ import PinterestIcon from "@mui/icons-material/Pinterest";
 import ReachOutForm from "./childs/form/form";
 import Game from "./childs/game/game";
 import SmokeAnimation from "../footer/childs/component/smokeComponent/smoke";
+import arrow from "../../assets/icons/yellow-arrow.png";
+
+
 const ReachOut = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -55,34 +58,54 @@ const ReachOut = () => {
           style={{ width: "100%", height: "100%", background: "" }}
         ></canvas>
 
-        <div className={styles.content1}>
-          <h1>REACH OUT TO US!</h1>
-          <p>
-            Have an idea, question, or want to partner with us? Send us a
-            message and hit REACH OUT!
+        <div className={styles.content1} style={{ fontFamily: "Calibri, Arial, sans-serif", fontWeight: 400, width: "50vw" }}>
+          <h1 className="text-3xl font-bold text-[#E6FF00] bg-gradient-to-r from-blue-400 to-green-400 px-6 py-3 rounded-lg shadow-lg uppercase tracking-wide items-start">
+            REACH OUT TO US!
+          </h1>
+          <p className="text-white text-lg font-medium leading-snug mt-5 mb-5" >
+            Have an idea, question, or want to partner with us? <br />  Send us a message and hit
+            <span className="font-bold text-white text-xl md:text-2xl lg:text-3xl tracking-wide"> REACH OUT!</span>
           </p>
-
-          <Game />
-          <h1>GO SOCIALS</h1>
-          <div className={styles.iconsContainer}>
-            <LinkedInIcon style={{ color: " #9ef01a" }} />
-            <FacebookIcon style={{ color: " #9ef01a" }} />
-            <TwitterIcon style={{ color: " #9ef01a" }} />
-            <InstagramIcon style={{ color: " #9ef01a" }} />
-            <YouTubeIcon style={{ color: " #9ef01a" }} />
-            <RedditIcon style={{ color: " #9ef01a" }} />
-            <PinterestIcon style={{ color: " #9ef01a" }} />
+          <div className="flex flex-row">
+            <Game />
+            <div >
+              <img
+                src={arrow}
+                alt="A short, descriptive text for accessibility"
+                width="50"
+                height="50"
+              />
+              <p>Try me</p>
+            </div>
           </div>
+
+          <div>
+            <h1 className="text-1xl font-bold text-[#E6FF00] bg-gradient-to-r from-blue-400 to-green-400 px-6 py-3 rounded-lg shadow-lg uppercase tracking-wide mt-10">
+              GO SOCIALS
+            </h1>
+
+            {/* Icons container: row layout, spacing */}
+            <div className="flex flex-row gap-4 my-3">
+              <LinkedInIcon className="w-30 h-30 bg-black text-white rounded-full p-1" />
+              <FacebookIcon className="w-30 h-30 bg-black text-white rounded-full p-1" />
+              <TwitterIcon className="w-10 h-10 bg-black text-white rounded-full p-1" />
+              <InstagramIcon className="w-10 h-10 bg-black text-white rounded-full p-1" />
+              <YouTubeIcon className="w-10 h-10 bg-black text-white rounded-full p-1" />
+              <RedditIcon className="w-10 h-10 bg-black text-white rounded-full p-1" />
+              <PinterestIcon className="w-10 h-10 bg-black text-white rounded-full p-1" />
+            </div>
+          </div>
+
         </div>
 
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            width: "50vw",
+            width: "50%",
             justifyContent: "center",
             alignItems: "center",
-            gap: 10,
+            gap: 20,
           }}
         >
           <ReachOutForm />

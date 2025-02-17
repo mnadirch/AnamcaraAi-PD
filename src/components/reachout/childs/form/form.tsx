@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styles from "./form.module.css";
-
 import ReCAPTCHA from "react-google-recaptcha";
+
 const ReachOutForm = () => {
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -48,11 +49,23 @@ const ReachOutForm = () => {
       subject: "",
       message: "",
     });
+
+    e.preventDefault();
+    // Execute the reCAPTCHA challenge manually
+    recaptchaRef.current?.execute();
   };
-  const handleCaptchaChange = () => {};
+
+  // Callback for when reCAPTCHA completes
+  const onReCAPTCHAChange = (token: string | null) => {
+    console.log("ReCAPTCHA token:", token);
+    // You can now send the token to your backend for verification
+    // Optionally, reset the reCAPTCHA for future submissions
+    recaptchaRef.current?.reset();
+  };
+
   return (
     <>
-      <form className={styles.formSection}>
+      <form className={styles.formSection} style={{ fontFamily: "Calibri, Arial, sans-serif", fontWeight: 400 }}>
         <div className={styles.inlineFields}>
           <div>
             <label htmlFor="name">Your Name</label>
@@ -98,7 +111,11 @@ const ReachOutForm = () => {
         </div>
       </form>
       <div className={styles.checkcontent}>
-        <div className={styles.checkBox}>
+        <label
+          htmlFor="privacyPolicy"
+          className="flex items-center gap-2 p-2 text-gray-400 whitespace-nowrap"
+          style={{ fontFamily: "Calibri, Arial, sans-serif" }}
+        >
           <input
             type="checkbox"
             id="privacyPolicy"
@@ -106,25 +123,27 @@ const ReachOutForm = () => {
             checked={isChecked}
             onChange={handleCheckboxChange}
             required
+            className="accent-white"
           />
-        </div>
-        <div>
-          <label className={styles.label} htmlFor="privacypolicy">
+          <span>
             I have read and accept the{" "}
-            <span className={styles.underline}>privacy policy</span>
-          </label>
-        </div>
-        <div>
-          <button onClick={handleSubmit} className={styles.reachOutButton}>
+            <span className="underline">Privacy Policy</span>.
+          </span>
+        </label>
+
+        <div >
+          <button onClick={handleSubmit}  className={styles.reachOutButton} style={{ fontFamily: "Calibri, Arial, sans-serif" }} >
             Reach Out
           </button>
-          {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+          {errorMessage && <p className={styles.error} style={{ fontFamily: "Calibri, Arial, sans-serif" }}>{errorMessage} </p>}
         </div>
       </div>
-      <div className={styles.captcha}>
+      <div className="fixed bottom-16 right-0.5 -translate-x-1/2 z-[999999]">
         <ReCAPTCHA
-          sitekey="6Ld9OXsqAAAAAMUubGh-_XNFCTunJNDFOYoz8vzL"
-          onChange={() => handleCaptchaChange()}
+          ref={recaptchaRef}
+          sitekey="6LdWstkqAAAAAKexIR0vyC4KcXzhjhTYpdqohU7w"
+          size="invisible"
+          onChange={onReCAPTCHAChange}
         />
       </div>
     </>

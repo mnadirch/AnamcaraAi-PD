@@ -7,12 +7,40 @@
   border-radius: 5px;
   margin-top: 0px;
 }
-.inlineFields {
+/* .inlineFields {
   display: flex;
   flex-direction: row;
-  gap: 0px;
+  gap: 150px;
+  width: 100%;
+} */
+
+.inlineFields {
+  /* Use a responsive grid layout that splits into two columns */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem; /* adjust spacing between columns */
   width: 100%;
 }
+
+/* Ensure each field stacks its label and input vertically */
+.inlineFields > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.inlineFields label {
+  margin-bottom: 0.5rem;
+  font-weight: 600; /* or any desired styling */
+}
+
+.inlineFields input {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 
 label {
   font-size: 12px;
@@ -21,7 +49,17 @@ label {
   color: black;
 }
 
-input,
+input{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd; 
+  border-radius: 6px;
+  background-color: #f8f8f8; 
+  font-size: 14px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
 textarea {
   padding: 10px;
   border: 1px solid #ddd;
@@ -31,49 +69,62 @@ textarea {
   outline: none;
   width: 95%;
   box-sizing: border-box;
-
   background-color: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
-input {
-  height: 20px;
-}
+
 input:focus,
 textarea:focus {
-  border-color: rgba(255, 255, 255, 0.4);
-}
+  border-color: black; 
+  background-color: #fff; }
+
 .checkcontent {
+  width:100%;
   display: flex;
-  gap: 20px;
+  gap: 5px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
-.checkBox {
-  margin-left: 20px;
-}
-
-.label {
-  color: grey;
-}
 .reachOutButton {
   position: relative;
-  background-color: black;
-  color: #d9ff0f;
-  border-radius: 6px;
-  font-weight: 100;
-  box-shadow: 0 0 10px 2px #d9ff0f;
-  border: none;
   width: auto;
-  font-size: 1em;
-  padding: 10px 10px;
+  font-size: 1em;  
+  line-height: 1rem;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   cursor: pointer;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #000;
+  background-color: #ADFF00;
+  border-radius: 0.375rem;
+  border: 2px solid #BCFF9D;
+  padding-top: 10px;
+}
+
+/* Hover states */
+.reachOutButton:hover {
+  background-color: #000;
+
+  color: #fff;
 }
 
 .error {
   position: relativee;
   left: 0%;
   color: orangered;
+}
+
+.recaptchaContainer {
+  position: fixed;
+  bottom: 4rem; /* or however far you want it from bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999999; /* Must exceed footer’s z-index */      /* Ensure it appears above other elements */
 }
 @media (max-width: 580px) {
   .checkcontent {
