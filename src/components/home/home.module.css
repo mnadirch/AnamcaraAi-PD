@@ -1,6 +1,5 @@
 .container {
   display: flex;
-
   padding: 20px;
   gap: 30px;
   margin-top: 0px;
@@ -17,10 +16,12 @@
   flex: 1;
   flex-direction: column;
   gap: 0px;
+  background-color: #d9ff0f; /* Yellow Background */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
-.sometext {
-  color: #d9ff0f;
-}
+
 .inputContent {
   display: flex;
   flex-direction: row;
@@ -34,7 +35,7 @@
 }
 .styledinput {
   background-color: rgb(0, 0, 0);
-  width: 70%;
+  width: 100%;
   padding: 20px;
   border: 1px solid #000000;
   border-radius: 4px;
@@ -49,7 +50,7 @@
   border: none;
   width: auto;
   font-size: 1em;
-  padding: 5px 5px;
+  padding: 2px 2px;
 }
 .modelSection {
   flex: 1;
@@ -123,17 +124,25 @@
 .randomImage3:hover {
   cursor: pointer;
 }
-.heading > h1 {
-  font-size: 1em;
-  color: #d9ff0f;
-  text-shadow: 0px 0px #d9ff0f;
+.heading h1 {
+  font-size: 2.5rem; /* Large Font Size */
+  font-weight: bold;
+  color: #000; /* Black Text */
+  text-align: left;
+  margin-bottom: 10px;
 }
 
 .sometext {
-  font-size: 1em;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #000; /* Black Text */
+  text-align: left;
+  line-height: 1.5;
+}
 
-  color: #d9ff0f;
-  text-shadow: 0px 0px #d9ff0f;
+.sometext .highlight {
+  font-weight: bold;
+  text-decoration: underline;
 }
 .animatedborderbutton {
   position: relative;
@@ -481,4 +490,98 @@ video::-webkit-media-controls {
     width: 80dvw;
     height: 50dvh;
   }
+  /* Default Styles (for larger screens) */
+.heading h1 {
+  font-size: 1rem; /* Large Font Size */
+  font-weight: bold;
+  color: #000; /* Black Text */
+  text-align: left;
+  margin-bottom: 10px;
 }
+
+/* Text Styling */
+.sometext {
+  font-size: 0.6rem;
+  font-weight: bold;
+  color: #000; /* Black Text */
+  text-align: left;
+  line-height: 1.5;
+}
+
+/* Highlighted Text */
+.sometext .highlight {
+  font-weight: bold;
+  text-decoration: underline;
+}
+}
+
+/* Tablets (up to 1024px) */
+@media screen and (max-width: 1024px) {
+  .textSection {
+    padding: 8px;
+    gap: 8px;
+    border-radius: 6px;
+  }
+  .heading h1 {
+    font-size: 1rem; /* Large Font Size */
+    font-weight: bold;
+    color: #000; /* Black Text */
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  
+  /* Text Styling */
+  .sometext {
+    font-size: 0.6rem;
+    font-weight: bold;
+    color: #000; /* Black Text */
+    text-align: left;
+    line-height: 1.5;
+  }
+  
+  /* Highlighted Text */
+  .sometext .highlight {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  .styledinput {
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #000000;
+  }  
+}
+
+/* Tablets (up to 1024px) */
+@media screen and (max-width: 400px) {
+
+  .heading h1 {
+    font-size: 0.6rem; /* Large Font Size */
+    font-weight: bold;
+    color: #000; /* Black Text */
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  
+  /* Text Styling */
+  .sometext {
+    font-size: 0.5rem;
+    font-weight: bold;
+    color: #000; /* Black Text */
+    text-align: left;
+    line-height: 1.5;
+  }
+  
+  /* Highlighted Text */
+  .sometext .highlight {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  .styledinput {
+    background-color: rgb(0, 0, 0);
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #000000;
+  }  
+}
+

@@ -45,17 +45,23 @@ const Home = () => {
 
         <SmokeAnimation />
 
-        <div onMouseEnter={handleImages} className={styles.textSection}>
+        <div onMouseEnter={handleImages} className={styles.textSection} style={{ fontFamily: "Calibri, Arial, sans-serif", fontWeight: 400 }}
+        >
           <div className={styles.heading}>
-            <h1>Smart Solutions, Meaningful Connections</h1>
+            <h1>Beyond Human Connection, Empowering Every Individual</h1>
           </div>
           <div className={styles.sometext}>
             <p>
-              Feeling lonely? Connect with ANAMCARA AI Team and never feel alone
-              again. Join our waiting list and be the first to experience your
-              personal companion when we go live!
+              <strong>Ever feel like something’s missing?</strong>
+              <span className={styles.highlight}> ANAMCARA AI</span> transforms everyday interactions into personalized experiences that inspire and empower. Powered by our Quadfecta of empathetic technologies, we redefine human potential—where AI fosters deeper understanding and meaningful connections.
+            </p>
+
+            <p>
+              <strong>Join our waiting list today</strong> and be among the first to experience a future designed for you—because with
+              <span className={styles.highlight}> ANAMCARA AI</span>, you’ll always feel connected.
             </p>
           </div>
+
           <div className={styles.inputContent}>
             <input
               type="email"
@@ -92,9 +98,8 @@ const Home = () => {
             onClick={() => navigateToCommingSoonPage()}
             src={AiImage}
             alt="random1"
-            className={`${styles.randomImage1} ${
-              reAnimateHeadImage ? styles.endAnimation : ""
-            }`}
+            className={`${styles.randomImage1} ${reAnimateHeadImage ? styles.endAnimation : ""
+              }`}
             style={{
               translate: animateHeadImage ? "-20px " : "20px",
 
@@ -105,9 +110,8 @@ const Home = () => {
             onClick={() => navigateToCommingSoonPage()}
             src={metaVerse}
             alt="random2"
-            className={`${styles.randomImage2} ${
-              reAnimateHeadImage ? styles.endAnimation : ""
-            }`}
+            className={`${styles.randomImage2} ${reAnimateHeadImage ? styles.endAnimation : ""
+              }`}
             style={{
               translate: animateHeadImage ? "-20px -15px" : "none",
               transition: animateHeadImage ? "10s " : "",
@@ -117,9 +121,8 @@ const Home = () => {
             onClick={() => navigateToCommingSoonPage()}
             src={robotics}
             alt="random3"
-            className={`${styles.randomImage3} ${
-              reAnimateHeadImage ? styles.endAnimation : ""
-            }`}
+            className={`${styles.randomImage3} ${reAnimateHeadImage ? styles.endAnimation : ""
+              }`}
             style={{
               translate: animateHeadImage ? "30px 20px" : "none",
               transition: animateHeadImage ? "10s " : "",
