@@ -46,7 +46,7 @@ const Footer: FC = () => {
   return (
     <div className={styles.footer}>
       <div className={styles.footerContainer}>
-        {["Home", "AI", "Metaverse", "Robotics"].map((title, index) => (
+        {["AI", "Metaverse", "Robotics", "Quantum"].map((title, index) => (
           <div
             key={index}
             onClick={() => updateStatus(index)}
@@ -66,10 +66,10 @@ const Footer: FC = () => {
                     : styles.secondaryText
                   }`}
               >
-                {index === 0 && "Anamcara AI"}
-                {index === 1 && "Intelligent future"}
-                {index === 2 && "Virtual connections"}
-                {index === 3 && "Automation revolution"}
+                {index === 0 && "Cognitive Evolution"}
+                {index === 1 && "Immersive Realities"}
+                {index === 2 && "Revolutionary Automation"}
+                {index === 3 && "Infinite Possibilities"}
               </p>
             </div>
 
@@ -87,7 +87,6 @@ const Footer: FC = () => {
                   width={40}
                   isClickToPauseDisabled={true}
                 />
-
               </div>
             </div>
           </div>

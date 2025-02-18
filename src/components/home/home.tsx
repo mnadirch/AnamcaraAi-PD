@@ -3,7 +3,7 @@ import styles from "./home.module.css";
 import AiImage from "../../assets/images/headimages/AI_head.png";
 import metaVerse from "../../assets/images/headimages/Metaverse_head.png";
 import robotics from "../../assets/images/headimages/Flip Image .png";
-import AiAnimation from "../../assets/animation/human_head_animation.mp4";
+import AiAnimation from "../../assets/animation/HumanLikeRobot.mp4";
 import midjourney from "../../assets/images/headimages/midjourney.png";
 import gpticon from "../../assets/images/headimages/chatgpt.jpg";
 import elevenlabs from "../../assets/images/headimages/elevenlabs.png";
