@@ -109,7 +109,7 @@ const Game = () => {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(9, 25px)",
+            gridTemplateColumns: "repeat(9, 35px)",
             gap: "1px",
           }}
         >
@@ -121,8 +121,8 @@ const Game = () => {
                 className={styles.gridblock}
                 style={{
                   backgroundColor: getColor(value),
-                  width: "25px",
-                  height: "25px",
+                  width: "35px",
+                  height: "35px",
                   borderRadius: "5px",
                 }}
               />
@@ -133,7 +133,7 @@ const Game = () => {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(9, 25px)",
+            gridTemplateColumns: "repeat(9, 35px)",
             gap: "0px",
           }}
         >
@@ -146,8 +146,8 @@ const Game = () => {
                   isResetting ? styles.scale : ""
                 }`}
                 style={{
-                  width: "25px",
-                  height: "25px",
+                  width: "35px",
+                  height: "35px",
                   backgroundColor: color,
                   border: "1px solid black",
                   cursor: "pointer",

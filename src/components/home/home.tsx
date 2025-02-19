@@ -89,7 +89,7 @@ const Home = () => {
             autoPlay
             loop
             tabIndex={-1} // Removes an element from the natural tab order like on iphone default behaviour
-            style={{ outline: "none" }}
+            style={{ outline: "none", }}
             muted
             controls={false}
             playsInline
