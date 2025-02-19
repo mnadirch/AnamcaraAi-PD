@@ -12,18 +12,71 @@ import { useNavigate } from "react-router-dom";
 import Particle from "./childs/particlesAnimation/particlesAnimation";
 import FogAnimation from "./childs/fogAnimation/fogAnimation";
 import SmokeAnimation from "../footer/childs/component/smokeComponent/smoke";
+import { AlertCircle, CheckCircle } from 'lucide-react';
 
 const Home = () => {
   const [animateHeadImage, setanimateHeadImage] = useState(false);
   const [reAnimateHeadImage, setreAnimateHeadImage] = useState(false);
+  const [hoveredImage, setHoveredImage] = useState<string | null>(null);
+  const [email, setEmail] = useState<string>('');
+  const [status, setStatus] = useState<'success' | 'error' | ''>('');
+  const [loading, setLoading] = useState<boolean>(false);
+
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      setStatus('success');
+    } catch (error) {
+      setStatus('error');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const renderStatusMessage = () => {
+    const messages = {
+      success: {
+        Icon: CheckCircle,
+        text: 'Successfully subscribed! Welcome aboard.',
+        className: 'text-white',
+      },
+      error: {
+        Icon: AlertCircle,
+        text: 'There was an error. Please try again.',
+        className: 'text-red-600',
+      },
+    };
+
+    if (!status || !(status in messages)) return null;
+
+    const { Icon, text, className } = messages[status as keyof typeof messages];
+
+    return (
+      <div className={`mt-4 flex items-center space-x-2 ${className}`}>
+        <Icon className="h-5 w-5" />
+        <span>{text}</span>
+      </div>
+    );
+  };
+
+  const handleMouseEnter = (image: string) => {
+    setHoveredImage(image);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredImage(null);
+  };
 
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   console.log("animate", animateHeadImage);
-  // }, [animateHeadImage]);
-  // useEffect(() => {
-  //   console.log("reanimate", reAnimateHeadImage);
-  // }, [reAnimateHeadImage]);
 
   const navigateToCommingSoonPage = () => {
     navigate("/ai-robotics");
@@ -34,43 +87,89 @@ const Home = () => {
   const handleImagesAnimation = () => {
     setreAnimateHeadImage(!reAnimateHeadImage);
   };
+
+
+
   return (
     <>
       <div className={styles.container}>
         <div className={styles.fogLayer}>
           <FogAnimation />
         </div>
-
         <Particle />
-
         <SmokeAnimation />
 
-        <div onMouseEnter={handleImages} className={styles.textSection} style={{ fontFamily: "Calibri, Arial, sans-serif", fontWeight: 400 }}
-        >
-          <div className={styles.heading}>
-            <h1>Beyond Human Connection, Empowering Every Individual</h1>
-          </div>
-          <div className={styles.sometext}>
-            <p>
-              <strong>Ever feel like something’s missing?</strong>
-              <span className={styles.highlight}> ANAMCARA AI</span> transforms everyday interactions into personalized experiences that inspire and empower. Powered by our Quadfecta of empathetic technologies, we redefine human potential—where AI fosters deeper understanding and meaningful connections.
-            </p>
+        <div className={styles.textArea} style={{ fontFamily: "Calibri, Arial, sans-serif", fontWeight: 400 }}>
+          {/* Header Section */}
+          <div className={styles.textSection} >
+            <h1 className={styles.heading} style={{ fontFamily: "Mowaq, sans-serif", fontWeight: 400 }}>
+              Beyond Human Connection,{' '}
+              <span className="text-black heading">
+                <br></br>
+                Empowering Every Individual
+              </span>
+            </h1>
 
-            <p>
-              <strong>Join our waiting list today</strong> and be among the first to experience a future designed for you—because with
-              <span className={styles.highlight}> ANAMCARA AI</span>, you’ll always feel connected.
-            </p>
+            <div className={styles.grid}>
+              <div className={styles.para}>
+                <h2 className={styles.h2}>
+                  Transform Your Experience
+                </h2>
+                <p className={styles.p}>
+                  ANAMCARA AI transforms everyday interactions into personalized experiences
+                  that inspire and empower.
+                </p>
+              </div>
+
+              <div className={styles.para}>
+                <h2 className={styles.h2}>
+                  Powered by Innovation
+                </h2>
+                <p className={styles.p}>
+                  Our Quadfecta of empathetic technologies redefines human potential where
+                  AI fosters deeper understanding.
+                </p>
+              </div>
+            </div>
+          </div>
+          {/* Subscription Form */}
+          <div className={styles.border}>
+            <form onSubmit={handleSubmit} className={styles.form}>
+              <div className="space-y-2">
+                <label htmlFor="email" className={styles.label}>
+                  Join our waiting list
+                </label>
+                <div className={styles.server}>
+                  <input
+                    type="email"
+                    id="email"
+                    value={email}
+                    onChange={handleEmailChange}
+                    placeholder="Enter your email address"
+                    className={styles.input1}
+                    required
+                  />
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className={styles.submitButton}
+                    style={{
+                      fontFamily: 'Mowaq, sans-serif',
+                      boxShadow: "0px 0px 15px #ADFF00",
+                    }}>
+                    {loading ? (
+                      <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent" />
+                    ) : (
+                      'Subscribe Now'
+                    )}
+                  </button>
+                </div>
+              </div>
+            </form>
+            {renderStatusMessage()}
           </div>
 
-          <div className={styles.inputContent}>
-            <input
-              type="email"
-              placeholder="Enter your email.."
-              className={styles.styledinput}
-            />
-
-            <button className={styles.btnSubscribe}>Subscribe</button>
-          </div>
+          {/* icons */}
           <div className={styles.iconsContent}>
             <img src={midjourney} style={{ height: "30px" }} />
             <img src={gpticon} style={{ height: "30px" }} />
@@ -78,6 +177,7 @@ const Home = () => {
             <img src={assembly2} style={{ height: "30px" }} />
           </div>
         </div>
+
         <div
           className={styles.modelSection}
           onMouseEnter={handleImages}
@@ -98,35 +198,26 @@ const Home = () => {
             onClick={() => navigateToCommingSoonPage()}
             src={AiImage}
             alt="random1"
-            className={`${styles.randomImage1} ${reAnimateHeadImage ? styles.endAnimation : ""
-              }`}
-            style={{
-              translate: animateHeadImage ? "-20px " : "20px",
+            className={`${styles.randomImage1} ${hoveredImage === "ai" ? styles.stopFloat : ""}`}
 
-              transition: animateHeadImage ? "10s " : "",
-            }}
+            onMouseEnter={() => handleMouseEnter("ai")}
+            onMouseLeave={handleMouseLeave}
           />
           <img
             onClick={() => navigateToCommingSoonPage()}
             src={metaVerse}
             alt="random2"
-            className={`${styles.randomImage2} ${reAnimateHeadImage ? styles.endAnimation : ""
-              }`}
-            style={{
-              translate: animateHeadImage ? "-20px -15px" : "none",
-              transition: animateHeadImage ? "10s " : "",
-            }}
+            className={`${styles.randomImage2} ${hoveredImage === "metaverse" ? styles.stopFloat : ""}`}
+            onMouseEnter={() => handleMouseEnter("metaverse")}
+            onMouseLeave={handleMouseLeave}
           />
           <img
             onClick={() => navigateToCommingSoonPage()}
             src={robotics}
             alt="random3"
-            className={`${styles.randomImage3} ${reAnimateHeadImage ? styles.endAnimation : ""
-              }`}
-            style={{
-              translate: animateHeadImage ? "30px 20px" : "none",
-              transition: animateHeadImage ? "10s " : "",
-            }}
+            className={`${styles.randomImage3} ${hoveredImage === "robotics" ? styles.stopFloat : ""}`}
+            onMouseEnter={() => handleMouseEnter("robotics")}
+            onMouseLeave={handleMouseLeave}
           />
         </div>
       </div>

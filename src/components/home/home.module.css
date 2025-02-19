@@ -13,13 +13,20 @@
   z-index: -10;
 }
 .textSection {
+  margin-bottom: 1rem; /* Spacing between header section and subscription form */
+  padding: 0.5rem; /* Example padding, adjust as needed */}
+
+.textArea{
   flex: 1;
   flex-direction: column;
   gap: 0px;
   background-color: #d9ff0f; /* Yellow Background */
-  padding: 20px;
   border-radius: 5px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 2rem; /* Example padding, adjust as needed */
+  max-width: 1200px; /* Example max width, adjust as needed */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .inputContent {
@@ -60,9 +67,13 @@
 }
 
 .aiAnimation {
-  height: 53dvh;
-  width: 40dvw;
-  border-radius: 8px;
+  height: 70dvh;
+  /* height: auto; */
+  /* width: 40dvw; */
+  width: 100%;
+  /* border-radius: 8px; */
+  object-fit: cover;
+  z-index: -100;
 }
 
 .mainImage {
@@ -85,6 +96,9 @@
 .randomImage3 {
   position: absolute;
   object-fit: cover;
+  animation: floatAnimation 3s infinite ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .randomImage1 {
@@ -96,6 +110,25 @@
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.9);
   z-index: 3;
+}
+
+/* Stops floating effect on hover */
+.stopFloat {
+  animation: none;
+  transform: translate(0, 0) !important;
+}
+
+/* Floating animation effect */
+@keyframes floatAnimation {
+  0% {
+    transform: translate(-5px, -5px);
+  }
+  50% {
+    transform: translate(5px, 5px);
+  }
+  100% {
+    transform: translate(-5px, -5px);
+  }
 }
 
 .randomImage2 {
@@ -119,30 +152,114 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.9);
   z-index: 2;
 }
-.randomImage1,
-.randomImage2,
-.randomImage3:hover {
-  cursor: pointer;
+
+.heading {
+  color: #000; /* text-black */
+  line-height: 1.2;
+  text-align: center;
+  letter-spacing: -0.05em;
+  font-size: 3rem; /* text-4xl */
+  font-weight: 700; /* font-bold */
+  letter-spacing: -0.025em; /* tracking-tight */
+  padding-bottom: 1.5rem; /* pb-6 */
 }
-.heading h1 {
-  font-size: 2.5rem; /* Large Font Size */
-  font-weight: bold;
-  color: #000; /* Black Text */
-  text-align: left;
-  margin-bottom: 10px;
+.grid {
+  display: grid;
+  gap: 24px; /* gap-6 */
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
+
+.para > * + * {
+  margin-top: 1rem; 
+}
 }
 
-.sometext {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #000; /* Black Text */
-  text-align: left;
+.para h2 {
+  color: black; /* text-black */
+  font-size: 1.25rem; /* text-xl */
+  line-height: 1.75rem;
+  font-weight: 600; /* font-semibold */
+  margin-top: 1rem; /* space-y-4 implies vertical spacing, adjust as needed */
+}
+
+.para p {
+  color: #000; /* text-black */
   line-height: 1.5;
+  margin-top: 1rem;
 }
 
-.sometext .highlight {
-  font-weight: bold;
-  text-decoration: underline;
+.border{
+  border-width: 1px; /* border */
+  border-color: #F3F4F6; /* border-gray-100 */
+  border-radius: 0.5rem; /* rounded-lg */
+  background-color: #000; /* As inline style */
+  padding: 1.5rem; /* p-6 */
+}
+
+.border .form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* space-y-4 */
+}
+.border .form label {
+  color: #F9FAFB; /* text-white-700 - assuming light gray/white */
+  font-size: 0.875rem; /* text-sm */
+  line-height: 1.25rem;
+  font-weight: 500; /* font-medium */
+  margin-bottom: 0.5rem; /* space-y-2 implies vertical spacing, adjust as needed */
+}
+
+.border .form .input1 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-width: 1px;
+  border-color: #D1D5DB; /* Example border color, adjust as needed */
+  border-radius: 0.5rem;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  font-size: 1rem; /* Example font size, adjust as needed */
+  flex-grow: 1; /* Allow input to grow and take available space */
+  min-width: 0; /* Prevent input from overflowing container on smaller screens */
+}
+.border .form .input1:focus {
+  outline: 2px solid transparent; /* focus:ring-2 */
+  outline-offset: 2px;
+  box-shadow: "0px 0px 15px #ADFF00"; 
+  border-color: #ADFF00; /* focus:border-blue-500 - assuming default blue scale */
+}
+.border .submitButton {
+  width: 30%; /* w-full */
+  background-color:black; /* bg-black-600 - assuming dark black */
+  color: #fff; /* text-white */
+  font-family: 'Mowaq', sans-serif; /* As inline style */
+  font-weight: 500; /* font-medium */
+  padding-top: 0.75rem; /* py-3 */
+  padding-bottom: 0.75rem; /* py-3 */
+  padding-left: 1.5rem; /* px-6 */
+  padding-right: 1.5rem; /* px-6 */
+  border-radius: 0.5rem; /* rounded-lg */
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter; /* transition-colors */
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  display: flex; /* flex */
+  gap: 20rem; /* space-x-2 */
+  box-shadow: 0 0 15px #ADFF00; /* As inline style */
+}
+.border .submitButton:hover {
+  background-color: #ADFF00; /* hover:bg-[#ADFF00] */
+  color: #000; /* hover:text-black */
+}
+.border .submitButton:disabled {
+  opacity: 0.5; /* disabled:opacity-50 */
+  cursor: not-allowed; /* disabled:cursor-not-allowed */
+}
+.border .server {
+  display: flex; /* Enable flexbox for row layout */
+  flex-direction: row; /* Arrange items in a row */
+  align-items: center; /* Vertically align items in the center */
+  position: relative; /* To contain absolutely positioned elements if needed */
 }
 .animatedborderbutton {
   position: relative;
@@ -205,7 +322,6 @@ video::-webkit-media-controls {
 
 .animatedborderbutton2 {
   position: absolute;
-
   padding: 10px 20px;
   font-size: 20px;
   color: #fff;
@@ -490,66 +606,71 @@ video::-webkit-media-controls {
     width: 80dvw;
     height: 50dvh;
   }
-  /* Default Styles (for larger screens) */
-.heading h1 {
-  font-size: 1rem; /* Large Font Size */
-  font-weight: bold;
-  color: #000; /* Black Text */
-  text-align: left;
-  margin-bottom: 10px;
-}
-
-/* Text Styling */
-.sometext {
-  font-size: 0.6rem;
-  font-weight: bold;
-  color: #000; /* Black Text */
-  text-align: left;
-  line-height: 1.5;
-}
-
-/* Highlighted Text */
-.sometext .highlight {
-  font-weight: bold;
-  text-decoration: underline;
-}
-}
+  
 
 /* Tablets (up to 1024px) */
 @media screen and (max-width: 1024px) {
+  .textArea {
+    padding-left: 1rem; /* Reduce horizontal padding on smaller screens */
+    padding-right: 1rem;
+  }
   .textSection {
-    padding: 8px;
-    gap: 8px;
-    border-radius: 6px;
+    margin-bottom: 2rem;
+    padding: 2rem;
   }
-  .heading h1 {
-    font-size: 1rem; /* Large Font Size */
-    font-weight: bold;
-    color: #000; /* Black Text */
-    text-align: left;
-    margin-bottom: 10px;
+}
+
+
+
+@media (max-width: 767px) {
+  .textSection {
+    padding: 1rem; /* Reduce padding on smaller screens */
+    margin-bottom: 1.5rem; /* Adjust margin if needed */
   }
-  
-  /* Text Styling */
-  .sometext {
-    font-size: 0.6rem;
-    font-weight: bold;
-    color: #000; /* Black Text */
-    text-align: left;
-    line-height: 1.5;
+  .heading {
+    font-size: 2rem; /* Slightly smaller on mobile */
+    padding-bottom: 1rem; /* Adjust padding if needed */
   }
-  
-  /* Highlighted Text */
-  .sometext .highlight {
-    font-weight: bold;
-    text-decoration: underline;
+  .grid {
+    grid-template-columns: 1fr; /* Single column on mobile */
   }
-  .styledinput {
-    background-color: rgb(0, 0, 0);
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #000000;
-  }  
+  .para h2 {
+    font-size: 1.125rem; /* Slightly smaller h2 on mobile */
+  }
+  .para p {
+    font-size: 1rem; /* Slightly smaller paragraph text on mobile */
+    line-height: 1.4; /* Adjust line height if needed */
+  }
+  .border {
+    padding: 1rem; /* Less padding on smaller screens */
+  }
+  .border .form .input1 {
+    padding-left: 0.75rem; /* Slightly less horizontal padding on mobile */
+    padding-right: 0.75rem;
+    padding-top: 0.6rem; /* Slightly less vertical padding on mobile */
+    padding-bottom: 0.6rem;
+  }
+  .border .form .input1:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px #3B82F6;
+    border-color: #3B82F6;
+  }
+  .border .submitButton {
+    padding-top: 0.6rem; /* Slightly less vertical padding on mobile */
+    padding-bottom: 0.6rem;
+    font-size: 0.9rem; /* Slightly smaller font on mobile */
+  }
+  .border .form .server {
+    flex-direction: column; /* Stack input and button vertically on smaller screens */
+    align-items: stretch; /* Stretch items to full width in column layout */
+  }
+}
+/* Media query for medium screens and above - two columns */
+@media (min-width: 768px) { /* md: */
+  .grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr)); 
+  }
 }
 
 /* Tablets (up to 1024px) */
@@ -584,4 +705,4 @@ video::-webkit-media-controls {
     border: 1px solid #000000;
   }  
 }
-
+}
