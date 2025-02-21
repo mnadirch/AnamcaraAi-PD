@@ -1,11 +1,10 @@
 .container {
   display: flex;
-  padding: 20px;
-  gap: 30px;
+  padding: 10px;
   margin-top: 0px;
-  margin: 10px 9%;
-  width: auto;
-  height: auto;
+  margin: 5px 9%;
+  /* width: auto;
+  height: auto; */
   align-items: center;
   justify-content: center;
 }
@@ -13,15 +12,22 @@
   z-index: -10;
 }
 .textSection {
+  margin-bottom: 1rem; /* Spacing between header section and subscription form */
+  padding: 0.5rem; /* Example padding, adjust as needed */
+}
+
+.textArea {
   flex: 1;
   flex-direction: column;
   gap: 0px;
   background-color: #d9ff0f; /* Yellow Background */
-  padding: 20px;
   border-radius: 5px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 2rem; /* Example padding, adjust as needed */
+  max-width: 1200px; /* Example max width, adjust as needed */
+  margin-left: auto;
+  margin-right: auto;
 }
-
 .inputContent {
   display: flex;
   flex-direction: row;
@@ -33,25 +39,7 @@
   gap: 10px;
   margin-top: 15px;
 }
-.styledinput {
-  background-color: rgb(0, 0, 0);
-  width: 100%;
-  padding: 20px;
-  border: 1px solid #000000;
-  border-radius: 4px;
-}
-.btnSubscribe {
-  position: relative;
-  background-color: black;
-  color: #d9ff0f;
-  border-radius: 6px;
-  font-weight: 100;
-  box-shadow: 0 0 10px 2px #d9ff0f;
-  border: none;
-  width: auto;
-  font-size: 1em;
-  padding: 2px 2px;
-}
+
 .modelSection {
   flex: 1;
   position: relative;
@@ -60,9 +48,13 @@
 }
 
 .aiAnimation {
-  height: 53dvh;
-  width: 40dvw;
-  border-radius: 8px;
+  height: 70dvh;
+  /* height: auto; */
+  /* width: 40dvw; */
+  width: 100%;
+  /* border-radius: 8px; */
+  object-fit: cover;
+  z-index: -100;
 }
 
 .mainImage {
@@ -85,6 +77,9 @@
 .randomImage3 {
   position: absolute;
   object-fit: cover;
+  animation: floatAnimation 3s infinite ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 .randomImage1 {
@@ -96,6 +91,25 @@
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.9);
   z-index: 3;
+}
+
+/* Stops floating effect on hover */
+.stopFloat {
+  animation: none;
+  transform: translate(0, 0) !important;
+}
+
+/* Floating animation effect */
+@keyframes floatAnimation {
+  0% {
+    transform: translate(-5px, -5px);
+  }
+  50% {
+    transform: translate(5px, 5px);
+  }
+  100% {
+    transform: translate(-5px, -5px);
+  }
 }
 
 .randomImage2 {
@@ -119,30 +133,122 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.9);
   z-index: 2;
 }
-.randomImage1,
-.randomImage2,
-.randomImage3:hover {
-  cursor: pointer;
+
+.heading {
+  color: #000; /* text-black */
+  line-height: 1.2;
+  text-align: center;
+  letter-spacing: -0.05em;
+  font-size: 3rem; /* text-4xl */
+  font-weight: 700; /* font-bold */
+  letter-spacing: -0.025em; /* tracking-tight */
+  padding-bottom: 1.5rem; /* pb-6 */
 }
-.heading h1 {
-  font-size: 2.5rem; /* Large Font Size */
-  font-weight: bold;
-  color: #000; /* Black Text */
-  text-align: left;
-  margin-bottom: 10px;
+.grid {
+  display: grid;
+  gap: 24px; /* gap-6 */
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
+  justify-content: center;
+  align-items: center;
 }
 
-.sometext {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #000; /* Black Text */
-  text-align: left;
+.para h2 {
+  display: flex;
+  color: black; /* text-black */
+  font-size: 1.25rem; /* text-xl */
+  line-height: 1.75rem;
+  font-weight: 600; /* font-semibold */
+  margin-top: 1rem; /* space-y-4 implies vertical spacing, adjust as needed */
+  justify-content: center;
+  align-items: center;
+}
+
+.para p {
+  display: flex;
+  color: #000; /* text-black */
   line-height: 1.5;
+  margin-top: 1rem;
+  text-align: center;
+  align-items: center;
 }
 
-.sometext .highlight {
-  font-weight: bold;
-  text-decoration: underline;
+.border {
+  border-width: 1px; /* border */
+  border-color: #f3f4f6; /* border-gray-100 */
+  border-radius: 0.5rem; /* rounded-lg */
+  background-color: #000; /* As inline style */
+  padding: 1.5rem; /* p-6 */
+}
+
+.border .form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* space-y-4 */
+}
+.border .form label {
+  color: #f9fafb; /* text-white-700 - assuming light gray/white */
+  font-size: 0.875rem; /* text-sm */
+  line-height: 1.25rem;
+  font-weight: 500; /* font-medium */
+  margin-bottom: 0.5rem; /* space-y-2 implies vertical spacing, adjust as needed */
+}
+
+.border .form .input1 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-width: 1px;
+  border-color: #d1d5db; /* Example border color, adjust as needed */
+  border-radius: 0.5rem;
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+    backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  font-size: 1rem; /* Example font size, adjust as needed */
+  flex-grow: 1; /* Allow input to grow and take available space */
+  min-width: 0; /* Prevent input from overflowing container on smaller screens */
+}
+.border .form .input1:focus {
+  outline: 2px solid transparent; /* focus:ring-2 */
+  outline-offset: 2px;
+  box-shadow: "0px 0px 15px #ADFF00";
+  border-color: #adff00; /* focus:border-blue-500 - assuming default blue scale */
+}
+.border .submitButton {
+  width: 30%; /* w-full */
+  background-color: black; /* bg-black-600 - assuming dark black */
+  color: #fff; /* text-white */
+  font-family: "Mowaq", sans-serif; /* As inline style */
+  font-weight: 500; /* font-medium */
+  padding-top: 0.75rem; /* py-3 */
+  padding-bottom: 0.75rem; /* py-3 */
+  padding-left: 1.5rem; /* px-6 */
+  padding-right: 1.5rem; /* px-6 */
+  border-radius: 0.5rem; /* rounded-lg */
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+    backdrop-filter; /* transition-colors */
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  display: flex; /* flex */
+  gap: 20rem; /* space-x-2 */
+  box-shadow: 0 0 15px #adff00; /* As inline style */
+}
+.border .submitButton:hover {
+  background-color: #adff00; /* hover:bg-[#ADFF00] */
+  color: #000; /* hover:text-black */
+}
+.border .submitButton:disabled {
+  opacity: 0.5; /* disabled:opacity-50 */
+  cursor: not-allowed; /* disabled:cursor-not-allowed */
+}
+.border .server {
+  display: flex; /* Enable flexbox for row layout */
+  flex-direction: row; /* Arrange items in a row */
+  align-items: center; /* Vertically align items in the center */
+  position: relative; /* To contain absolutely positioned elements if needed */
 }
 .animatedborderbutton {
   position: relative;
@@ -205,7 +311,6 @@ video::-webkit-media-controls {
 
 .animatedborderbutton2 {
   position: absolute;
-
   padding: 10px 20px;
   font-size: 20px;
   color: #fff;
@@ -471,117 +576,199 @@ video::-webkit-media-controls {
   }
 }
 
-@media (max-width: 580px) {
+
+@media (max-width: 700px) {
   .container {
     display: flex;
-    flex-direction: column;
-    margin: 0;
-    min-width: 90dvw;
-    max-width: 100dvw;
+    flex-direction: column !important;
+    /* margin-bottom: 300px !important; */
+    /* margin-top: 500px !important; */
+    height: 100vh !important;
+    overflow-y: scroll;
+    gap: 60px;
+    padding-top: 300px;
+    padding-bottom: 100px;
+    /* scrollbar-width: 0px; */
   }
 
-  .buttonSection > button {
+  /* .buttonSection > button {
     border-radius: 25px;
     border-width: 2px;
-  }
+  } */
 
   .aiAnimation {
     border-radius: 8px;
-    width: 80dvw;
-    height: 50dvh;
+    width: 350px !important;
+    height: 200px;
   }
-  /* Default Styles (for larger screens) */
-.heading h1 {
-  font-size: 1rem; /* Large Font Size */
-  font-weight: bold;
-  color: #000; /* Black Text */
-  text-align: left;
-  margin-bottom: 10px;
-}
 
-/* Text Styling */
-.sometext {
-  font-size: 0.6rem;
-  font-weight: bold;
-  color: #000; /* Black Text */
-  text-align: left;
-  line-height: 1.5;
-}
-
-/* Highlighted Text */
-.sometext .highlight {
-  font-weight: bold;
-  text-decoration: underline;
-}
-}
-
-/* Tablets (up to 1024px) */
-@media screen and (max-width: 1024px) {
   .textSection {
-    padding: 8px;
-    gap: 8px;
-    border-radius: 6px;
+    margin-bottom: 0rem; 
+    padding: 0.5rem;
   }
-  .heading h1 {
-    font-size: 1rem; /* Large Font Size */
+
+  .textArea {
+    padding: 0.5rem; 
+    width: 300px !important; 
+    height: 300px !important;
+  }
+  .heading {
+    font-size: 0.2rem; /* Large Font Size */
     font-weight: bold;
     color: #000; /* Black Text */
-    text-align: left;
-    margin-bottom: 10px;
+    text-align: center;
   }
-  
+  .para h2 {
+    font-size: 0.2rem;
+  }
   /* Text Styling */
-  .sometext {
-    font-size: 0.6rem;
-    font-weight: bold;
-    color: #000; /* Black Text */
-    text-align: left;
-    line-height: 1.5;
+  .para p {
+    font-size: 0.2rem;
   }
-  
-  /* Highlighted Text */
-  .sometext .highlight {
-    font-weight: bold;
-    text-decoration: underline;
+  .border {
+    padding: 0.5rem;
   }
-  .styledinput {
-    background-color: rgb(0, 0, 0);
+  .border .form .input1 {
+    padding: 0.2rem 1.25rem;
     width: 100%;
-    padding: 5px;
-    border: 1px solid #000000;
-  }  
+  }
+  .border .submitButton {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 1rem;
+    width: 100%;
+  }
+  .border .form .server {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
-/* Tablets (up to 1024px) */
-@media screen and (max-width: 400px) {
+@media (max-width: 1920px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+ }
+  .aiAnimation {
+    border-radius: 8px;
+    width: 400px;
+    height: 430px;
+    margin-left:20px ;
+  }
 
-  .heading h1 {
-    font-size: 0.6rem; /* Large Font Size */
+  .textSection {
+    margin-bottom: 0rem;
+    padding: 0.5rem;
+  }
+
+  .textArea {
+    width: 300px;
+    height: 430px !important;
+    margin-right: 20px;
+  }
+  .heading {
+    font-size: 1.2rem; /* Large Font Size */
     font-weight: bold;
     color: #000; /* Black Text */
-    text-align: left;
-    margin-bottom: 10px;
+    text-align: center;
+    margin-bottom: 0px;
+    padding-bottom: 0rem; /* pb-6 */
   }
-  
+  .para h2 {
+    font-size: 0.8rem;
+    margin-top: 1rem;
+  }
   /* Text Styling */
-  .sometext {
+  .para p {
+    font-size: 0.7rem;
+    margin-bottom: 1rem;
+  }
+  .border {
+    padding: 1.5rem;
+  }
+  .border .form .input1 {
+    padding: 0.5rem 1.25rem;
+    width: 100%;
+  }
+  .border .submitButton {
+    padding-top: 0.7rem;
+    padding-bottom: 0.5rem;
     font-size: 0.5rem;
+    width: 30%;
+  }
+  .border .form .server {
+    flex-direction: row;
+    align-items: center;
+  }
+
+
+}
+@media (min-width: 2560px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    gap: 50px;
+  }
+
+  .textSection {
+    margin-bottom: 0rem; /* Spacing between header section and subscription form */
+    padding: 2rem; /* Example padding, adjust as needed */
+  }
+
+  .textArea {
+    padding: 5rem; /* Example padding, adjust as needed */
+    max-width: 900px; /* Example max width, adjust as needed */
+    height: 1000px;
+  }
+  .heading {
+    font-size: 3rem; /* Large Font Size */
     font-weight: bold;
     color: #000; /* Black Text */
-    text-align: left;
-    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 0rem; /* pb-6 */
+  }
+  .para h2 {
+    font-size: 1.8rem;
+    margin-top: 1rem;
+  }
+  /* Text Styling */
+  .para p {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .border {
+    padding: 3rem;
+  }
+  .border .form .input1 {
+    padding: 1rem 1.25rem;
+    width: 100%;
+  }
+  .border .submitButton {
+    padding-top: 1.2rem;
+    padding-bottom: 1rem;
+    font-size: 1rem;
+    width: 50%;
+  }
+  .border .form .server {
+    flex-direction: row;
+    align-items: center;
+  }
+  .border .form label {
+    color: #f9fafb; /* text-white-700 - assuming light gray/white */
+    font-size: 1.5rem; /* text-sm */
+    line-height: 1.25rem;
+    font-weight: 500; /* font-medium */
   }
   
-  /* Highlighted Text */
-  .sometext .highlight {
-    font-weight: bold;
-    text-decoration: underline;
-  }
-  .styledinput {
-    background-color: rgb(0, 0, 0);
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #000000;
-  }  
+.aiAnimation {
+  height: 70dvh;
+  /* height: auto; */
+  /* width: 40dvw; */
+  width: 100%;
+  /* border-radius: 8px; */
+  object-fit: cover;
+  z-index: -100;
 }
-
+}

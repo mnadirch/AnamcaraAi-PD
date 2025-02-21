@@ -16,6 +16,7 @@ const Resources = lazy(() => import("./pages/resources/resources"));
 const About = lazy(() => import("./pages/about/about"));
 import Loading from "./components/loading/loading";
 import styles from "./components/layout/layout.module.css";
+import Dashboard from "./components/membershipDashboard/dashboard";
 
 
 function App() {
@@ -65,6 +66,15 @@ function App() {
               <Layout>
                 <OurSolution />
               </Layout>
+            }
+          />
+
+
+          <Route
+            path="/membership"
+            element={
+             
+                <Dashboard />
             }
           />
           <Route
