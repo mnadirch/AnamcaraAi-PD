@@ -14,6 +14,7 @@ import FogAnimation from "./childs/fogAnimation/fogAnimation";
 import SmokeAnimation from "../footer/childs/component/smokeComponent/smoke";
 import { AlertCircle, CheckCircle } from 'lucide-react';
 
+
 const Home = () => {
   const [animateHeadImage, setanimateHeadImage] = useState(false);
   const [reAnimateHeadImage, setreAnimateHeadImage] = useState(false);
@@ -47,7 +48,7 @@ const Home = () => {
       success: {
         Icon: CheckCircle,
         text: 'Successfully subscribed! Welcome aboard.',
-        className: 'text-white',
+        className: 'mt-4 flex items-center space-x-2 sm:mt-2 sm:space-x-1 md:space-x-1.5 lg:space-x-2 text-white text-xs sm:text-sm md:text-base lg:text-lg',
       },
       error: {
         Icon: AlertCircle,
@@ -61,7 +62,7 @@ const Home = () => {
     const { Icon, text, className } = messages[status as keyof typeof messages];
 
     return (
-      <div className={`mt-4 flex items-center space-x-2 ${className}`}>
+      <div className={`mt-4 flex items-center space-x-2 sm:mt-2 sm:space-x-1 md:space-x-1.5 lg:space-x-2 ${className}`}>
         <Icon className="h-5 w-5" />
         <span>{text}</span>
       </div>
@@ -87,6 +88,9 @@ const Home = () => {
   const handleImagesAnimation = () => {
     setreAnimateHeadImage(!reAnimateHeadImage);
   };
+
+
+
 
 
 
@@ -135,7 +139,7 @@ const Home = () => {
           {/* Subscription Form */}
           <div className={styles.border}>
             <form onSubmit={handleSubmit} className={styles.form}>
-              <div className="space-y-2">
+              <div>
                 <label htmlFor="email" className={styles.label}>
                   Join our waiting list
                 </label>
@@ -158,7 +162,7 @@ const Home = () => {
                       boxShadow: "0px 0px 15px #ADFF00",
                     }}>
                     {loading ? (
-                      <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent" />
+                      <div className="animate-spin rounded-full border-2 border-white border-t-transparent h-5 w-5 sm:h-4 sm:w-4 md:h-3.5 md:w-3.5 lg:h-3 lg:w-3 xl:h-2.5 xl:w-2.5 2xl:h-2 2xl:w-2 border-2 sm:border-2 md:border-1.5 lg:border-1.5 xl:border-1  2xl:border-1" />
                     ) : (
                       'Subscribe Now'
                     )}
@@ -168,6 +172,7 @@ const Home = () => {
             </form>
             {renderStatusMessage()}
           </div>
+
 
           {/* icons */}
           <div className={styles.iconsContent}>

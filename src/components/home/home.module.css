@@ -1,11 +1,10 @@
 .container {
   display: flex;
-  padding: 20px;
-  gap: 30px;
+  padding: 10px;
   margin-top: 0px;
-  margin: 10px 9%;
-  width: auto;
-  height: auto;
+  margin: 5px 9%;
+  /* width: auto;
+  height: auto; */
   align-items: center;
   justify-content: center;
 }
@@ -14,9 +13,10 @@
 }
 .textSection {
   margin-bottom: 1rem; /* Spacing between header section and subscription form */
-  padding: 0.5rem; /* Example padding, adjust as needed */}
+  padding: 0.5rem; /* Example padding, adjust as needed */
+}
 
-.textArea{
+.textArea {
   flex: 1;
   flex-direction: column;
   gap: 0px;
@@ -28,7 +28,6 @@
   margin-left: auto;
   margin-right: auto;
 }
-
 .inputContent {
   display: flex;
   flex-direction: row;
@@ -40,25 +39,7 @@
   gap: 10px;
   margin-top: 15px;
 }
-.styledinput {
-  background-color: rgb(0, 0, 0);
-  width: 100%;
-  padding: 20px;
-  border: 1px solid #000000;
-  border-radius: 4px;
-}
-.btnSubscribe {
-  position: relative;
-  background-color: black;
-  color: #d9ff0f;
-  border-radius: 6px;
-  font-weight: 100;
-  box-shadow: 0 0 10px 2px #d9ff0f;
-  border: none;
-  width: auto;
-  font-size: 1em;
-  padding: 2px 2px;
-}
+
 .modelSection {
   flex: 1;
   position: relative;
@@ -167,29 +148,33 @@
   display: grid;
   gap: 24px; /* gap-6 */
   grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
-
-.para > * + * {
-  margin-top: 1rem; 
-}
+  justify-content: center;
+  align-items: center;
 }
 
 .para h2 {
+  display: flex;
   color: black; /* text-black */
   font-size: 1.25rem; /* text-xl */
   line-height: 1.75rem;
   font-weight: 600; /* font-semibold */
   margin-top: 1rem; /* space-y-4 implies vertical spacing, adjust as needed */
+  justify-content: center;
+  align-items: center;
 }
 
 .para p {
+  display: flex;
   color: #000; /* text-black */
   line-height: 1.5;
   margin-top: 1rem;
+  text-align: center;
+  align-items: center;
 }
 
-.border{
+.border {
   border-width: 1px; /* border */
-  border-color: #F3F4F6; /* border-gray-100 */
+  border-color: #f3f4f6; /* border-gray-100 */
   border-radius: 0.5rem; /* rounded-lg */
   background-color: #000; /* As inline style */
   padding: 1.5rem; /* p-6 */
@@ -201,7 +186,7 @@
   gap: 1rem; /* space-y-4 */
 }
 .border .form label {
-  color: #F9FAFB; /* text-white-700 - assuming light gray/white */
+  color: #f9fafb; /* text-white-700 - assuming light gray/white */
   font-size: 0.875rem; /* text-sm */
   line-height: 1.25rem;
   font-weight: 500; /* font-medium */
@@ -214,9 +199,11 @@
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   border-width: 1px;
-  border-color: #D1D5DB; /* Example border color, adjust as needed */
+  border-color: #d1d5db; /* Example border color, adjust as needed */
   border-radius: 0.5rem;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+    backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
   font-size: 1rem; /* Example font size, adjust as needed */
@@ -226,29 +213,31 @@
 .border .form .input1:focus {
   outline: 2px solid transparent; /* focus:ring-2 */
   outline-offset: 2px;
-  box-shadow: "0px 0px 15px #ADFF00"; 
-  border-color: #ADFF00; /* focus:border-blue-500 - assuming default blue scale */
+  box-shadow: "0px 0px 15px #ADFF00";
+  border-color: #adff00; /* focus:border-blue-500 - assuming default blue scale */
 }
 .border .submitButton {
   width: 30%; /* w-full */
-  background-color:black; /* bg-black-600 - assuming dark black */
+  background-color: black; /* bg-black-600 - assuming dark black */
   color: #fff; /* text-white */
-  font-family: 'Mowaq', sans-serif; /* As inline style */
+  font-family: "Mowaq", sans-serif; /* As inline style */
   font-weight: 500; /* font-medium */
   padding-top: 0.75rem; /* py-3 */
   padding-bottom: 0.75rem; /* py-3 */
   padding-left: 1.5rem; /* px-6 */
   padding-right: 1.5rem; /* px-6 */
   border-radius: 0.5rem; /* rounded-lg */
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter; /* transition-colors */
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+    backdrop-filter; /* transition-colors */
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
   display: flex; /* flex */
   gap: 20rem; /* space-x-2 */
-  box-shadow: 0 0 15px #ADFF00; /* As inline style */
+  box-shadow: 0 0 15px #adff00; /* As inline style */
 }
 .border .submitButton:hover {
-  background-color: #ADFF00; /* hover:bg-[#ADFF00] */
+  background-color: #adff00; /* hover:bg-[#ADFF00] */
   color: #000; /* hover:text-black */
 }
 .border .submitButton:disabled {
@@ -587,122 +576,199 @@ video::-webkit-media-controls {
   }
 }
 
-@media (max-width: 580px) {
+
+@media (max-width: 700px) {
   .container {
     display: flex;
-    flex-direction: column;
-    margin: 0;
-    min-width: 90dvw;
-    max-width: 100dvw;
+    flex-direction: column !important;
+    /* margin-bottom: 300px !important; */
+    /* margin-top: 500px !important; */
+    height: 100vh !important;
+    overflow-y: scroll;
+    gap: 60px;
+    padding-top: 300px;
+    padding-bottom: 100px;
+    /* scrollbar-width: 0px; */
   }
 
-  .buttonSection > button {
+  /* .buttonSection > button {
     border-radius: 25px;
     border-width: 2px;
-  }
+  } */
 
   .aiAnimation {
     border-radius: 8px;
-    width: 80dvw;
-    height: 50dvh;
+    width: 350px !important;
+    height: 200px;
   }
-  
 
-/* Tablets (up to 1024px) */
-@media screen and (max-width: 1024px) {
+  .textSection {
+    margin-bottom: 0rem; 
+    padding: 0.5rem;
+  }
+
   .textArea {
-    padding-left: 1rem; /* Reduce horizontal padding on smaller screens */
-    padding-right: 1rem;
-  }
-  .textSection {
-    margin-bottom: 2rem;
-    padding: 2rem;
-  }
-}
-
-
-
-@media (max-width: 767px) {
-  .textSection {
-    padding: 1rem; /* Reduce padding on smaller screens */
-    margin-bottom: 1.5rem; /* Adjust margin if needed */
+    padding: 0.5rem; 
+    width: 300px !important; 
+    height: 300px !important;
   }
   .heading {
-    font-size: 2rem; /* Slightly smaller on mobile */
-    padding-bottom: 1rem; /* Adjust padding if needed */
-  }
-  .grid {
-    grid-template-columns: 1fr; /* Single column on mobile */
+    font-size: 0.2rem; /* Large Font Size */
+    font-weight: bold;
+    color: #000; /* Black Text */
+    text-align: center;
   }
   .para h2 {
-    font-size: 1.125rem; /* Slightly smaller h2 on mobile */
+    font-size: 0.2rem;
   }
+  /* Text Styling */
   .para p {
-    font-size: 1rem; /* Slightly smaller paragraph text on mobile */
-    line-height: 1.4; /* Adjust line height if needed */
+    font-size: 0.2rem;
   }
   .border {
-    padding: 1rem; /* Less padding on smaller screens */
+    padding: 0.5rem;
   }
   .border .form .input1 {
-    padding-left: 0.75rem; /* Slightly less horizontal padding on mobile */
-    padding-right: 0.75rem;
-    padding-top: 0.6rem; /* Slightly less vertical padding on mobile */
-    padding-bottom: 0.6rem;
-  }
-  .border .form .input1:focus {
-    outline: 2px solid transparent;
-    outline-offset: 2px;
-    box-shadow: 0 0 0 2px #3B82F6;
-    border-color: #3B82F6;
+    padding: 0.2rem 1.25rem;
+    width: 100%;
   }
   .border .submitButton {
-    padding-top: 0.6rem; /* Slightly less vertical padding on mobile */
-    padding-bottom: 0.6rem;
-    font-size: 0.9rem; /* Slightly smaller font on mobile */
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 1rem;
+    width: 100%;
   }
   .border .form .server {
-    flex-direction: column; /* Stack input and button vertically on smaller screens */
-    align-items: stretch; /* Stretch items to full width in column layout */
-  }
-}
-/* Media query for medium screens and above - two columns */
-@media (min-width: 768px) { /* md: */
-  .grid {
-    grid-template-columns: repeat(1, minmax(0, 1fr)); 
+    flex-direction: column;
+    align-items: center;
   }
 }
 
-/* Tablets (up to 1024px) */
-@media screen and (max-width: 400px) {
+@media (max-width: 1920px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+ }
+  .aiAnimation {
+    border-radius: 8px;
+    width: 400px;
+    height: 430px;
+    margin-left:20px ;
+  }
 
-  .heading h1 {
-    font-size: 0.6rem; /* Large Font Size */
+  .textSection {
+    margin-bottom: 0rem;
+    padding: 0.5rem;
+  }
+
+  .textArea {
+    width: 300px;
+    height: 430px !important;
+    margin-right: 20px;
+  }
+  .heading {
+    font-size: 1.2rem; /* Large Font Size */
     font-weight: bold;
     color: #000; /* Black Text */
-    text-align: left;
-    margin-bottom: 10px;
+    text-align: center;
+    margin-bottom: 0px;
+    padding-bottom: 0rem; /* pb-6 */
   }
-  
+  .para h2 {
+    font-size: 0.8rem;
+    margin-top: 1rem;
+  }
   /* Text Styling */
-  .sometext {
+  .para p {
+    font-size: 0.7rem;
+    margin-bottom: 1rem;
+  }
+  .border {
+    padding: 1.5rem;
+  }
+  .border .form .input1 {
+    padding: 0.5rem 1.25rem;
+    width: 100%;
+  }
+  .border .submitButton {
+    padding-top: 0.7rem;
+    padding-bottom: 0.5rem;
     font-size: 0.5rem;
+    width: 30%;
+  }
+  .border .form .server {
+    flex-direction: row;
+    align-items: center;
+  }
+
+
+}
+@media (min-width: 2560px) {
+  .container {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    gap: 50px;
+  }
+
+  .textSection {
+    margin-bottom: 0rem; /* Spacing between header section and subscription form */
+    padding: 2rem; /* Example padding, adjust as needed */
+  }
+
+  .textArea {
+    padding: 5rem; /* Example padding, adjust as needed */
+    max-width: 900px; /* Example max width, adjust as needed */
+    height: 1000px;
+  }
+  .heading {
+    font-size: 3rem; /* Large Font Size */
     font-weight: bold;
     color: #000; /* Black Text */
-    text-align: left;
-    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 0rem; /* pb-6 */
+  }
+  .para h2 {
+    font-size: 1.8rem;
+    margin-top: 1rem;
+  }
+  /* Text Styling */
+  .para p {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .border {
+    padding: 3rem;
+  }
+  .border .form .input1 {
+    padding: 1rem 1.25rem;
+    width: 100%;
+  }
+  .border .submitButton {
+    padding-top: 1.2rem;
+    padding-bottom: 1rem;
+    font-size: 1rem;
+    width: 50%;
+  }
+  .border .form .server {
+    flex-direction: row;
+    align-items: center;
+  }
+  .border .form label {
+    color: #f9fafb; /* text-white-700 - assuming light gray/white */
+    font-size: 1.5rem; /* text-sm */
+    line-height: 1.25rem;
+    font-weight: 500; /* font-medium */
   }
   
-  /* Highlighted Text */
-  .sometext .highlight {
-    font-weight: bold;
-    text-decoration: underline;
-  }
-  .styledinput {
-    background-color: rgb(0, 0, 0);
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #000000;
-  }  
+.aiAnimation {
+  height: 70dvh;
+  /* height: auto; */
+  /* width: 40dvw; */
+  width: 100%;
+  /* border-radius: 8px; */
+  object-fit: cover;
+  z-index: -100;
 }
 }
