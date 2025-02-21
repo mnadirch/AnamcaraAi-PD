@@ -31,7 +31,7 @@ const ReachOutForm = () => {
       return;
     }
     if (!formData.email) {
-      setErrorMessage("email is required.");
+      setErrorMessage("Email is required.");
       return;
     }
     if (!isChecked) {
@@ -75,7 +75,8 @@ const ReachOutForm = () => {
               value={formData.name}
               onChange={handleChange}
               required
-            />
+                      />
+                      {errorMessage && <p className={styles.error} style={{ fontFamily: "Calibri, Arial, sans-serif", textAlign: "center" }}>{errorMessage} </p>}
           </div>
           <div>
             <label htmlFor="email">Your Email</label>
@@ -85,7 +86,9 @@ const ReachOutForm = () => {
               value={formData.email}
               onChange={handleChange}
               required
-            />
+                      />
+                      {errorMessage && <p className={styles.error} style={{ fontFamily: "Calibri, Arial, sans-serif", textAlign: "center" }}>{errorMessage} </p>}
+
           </div>
         </div>
 
@@ -96,7 +99,6 @@ const ReachOutForm = () => {
             id="subject"
             value={formData.subject}
             onChange={handleChange}
-            style={{ width: " 100% " }}
           />
         </div>
 
@@ -108,7 +110,9 @@ const ReachOutForm = () => {
             onChange={handleChange}
             style={{ height: 120, width: "100%" }}
           ></textarea>
-        </div>
+              </div>
+              {errorMessage && <p className={styles.error} style={{ fontFamily: "Calibri, Arial, sans-serif", textAlign: "center" }}>{errorMessage} </p>}
+
       </form>
       <div className={styles.checkcontent}>
         <label
@@ -135,7 +139,6 @@ const ReachOutForm = () => {
           <button onClick={handleSubmit}  className={styles.reachOutButton} style={{ fontFamily: "Calibri, Arial, sans-serif" }} >
             Reach Out
           </button>
-          {errorMessage && <p className={styles.error} style={{ fontFamily: "Calibri, Arial, sans-serif" }}>{errorMessage} </p>}
         </div>
       </div>
       <div className="fixed bottom-16 right-0.5 -translate-x-1/2 z-[999999]">
