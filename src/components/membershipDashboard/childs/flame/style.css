@@ -1,0 +1,29 @@
+.flame-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+    overflow: hidden;
+}
+
+.flame {
+    position: absolute;
+    width: 200px;
+    height: auto;
+    animation: flicker 0.1s infinite alternate, float 4s infinite ease-in-out;
+    filter: brightness(1.2) drop-shadow(0 0 10px lime) drop-shadow(0 0 20px green);
+}
+
+@keyframes flicker {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.1); }
+    100% { transform: translateY(0) scale(1); }
+}

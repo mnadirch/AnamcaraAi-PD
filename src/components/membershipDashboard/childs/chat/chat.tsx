@@ -17,19 +17,19 @@ const Chat: React.FC = () => {
         {
             question: "What gases are in Earth's air?",
             answer: "Earth's air is mostly nitrogen (78%) and oxygen (21%), with small amounts of other gases.",
-          },
-          {
+        },
+        {
             question: "How do greenhouse gases work?",
             answer: "They trap heat in our air, keeping the planet warm, but too many can cause global warming.",
-          },
-          {
+        },
+        {
             question: "What causes climate change?",
             answer: "Climate change is mostly caused by burning fossil fuels, cutting down trees, and pollution from factories.",
-          },
-          {
+        },
+        {
             question: "How can we make the air better?",
             answer: "We can use clean energy, save energy, and protect nature to improve our atmosphere.",
-          },
+        },
     ];
 
     const handleSend = () => {
