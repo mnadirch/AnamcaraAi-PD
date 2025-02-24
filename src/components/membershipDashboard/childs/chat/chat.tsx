@@ -118,19 +118,20 @@ const Chat: React.FC = () => {
                     </div>
                 </div>
             ) : (
-                <div className={chatStyles.chatContainer}> <div className={chatStyles.chatMessages}>
-                    {messages.map((msg, index) => (
-                        <div
-                            key={index}
-                            className={`${chatStyles.chatBubble} ${msg.sender === 'user' ? chatStyles.userMessage : ''
-                                }`}
-                        >
-                            <span className={chatStyles.chatText}>{msg.text}</span>
-                            <span className={chatStyles.chatTime}>{messageTime()}</span>
-                        </div>
-                    ))}
-                </div>
-                
+                <div className={chatStyles.chatContainer}>
+                    <div className={chatStyles.chatMessages}>
+                        {messages.map((msg, index) => (
+                            <div
+                                key={index}
+                                className={`${chatStyles.chatBubble} ${msg.sender === 'user' ? chatStyles.userMessage : ''
+                                    }`}
+                            >
+                                <span className={chatStyles.chatText}>{msg.text}</span>
+                                <span className={chatStyles.chatTime}>{messageTime()}</span>
+                            </div>
+                        ))}
+                    </div>
+
                     <div className={chatStyles.inputArea}>
                         {/* Avatar */}
                         <img

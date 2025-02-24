@@ -150,7 +150,12 @@
 .sidebarTrigger {
   display: none;
 }
-.hamburgerIcon {
+
+.donationClose {
+  display: none;
+}
+
+.donationTrigger {
   display: none;
 }
 
@@ -162,6 +167,19 @@
 }
 
 @media (max-width: 1020px) {
+  .greenFlame {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: url("../../assets/images/dashboard/greenfire.gif") no-repeat
+      center center;
+    background-size: cover;
+    z-index: 1; /* Behind chat and donation list */
+    opacity: 0.8; /* Slight transparency for effect */
+  }
   .leftSidebar {
     position: fixed;
     top: 10%; /* Not flush at the top */
@@ -171,6 +189,7 @@
     transform: translateX(-100%);
     transition: transform 0.3s ease;
     z-index: 1000;
+    background-color: black;
   }
   .sidebarOpen {
     transform: translateX(0);
@@ -205,5 +224,21 @@
   }
   .hideList {
     transform: translateY(-100%);
+  }
+
+  .donationClose {
+    display: flex;
+  }
+  .donationTrigger {
+    display: block;
+    position: fixed;
+    top: 50%;
+    right: 0.5rem;
+    transform: translateY(-50%);
+    z-index: 1100;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    cursor: pointer;
   }
 }

@@ -124,19 +124,19 @@
     width: 90%;
   }
   .chatBubble {
-    max-width: 180px;
+    max-width: 400px;
   }
   .inputArea {
     display: flex;
     flex-direction: row;
-    /* justify-content: flex-end;
-    align-items: flex-end; */
     width: 100%; /* Fixed width for the input area */
     gap: 0.5rem;
   }
+
   .chatMessages {
     display: flex;
     flex-direction: column;
+    justify-content: flex-end; /* Align messages at the bottom */
     gap: 0.5rem;
     max-height: 100%;
     overflow-y: auto;
