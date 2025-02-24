@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './Dashboard.module.css';
+import styles from './dashboard.module.css';
 import Chat from './childs/chat/chat';
 import donation from '../../assets/images/Rectangle 14.png';
 import Ai_bottom from "../../assets/images/footerimages/AI_bottom.png";
