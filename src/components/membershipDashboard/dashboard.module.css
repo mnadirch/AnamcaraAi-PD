@@ -14,7 +14,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between; /* Spreads top logos and bottom icons */
-  background-color:  rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
   border: 2px solid #3fa604;
   box-shadow: 0 0 10px rgba(63, 166, 4, 0.8);
   padding: 1rem 0;
@@ -87,10 +87,8 @@
   gap: 1.5rem;
   margin-left: auto;
   margin-right: 1rem;
-  /* margin-top: 1rem; */
   z-index: 2;
   height: 100vh; /* Ensure a fixed height */
-
   max-height: 1500px; /* Adjust height as needed */
   overflow-y: auto; /* Enable vertical scrolling */
   overflow-x: hidden; /* Prevent horizontal scrolling */
@@ -115,6 +113,7 @@
   width: 100%; /* Ensures cards do not exceed the list width */
   max-width: 400px; /* Adjust to match your design */
   word-wrap: break-word;
+  cursor: pointer;
 }
 
 /* Ensure the parent container allows scrolling */
@@ -148,17 +147,63 @@
   margin: 0;
 }
 
+.sidebarTrigger {
+  display: none;
+}
+.hamburgerIcon {
+  display: none;
+}
+
 /* Responsive Adjustments */
-@media (max-width: 1020px) {
-  .chatContainer {
-    width: 220px;
-  }
+@media (min-width: 1024px) {
   .donationList {
-    width: 200px;
-  }
-  .greenFlame {
-    width: 200px;
-    height: 300px;
+    padding-left: 1rem;
   }
 }
 
+@media (max-width: 1020px) {
+  .leftSidebar {
+    position: fixed;
+    top: 10%; /* Not flush at the top */
+    left: 0;
+    height: 80vh; /* Its own height */
+    width: 60px; /* Maintain the defined width */
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+  }
+  .sidebarOpen {
+    transform: translateX(0);
+  }
+
+  /* Sidebar Trigger Icon (IoMdArrowDropright) */
+  .sidebarTrigger {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 0.5rem;
+    transform: translateY(-50%);
+    z-index: 1100;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  /* Donation List: Become a dropdown from the top */
+  .donationList {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 1rem;
+    z-index: 1050;
+  }
+  .showList {
+    transform: translateY(0);
+  }
+  .hideList {
+    transform: translateY(-100%);
+  }
+}

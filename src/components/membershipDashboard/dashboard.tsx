@@ -11,6 +11,10 @@ import settings from '../../assets/images/dashboard/Settings.png';
 import logout from '../../assets/images/dashboard/Logout.png';
 import { IoNotificationsOff } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
+import { IoMdArrowDropright } from "react-icons/io";
+import { IoMdArrowDropleft } from "react-icons/io";
+import { IoMdClose } from "react-icons/io";
+
 
 
 interface DonationItem {
@@ -20,8 +24,13 @@ interface DonationItem {
 }
 
 const Dashboard: React.FC = () => {
-
     const navigate = useNavigate(); // Initialize navigation
+    const [isNotificationOff, setIsNotificationOff] = useState(false);
+    const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+    const handleToggle = () => {
+        setIsNotificationOff((prev) => !prev);
+    };
 
     const handleLogout = () => {
         navigate('/home'); // Redirect to /home
@@ -30,7 +39,6 @@ const Dashboard: React.FC = () => {
     const handleHome = () => {
         navigate('/main');
     }
-
 
     // Sample data for donation items
     const donationItems: DonationItem[] = [
@@ -61,15 +69,24 @@ const Dashboard: React.FC = () => {
         },
     ];
 
-    const [isNotificationOff, setIsNotificationOff] = useState(false);
+    const toggleSidebar = () => setSidebarOpen(prev => !prev);
 
-    const handleToggle = () => {
-        setIsNotificationOff((prev) => !prev);
+    const [isOpen, setIsOpen] = useState(false);
+    const handleToggle1 = () => {
+        console.log("Toggling donation list", !isOpen);
+        setIsOpen(prev => !prev);
     };
+
     return (
         <div className={styles.dashboardContainer}>
+
+            {/* Sidebar trigger icon with swipe support */}
+            <div className={styles.sidebarTrigger} onClick={toggleSidebar}>
+                <IoMdArrowDropright size={24} />
+            </div>
+
             {/* Left Sidebar with Logos */}
-            <aside className={styles.leftSidebar}>
+            <aside className={`${styles.leftSidebar} ${isSidebarOpen ? styles.sidebarOpen : ''}`}>
                 <div className={styles.logoContainer}>
                     <img src={logo} alt="Dell Logo" className={styles.sidebarLogo} onClick={handleLogout} />
                     <img src={Ai_bottom} alt="Dell Logo" className={styles.sidebarLogo} onClick={handleHome} />
@@ -96,6 +113,7 @@ const Dashboard: React.FC = () => {
                 </div>
             </aside>
 
+
             {/* Main Content Area */}
             <main className={styles.mainContent}>
 
@@ -105,8 +123,16 @@ const Dashboard: React.FC = () => {
                 {/* Green Flame Background */}
                 <div className={styles.greenFlame}></div>
 
+
+                <button className={styles.donationTrigger} onClick={handleToggle1}>
+                    <IoMdArrowDropleft size={24} />
+                </button>
+
                 {/* Donation List on the Right */}
-                <div className={styles.donationList}>
+                <div className={`${styles.donationList} ${isOpen ? styles.showList : styles.hideList}`}>
+                    <button className={styles.donationClose} onClick={handleToggle1}>
+                        <IoMdClose size={24} />
+                    </button>
                     {donationItems.map((item, idx) => (
                         <div key={idx} className={styles.donationCard}>
                             <img
