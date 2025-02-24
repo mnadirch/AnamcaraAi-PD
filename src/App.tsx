@@ -17,6 +17,7 @@ const About = lazy(() => import("./pages/about/about"));
 import Loading from "./components/loading/loading";
 import styles from "./components/layout/layout.module.css";
 import Dashboard from "./components/membershipDashboard/dashboard";
+import FlameAnimation from "./components/membershipDashboard/childs/flame/flameAnimation";
 
 
 function App() {
@@ -73,7 +74,6 @@ function App() {
           <Route
             path="/membership"
             element={
-             
                 <Dashboard />
             }
           />

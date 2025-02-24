@@ -1,132 +1,145 @@
 .chatContainer {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;          
-    width: 100%;      
-    margin-left: 1rem;
-    margin-top: 1rem;
-    z-index: 2;         
-  }
-  
-  /* The left side: list of chat messages */
-  .chatMessages {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    max-height: 100%;  
-    overflow-y: auto;    
-    flex: 1;             
-  }
-  .chatMessages::-webkit-scrollbar {
-    display: none;
-  }
-  /* Individual Chat Bubble */
-  .chatBubble {
-    /* Example common styles */
-    background-color: #A5FF26;
-    border-radius: 20px;
-    padding: 0.5rem 1rem;
-    max-width: 400px;
-    color: #000;
-    font-size: 0.9rem;
-    position: relative;
-    margin-bottom: 0.5rem;
-  
-    /* Make the bubble stack its children (text + time) vertically */
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-  }
-  /* User messages right-aligned in the message list */
-  .userMessage {
-    align-self: flex-end;
-    background-color: #A5FF26;
-    /* text-align: right; */
-  }
-  
-  .chatText {
-    /* Remove display: block to avoid forced line breaks */
-    display: inline;
-    /* Optional: margin-right for spacing before time */
-    /* margin-right: 0.5rem; */
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  z-index: 2;
+}
 
+/* The left side: list of chat messages */
+.chatMessages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 100%;
+  overflow-y: auto;
+  flex: 1;
+}
+.chatMessages::-webkit-scrollbar {
+  display: none;
+}
+/* Individual Chat Bubble */
+.chatBubble {
+  /* Example common styles */
+  background-color: #a5ff26;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  max-width: 400px;
+  color: #000;
+  font-size: 0.9rem;
+  position: relative;
+  margin-bottom: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+/* User messages right-aligned in the message list */
+.userMessage {
+  align-self: flex-end;
+  background-color: #a5ff26;
+  /* text-align: right; */
+}
+
+.chatText {
+  /* Remove display: block to avoid forced line breaks */
+  display: inline;
+  /* Optional: margin-right for spacing before time */
+  /* margin-right: 0.5rem; */
+}
+
+.chatTime {
+  font-size: 0.7rem;
+  color: #222;
+  margin-top: 0.3rem; /* Space above time */
+  text-align: right; /* Align the time to the right if you want */
+}
+/* The right side: input + send button */
+.inputArea {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 50%; /* Fixed width for the input area */
+  gap: 0.5rem;
+}
+
+/* Chat input styling */
+.chatInput {
+  flex: 1; /* Takes remaining horizontal space */
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+  color: black; /* Make input text black */
+  background-color: white;
+}
+.chatAvatar {
+  width: 40px; /* Adjust as needed */
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+/* Send button styling */
+.sendButton {
+  background-color: #a5ff26;
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+  display: flex; /* Ensure the image sits nicely */
+  align-items: center; /* Center the icon vertically */
+  justify-content: center;
+  width: 100px;
+}
+
+.sendButton:hover {
+  background-color: #66d65c;
+}
+.sendIcon {
+  width: 30px; /* Adjust as needed */
+  height: 30px;
+  object-fit: contain;
+}
+
+/* Responsive Adjustments */
+@media (min-width: 1024px) {
+  .chatContainer {
+    width: 90%;
   }
-  
-  .chatTime {
-    font-size: 0.7rem;
-    color: #222;
-    margin-top: 0.3rem; /* Space above time */
-    text-align: right;  /* Align the time to the right if you want */
+  .chatBubble {
+    max-width: 70%;
   }
-  /* The right side: input + send button */
+}
+
+@media (max-width: 1020px) {
+  .chatContainer {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+  }
+  .chatBubble {
+    max-width: 400px;
+  }
   .inputArea {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 50%; /* Fixed width for the input area */
+    width: 100%; /* Fixed width for the input area */
     gap: 0.5rem;
   }
-  
-  /* Chat input styling */
-  .chatInput {
-    flex: 1;                 /* Takes remaining horizontal space */
-    padding: 10px;
-    font-size: 14px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    outline: none;
-    color: black;            /* Make input text black */
-    background-color: white;
+
+  .chatMessages {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Align messages at the bottom */
+    gap: 0.5rem;
+    max-height: 100%;
+    overflow-y: auto;
+    flex: 1;
   }
-  .chatAvatar {
-    width: 40px;             /* Adjust as needed */
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;       /* Ensures the image scales/crops nicely */
-    /* Optionally add a border or glow if desired */
-  }
-  /* Send button styling */
-  .sendButton {
-    background-color: #A5FF26;
-    border: none;
-    border-radius: 10px;
-    padding: 0.5rem;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: background-color 0.2s ease;
-    display: flex;         /* Ensure the image sits nicely */
-    align-items: center;   /* Center the icon vertically */
-    justify-content: center;
-    width: 100px;
-  }
-  
-  .sendButton:hover {
-    background-color: #66d65c;
-  }
-  .sendIcon {
-    width: 30px;   /* Adjust as needed */
-    height: 30px;
-    object-fit: contain;
-  }
-  
-  /* Responsive Adjustments */
-  @media (max-width: 768px) {
-    .chatContainer {
-      width: 90%;
-    }
-    .chatBubble {
-      max-width: 180px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .chatContainer {
-      width: 100%;
-    }
-    .chatBubble {
-      font-size: 0.8rem;
-      max-width: 150px;
-    }
-  }
-  
+}

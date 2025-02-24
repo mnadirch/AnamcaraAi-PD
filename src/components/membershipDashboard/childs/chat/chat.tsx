@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import chatStyles from './chat.module.css';
 import avatar from '../../../../assets/images/headimages/Ellipse 90.png';
-import arrow from '../../../../assets/images/dashboard/arrow-right-s-line.svg'
+import arrow from '../../../../assets/images/dashboard/arrow-right-s-line.svg';
+import useWindowSize from '../../../../pages/main/useWindowSIze';
+
 interface Message {
     text: string;
     sender: 'user' | 'bot';
 }
 
 const Chat: React.FC = () => {
+    const { width } = useWindowSize();
+
     const [inputValue, setInputValue] = useState('');
     // Initialize messages with a welcome bot message
     const [messages, setMessages] = useState<Message[]>([
@@ -17,19 +21,19 @@ const Chat: React.FC = () => {
         {
             question: "What gases are in Earth's air?",
             answer: "Earth's air is mostly nitrogen (78%) and oxygen (21%), with small amounts of other gases.",
-          },
-          {
+        },
+        {
             question: "How do greenhouse gases work?",
             answer: "They trap heat in our air, keeping the planet warm, but too many can cause global warming.",
-          },
-          {
+        },
+        {
             question: "What causes climate change?",
             answer: "Climate change is mostly caused by burning fossil fuels, cutting down trees, and pollution from factories.",
-          },
-          {
+        },
+        {
             question: "How can we make the air better?",
             answer: "We can use clean energy, save energy, and protect nature to improve our atmosphere.",
-          },
+        },
     ];
 
     const handleSend = () => {
@@ -68,49 +72,101 @@ const Chat: React.FC = () => {
         return `${formattedHours}:${minutes} ${amOrPm}`;
     };
     return (
-        <div className={chatStyles.chatContainer}>
-
-            {/* Input + Send Button on the right side */}
-            <div className={chatStyles.inputArea}>
-                {/* Avatar */}
-                <img
-                    src={avatar}
-                    alt="User Avatar"
-                    className={chatStyles.chatAvatar}
-                />
-                <input
-                    type="text"
-                    placeholder="Type your message..."
-                    className={chatStyles.chatInput}
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
-                    onKeyDown={(e) => {
-                        if (e.key === 'Enter') handleSend();
-                    }}
-                />
-                <button className={chatStyles.sendButton} onClick={handleSend}>
-                    <img
-                        src={arrow}
-                        alt="Send arrow"
-                        className={chatStyles.sendIcon}
-                    />        </button>
-            </div>
-
-            {/* Chat messages on the left side */}
-            <div className={chatStyles.chatMessages}>
-                {messages.map((msg, index) => (
-                    <div
-                        key={index}
-                        className={`${chatStyles.chatBubble} ${msg.sender === 'user' ? chatStyles.userMessage : ''
-                            }`}
-                    >
-                        <span className={chatStyles.chatText}>{msg.text}</span>
-                        <span className={chatStyles.chatTime}>{messageTime()}</span>
+        <>
+            {width !== null && width > 1023 ? (
+                <div className={chatStyles.chatContainer}>
+                    <div className={chatStyles.inputArea}>
+                        {/* Avatar */}
+                        <img
+                            src={avatar}
+                            alt="User Avatar"
+                            className={chatStyles.chatAvatar}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Type your message..."
+                            className={chatStyles.chatInput}
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') handleSend();
+                            }}
+                        />
+                        <button
+                            className={chatStyles.sendButton}
+                            onClick={handleSend}
+                        >
+                            <img
+                                src={arrow}
+                                alt="Send arrow"
+                                className={chatStyles.sendIcon}
+                            />
+                        </button>
                     </div>
-                ))}
-            </div>
-        </div>
-    );
-};
 
+                    <div className={chatStyles.chatMessages}>
+                        {messages.map((msg, index) => (
+                            <div
+                                key={index}
+                                className={`${chatStyles.chatBubble} ${msg.sender === 'user' ? chatStyles.userMessage : ''
+                                    }`}
+                            >
+                                <span className={chatStyles.chatText}>{msg.text}</span>
+                                <span className={chatStyles.chatTime}>{messageTime()}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ) : (
+                <div className={chatStyles.chatContainer}>
+                    <div className={chatStyles.chatMessages}>
+                        {messages.map((msg, index) => (
+                            <div
+                                key={index}
+                                className={`${chatStyles.chatBubble} ${msg.sender === 'user' ? chatStyles.userMessage : ''
+                                    }`}
+                            >
+                                <span className={chatStyles.chatText}>{msg.text}</span>
+                                <span className={chatStyles.chatTime}>{messageTime()}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className={chatStyles.inputArea}>
+                        {/* Avatar */}
+                        <img
+                            src={avatar}
+                            alt="User Avatar"
+                            className={chatStyles.chatAvatar}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Type your message..."
+                            className={chatStyles.chatInput}
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') handleSend();
+                            }}
+                        />
+                        <button
+                            className={chatStyles.sendButton}
+                            onClick={handleSend}
+                        >
+                            <img
+                                src={arrow}
+                                alt="Send arrow"
+                                className={chatStyles.sendIcon}
+                            />
+                        </button>
+                    </div>
+
+
+                </div>
+            )}
+
+        </>
+
+    )
+}
 export default Chat;
