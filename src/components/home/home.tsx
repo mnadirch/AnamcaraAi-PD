@@ -4,7 +4,7 @@ import AiImage from "../../assets/images/headimages/AI_head.png";
 import metaVerse from "../../assets/images/headimages/Metaverse_head.png";
 import robotics from "../../assets/images/headimages/Flip Image .png";
 import AiAnimation from "../../assets/animation/HumanLikeRobot.mp4";
-import midjourney from "../../assets/images/headimages/midjourney.png";
+import midjourney from "../../assets/images/headimages/Vector.png";
 import gpticon from "../../assets/images/headimages/chatgpt.jpg";
 import elevenlabs from "../../assets/images/headimages/elevenlabs.png";
 import assembly2 from "../../assets/images/headimages/assembly2.png";
@@ -48,7 +48,7 @@ const Home = () => {
       success: {
         Icon: CheckCircle,
         text: 'Successfully subscribed! Welcome aboard.',
-        className: 'mt-4 flex items-center space-x-2 sm:mt-2 sm:space-x-1 md:space-x-1.5 lg:space-x-2 text-white text-xs sm:text-sm md:text-base lg:text-lg',
+        className: 'mt-4 flex items-center space-x-2 sm:mt-2 sm:space-x-1 md:space-x-1.5 lg:space-x-2 text-white text-xs sm:text-sm md:text-sm lg:text-sm',
       },
       error: {
         Icon: AlertCircle,
@@ -88,7 +88,6 @@ const Home = () => {
   const handleImagesAnimation = () => {
     setreAnimateHeadImage(!reAnimateHeadImage);
   };
-
 
 
   return (
@@ -172,12 +171,14 @@ const Home = () => {
 
           {/* icons */}
           <div className={styles.iconsContent}>
-            <img src={midjourney} style={{ height: "30px" }} />
-            <img src={gpticon} style={{ height: "30px" }} />
-            <img src={elevenlabs} style={{ height: "30px" }} />
-            <img src={assembly2} style={{ height: "30px" }} />
+            <img src={midjourney}  />
+            <img src={gpticon} />
+            <img src={elevenlabs} />
+            <img src={assembly2} />
           </div>
         </div>
+
+
 
         <div
           className={styles.modelSection}
@@ -190,7 +191,7 @@ const Home = () => {
             autoPlay
             loop
             tabIndex={-1} // Removes an element from the natural tab order like on iphone default behaviour
-            style={{ outline: "none" }}
+            style={{ outline: "none", }}
             muted
             controls={false}
             playsInline
