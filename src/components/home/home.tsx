@@ -171,7 +171,7 @@ const Home = () => {
 
           {/* icons */}
           <div className={styles.iconsContent}>
-            <img src={midjourney}  />
+            <img src={midjourney} />
             <img src={gpticon} />
             <img src={elevenlabs} />
             <img src={assembly2} />

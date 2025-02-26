@@ -31,6 +31,15 @@ module.exports = {
           "0%": { transform: "translateX(-100%)", opacity: "0" },
           "100%": { transform: "translateX(0)", opacity: "1" },
         },
+        fadeOutIn: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0' },
+        },
+        fadeLeftRight: {
+          '0%': { clipPath: 'polygon(0 0, 0 0, 0 100%, 0 100%)' },
+          '50%': { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' },
+          '100%': { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' },
+        },
       },
       animation: {
         'type-left': 'typeLeft 2s steps(10, end) forwards', // For "WELCOME"
@@ -38,6 +47,8 @@ module.exports = {
         'blink-shine': 'blinkShine 3s infinite',
         'blink-dull': 'blinkDull 3s infinite',
         "slide-in-left": "slideInLeft 0.5s ease-out",
+        // "fadeOutIn": "fadeOutIn 1s ease-in-out",
+        "fadeLeftRight": 'fadeLeftRight 1s ease-in-out',
 
       },
       animationDelay: {

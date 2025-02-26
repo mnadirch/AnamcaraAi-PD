@@ -17,8 +17,6 @@ const Footer: FC = () => {
     if (index === 1) navigate("/main");
   };
 
-
-
   const images = [logo, Ai_bottom, metaverse, robotics];
   const defaultOptions = [
     {

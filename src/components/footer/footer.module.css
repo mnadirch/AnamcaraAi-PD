@@ -4,10 +4,10 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  background-image: linear-gradient(
+  background-image:  linear-gradient(
     to right,
-    rgba(145, 190, 21, 0.089),
-    rgba(11, 124, 20, 0.219)
+    rgba(145, 190, 21, 0),
+    rgba(11, 124, 20, 0)
   );
   z-index: 5;
 }

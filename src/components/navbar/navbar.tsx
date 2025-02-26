@@ -32,8 +32,7 @@ const Navbar: React.FC = () => {
 
   return (
 <div
-  className="fixed top-0 left-0 w-full z-50 shadow-lg text-white flex items-center justify-between px-5 py-3"
-  style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}
+  className="fixed top-0 left-0 w-full z-50 shadow-lg text-white flex items-center justify-between px-5 py-3 bg-transparent"
 >      {/* Logo */}
       <div
         className="flex items-center cursor-pointer"
