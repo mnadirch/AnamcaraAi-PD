@@ -31,15 +31,16 @@ const Navbar: React.FC = () => {
   };
 
   return (
-<div
-  className="fixed top-0 left-0 w-full z-50 shadow-lg text-white flex items-center justify-between px-5 py-3 bg-transparent"
->      {/* Logo */}
+    <div
+      className="fixed top-0 left-0 w-full z-50 shadow-lg text-white flex items-center justify-between px-4 py-3 bg-transparent"
+    >
+      {/* Logo */}
       <div
-        className="flex items-center cursor-pointer"
+        className="flex flex-col sm:flex-row items-center cursor-pointer space-x-2 sm:space-x-1"
         onClick={() => handleNavigate("/home")}
       >
         <img src={logo} alt="Logo" className="w-16 h-auto" />
-        <span className="ml-3 text-xl font-bold tracking-wide text-white">
+        <span className="text-xs sm:text-sm md:text-sm font-bold tracking-wide text-white whitespace-nowrap">
           ANAMCARA AI
         </span>
       </div>
@@ -55,8 +56,10 @@ const Navbar: React.FC = () => {
       {/* Links */}
       <div
         className={`${isMenuOpen ? "flex" : "hidden"
-          } lg:flex flex-col lg:flex-row items-center gap-12 lg:gap-20 absolute lg:static top-14 left-1/2 transform -translate-x-1/2 lg:translate-x-0 bg-[#000000] lg:bg-transparent p-4 lg:p-0 rounded lg:rounded-none`}
-      >
+          } lg:flex flex-col lg:flex-row items-center 
+gap-2 md:gap-4 xl:gap-20 
+absolute lg:static top-14 left-1/2 transform -translate-x-1/2 lg:translate-x-0 
+bg-[#000000] lg:bg-transparent p-4 lg:p-0 rounded lg:rounded-none`} >
         {links.map((link, index) => (
           <div key={index} className="relative">
             {link.hasDropdown ? (
@@ -64,8 +67,9 @@ const Navbar: React.FC = () => {
                 className="flex items-center cursor-pointer"
                 onClick={() => setIsResourcesOpen(!isResourcesOpen)}
               >
-                <span className="relative group text-white">
+                <span className="relative group text-white whitespace-nowrap">
                   {link.name}
+
                   {/* Underline Effect */}
                   <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#ADFF00] transition-all duration-300 group-hover:w-full"></span>
                 </span>
@@ -83,7 +87,7 @@ const Navbar: React.FC = () => {
                   e.preventDefault();
                   handleNavigate(link.path);
                 }}
-                className="relative group text-white"
+                className="relative group text-white !text-xs md:!text-sm whitespace-nowrap"
               >
                 {link.name}
                 {/* Underline Effect */}
@@ -94,7 +98,7 @@ const Navbar: React.FC = () => {
             {/* Dropdown Menu */}
             {link.hasDropdown && isResourcesOpen && (
               <div className="absolute top-full left-0 text-white shadow-lg rounded-lg mt-2 w-48"
-               style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}>
+                style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}>
                 {dropdownLinks.map((dropdownLink, idx) => (
                   <a
                     key={idx}
@@ -117,16 +121,13 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Call-to-Action Button */}
-      <div className="relative flex justify-center items-center min-w-[216px] min-h-[60px] h-full overflow-hidden ">
-        <button className="relative px-6 py-2 text-[#ADFF00] font-medium cursor-pointer border-[#ADFF00] transition-all duration-300 bg-[#ADFF00] text-black hover:bg-[black] hover:text-white" 
-
->
+      <div className="relative flex justify-center items-center sm:min-w-[216px] min-h-[60px] h-full overflow-hidden">
+        <button className="relative px-4 md:px-4 lg:px-4 py-2 text-xs sm:text-sm md:text-base font-medium cursor-pointer border border-[#ADFF00] transition-all duration-300 bg-[#ADFF00] text-black hover:bg-black hover:text-white">
           Get Connected
-          <div
-            className="absolute inset-0 border-2 border-[#ADFF00] animate-border pointer-events-none"
-          ></div>
+          <div className="absolute inset-0 border-2 border-[#ADFF00] animate-border pointer-events-none"></div>
         </button>
       </div>
+
     </div>
   );
 };

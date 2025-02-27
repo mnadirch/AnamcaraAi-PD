@@ -21,7 +21,13 @@ const ReachOutForm = () => {
   });
 
   const [isChecked, setIsChecked] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+    privacy: "",
+  });
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -34,36 +40,45 @@ const ReachOutForm = () => {
     setIsChecked(!isChecked);
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    let newErrors = { name: "", email: "", subject: "", message: "", privacy: "" };
+    let hasError = false;
+
     if (!formData.name) {
-      setErrorMessage("Name is required.");
-      return;
+      newErrors.name = "Name is required.";
+      hasError = true;
     }
     if (!formData.email) {
-      setErrorMessage("email is required.");
-      return;
+      newErrors.email = "Email is required.";
+      hasError = true;
+    }
+    if (!formData.subject) {
+      newErrors.subject = "Subject is required.";
+      hasError = true;
+    }
+    if (!formData.message) {
+      newErrors.message = "Message is required.";
+      hasError = true;
     }
     if (!isChecked) {
-      alert("You must accept the privacy policy to proceed.");
-      return;
+      newErrors.privacy = "You must accept the privacy policy to proceed.";
+      hasError = true;
     }
-    if (!isChecked) {
-      alert("You must accept the privacy policy to proceed.");
-      return;
-    }
-    //console.log("Form submitted:", formData);
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
 
-    e.preventDefault();
-    // Execute the reCAPTCHA challenge manually
+    if (hasError) {
+      setErrors(newErrors);
+      return;
+    }
+
+    // Reset form and errors
+    setFormData({ name: "", email: "", subject: "", message: "" });
+    setErrors({ name: "", email: "", subject: "", message: "", privacy: "" });
+
+    // Execute reCAPTCHA challenge manually
     recaptchaRef.current?.execute();
   };
+
 
   // Callback for when reCAPTCHA completes
   const onReCAPTCHAChange = (token: string | null) => {
@@ -89,7 +104,7 @@ const ReachOutForm = () => {
       shadow-lg
     "
         >
-          Name
+          <label>Name</label>
           <input
             type="text"
             name="name"
@@ -107,7 +122,9 @@ const ReachOutForm = () => {
         bg-transparent
         focus:bg-[#A9A9A9]/50
       "/>
-          Email
+          {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+
+          <label>Email</label>
           <input
             type="email"
             name="email"
@@ -125,12 +142,12 @@ const ReachOutForm = () => {
         bg-transparent
                 focus:bg-[#A9A9A9]/50
       "/>
+          {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
 
-          Subject
+          <label> Subject</label>
           <input
             type="text"
             name="subject"
-            // placeholder="Subject"
             value={formData.subject}
             onChange={handleChange}
             required
@@ -147,8 +164,9 @@ const ReachOutForm = () => {
 
       "
           />
+          {errors.subject && <p className="text-red-500 text-xs mt-1">{errors.subject}</p>}
 
-          Message
+          <label>Message</label>
           <textarea
             name="message"
             // placeholder="Message"
@@ -167,26 +185,10 @@ const ReachOutForm = () => {
         tracking-wide         
         focus:bg-[#A9A9A9]/50
       "/>
+          {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
 
-          {/* Submit Button */}
-          {/* <button
-            type="submit"
-            className="
-        w-full 
-        py-3 
-        bg-white 
-        text-black 
-        border 
-        border-black
-        font-semibold
-        uppercase
-        tracking-wider
-        hover:bg-gray-100
-        focus:outline-none
-      "
-          >
-            Submit
-          </button> */}
+
+
           <div className={styles.checkcontent}>
             <label
               htmlFor="privacyPolicy"
@@ -212,7 +214,6 @@ const ReachOutForm = () => {
               <button onClick={handleSubmit} className={styles.reachOutButton} style={{ fontFamily: "Calibri, Arial, sans-serif" }} >
                 Reach Out
               </button>
-              {errorMessage && <p className={styles.error} style={{ fontFamily: "Calibri, Arial, sans-serif" }}>{errorMessage} </p>}
             </div>
           </div>
         </form>
