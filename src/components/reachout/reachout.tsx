@@ -88,7 +88,7 @@ const ReachOut = () => {
             Have an idea, question, or want to partner with us? <br />  Send us a message and hit
             <span className="font-bold text-white text-xl md:text-2xl lg:text-3xl tracking-wide"> REACH OUT!</span>
           </p>
-          <div className="flex flex-row">
+          <div className="flex flex-row gap-x-4">
             <Game />
             <div >
               <img
