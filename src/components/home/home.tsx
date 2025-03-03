@@ -13,6 +13,8 @@ import Particle from "./childs/particlesAnimation/particlesAnimation";
 import FogAnimation from "./childs/fogAnimation/fogAnimation";
 import SmokeAnimation from "../footer/childs/component/smokeComponent/smoke";
 import { AlertCircle, CheckCircle } from 'lucide-react';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 
 const Home = () => {
@@ -43,30 +45,61 @@ const Home = () => {
     setEmail(e.target.value);
   };
 
-  const renderStatusMessage = () => {
-    const messages = {
-      success: {
-        Icon: CheckCircle,
-        text: 'Successfully subscribed! Welcome aboard.',
-        className: 'mt-4 flex items-center space-x-2 sm:mt-2 sm:space-x-1 md:space-x-1.5 lg:space-x-2 text-white text-xs sm:text-sm md:text-sm lg:text-sm',
-      },
-      error: {
-        Icon: AlertCircle,
-        text: 'There was an error. Please try again.',
-        className: 'text-red-600',
-      },
-    };
 
-    if (!status || !(status in messages)) return null;
+  // const showSuccessToast = () => {
+  //   toast.success("Changes saved.", {
+  //     position: "top-right",
+  //     autoClose: 3000, 
+  //     hideProgressBar: true,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     style: {
+  //       background: "green",
+  //       color: "white",
+  //       fontSize: "16px",
+  //       fontWeight: "bold",
+  //     },
+  //     icon: "✅",
+  //   });
+  // };
 
-    const { Icon, text, className } = messages[status as keyof typeof messages];
+  // Inside your component
+  const handleEmailSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
 
-    return (
-      <div className={`mt-4 flex items-center space-x-2 sm:mt-2 sm:space-x-1 md:space-x-1.5 lg:space-x-2 ${className}`}>
-        <Icon className="h-5 w-5" />
-        <span>{text}</span>
-      </div>
-    );
+    try {
+      await sendEmailToServer(email); // Your email submission logic
+      toast.success(
+        <div className="flex items-center gap-2 font-mowaq">
+          <CheckCircle className="h-5 w-5 text-green-400" />
+          Successfully subscribed! Welcome aboard.
+        </div>,
+        {
+          style: {
+            background: '#000',
+            boxShadow: '0px 0px 15px #ADFF00'
+          }
+        }
+      );
+    } catch (error) {
+      toast.error(
+        <div className="flex items-center gap-2 font-mowaq">
+          <AlertCircle className="h-5 w-5 text-red-400" />
+          There was an error. Please try again.
+        </div>,
+        {
+          style: {
+            background: '#000',
+            boxShadow: '0px 0px 15px #FF0000'
+          }
+        }
+      );
+    } finally {
+      setLoading(false);
+      setEmail('');
+    }
   };
 
   const handleMouseEnter = (image: string) => {
@@ -100,11 +133,14 @@ const Home = () => {
         <SmokeAnimation />
 
         <div className={styles.textArea} style={{ fontFamily: "Calibri, Arial, sans-serif", fontWeight: 400 }}>
+          <div className="absolute inset-0 border-2 border-[#ADFF00] animate-border pointer-events-none"></div>
+
+
           {/* Header Section */}
           <div className={styles.textSection} >
             <h1 className={styles.heading} style={{ fontFamily: "Mowaq, sans-serif", fontWeight: 400 }}>
               Beyond Human Connection,{' '}
-              <span className="text-black heading">
+              <span className="text-white heading">
                 <br></br>
                 Empowering Every Individual
               </span>
@@ -132,6 +168,7 @@ const Home = () => {
               </div>
             </div>
           </div>
+
           {/* Subscription Form */}
           <div className={styles.border}>
             <form onSubmit={handleSubmit} className={styles.form}>
@@ -149,7 +186,7 @@ const Home = () => {
                     className={styles.input1}
                     required
                   />
-                  <button
+                  {/* <button
                     type="submit"
                     disabled={loading}
                     className={styles.submitButton}
@@ -162,23 +199,40 @@ const Home = () => {
                     ) : (
                       'Subscribe Now'
                     )}
+                  </button> */}
+
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className={`${styles.submitButton} animated-border`}
+                    onClick={handleEmailSubmit}
+                    style={{
+                      fontFamily: "Mowaq, sans-serif",
+                      boxShadow: "0px 0px 15px #ADFF00",
+                    }}
+                  >
+                    {loading ? (
+                      <div className="animate-spin rounded-full border-2 border-white border-t-transparent h-5 w-5" />
+                    ) : (
+                      "Subscribe Now"
+                    )}
+                    <div className="border-effect"></div>
                   </button>
+
                 </div>
               </div>
             </form>
-            {renderStatusMessage()}
+            {/* {renderStatusMessage()} */}
           </div>
 
           {/* icons */}
-          <div className={styles.iconsContent}>
-            <img src={midjourney} />
-            <img src={gpticon} />
-            <img src={elevenlabs} />
-            <img src={assembly2} />
+          <div className="flex flex-row gap-4 md:gap-8 justify-center items-center w-full p-2 overflow-hidden">
+            <img src={midjourney} className="w-12 h-12 max-sm:w-5 max-sm:h-5 md:w-10 md:h-10 object-contain flex-shrink-0" />
+            <img src={gpticon} className="w-12 h-12 max-sm:w-5 max-sm:h-5 md:w-10 md:h-10 object-contain flex-shrink-0" />
+            <img src={elevenlabs} className="w-12 h-12 max-sm:w-5 max-sm:h-5 md:w-10 md:h-10 object-contain flex-shrink-0" />
+            <img src={assembly2} className="w-12 h-12 max-sm:w-5 max-sm:h-5 md:w-10 md:h-10 object-contain flex-shrink-0" />
           </div>
         </div>
-
-
 
         <div
           className={styles.modelSection}
