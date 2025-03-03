@@ -46,7 +46,7 @@ const BlogDetailModal: React.FC<ModalProps> = ({
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(200);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
 
   // Commenting states
@@ -220,10 +220,10 @@ const BlogDetailModal: React.FC<ModalProps> = ({
                 onClick={() => handleIconClick("bookmark")}
               >
                 <img
-                  // src={isBookmarked ? filledbookmark : bookmark}
+                  src={isBookmarked ? filledbookmark : bookmark}
                   alt="Bookmark Icon"
                   className="w-4 h-4"
-                  onClick={() => setIsModalOpen(true)}
+                  // onClick={() => setIsModalOpen(true)}
                 />
                 {/* Modal */}
                 {/* <SocialLoginModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} /> */}
