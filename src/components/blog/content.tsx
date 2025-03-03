@@ -129,7 +129,7 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
               </h1>
               <p className="text-lg mb-8 leading-relaxed">{content.content}</p>
               <div className="flex items-center gap-4">
-                <button
+              <button
                   onClick={() =>
                     openModal({
                       imageSrc: content.imageSrc || Image1,
@@ -137,14 +137,15 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
                       content: content.content,
                     })
                   }
-                  className="px-6 py-3 text-lg font-bold text-black bg-[#ADFF00] rounded-md hover:bg-black hover:text-white border-2 border-[#BCFF9D] transition-all"
+                  className="relative px-6 py-3 text-lg font-bold text-black bg-[#ADFF00] rounded-md hover:bg-black hover:text-white transition-all duration-300 overflow-hidden"
                   style={{
-                    fontFamily: 'Mowaq, sans-serif',
+                    fontFamily: "Mowaq, sans-serif",
                     boxShadow: "0px 0px 15px #3FA604",
                     width: "220px",
                   }}
                 >
-                  Read the story
+                  Read the Story
+                  <div className="absolute inset-0 border-2 border-[#ADFF00] animate-border pointer-events-none"></div>
                 </button>
                 {/* Interactive Social Icons */}
                 <div className="flex items-center space-x-8 mt-6 text-white">
