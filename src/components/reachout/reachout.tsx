@@ -11,7 +11,7 @@ import PinterestIcon from "@mui/icons-material/Pinterest";
 import ReachOutForm from "./childs/form/form";
 import Game from "./childs/game/game";
 import SmokeAnimation from "../footer/childs/component/smokeComponent/smoke";
-import arrow from "../../assets/icons/yellow-arrow.png";
+import arrow from "../../assets/icons/Vector (13).png";
 
 
 const ReachOut = () => {
@@ -59,29 +59,69 @@ const ReachOut = () => {
         ></canvas>
 
         <div className={styles.content1} style={{ fontFamily: "Calibri, Arial, sans-serif", fontWeight: 400, width: "50vw" }}>
-          <h1 className="text-3xl font-bold text-[#E6FF00] bg-gradient-to-r from-blue-400 to-green-400 px-6 py-3 rounded-lg shadow-lg uppercase tracking-wide items-start">
-            REACH OUT TO US!
+
+          <h1 className="relative group inline-block overflow-hidden cursor-pointer rounded-lg shadow-lg">
+            {/* Base gradient layer (preserving your original gradient) */}
+            <span
+              className="absolute inset-0 transition-opacity duration-500
+               bg-gradient-to-r from-green-400 to-lime-400 group-hover:opacity-0"
+            ></span>
+
+            {/* Hover gradient layer (reverse effect) */}
+            <span
+              className="absolute inset-0 opacity-0 transition-opacity duration-500
+               bg-gradient-to-r from-green-400 to-lime-400 group-hover:opacity-100"
+            ></span>
+
+            {/* Heading text with original styling and wipe animation on hover */}
+            <span
+              className="relative block text-3xl font-bold uppercase tracking-wide text-black
+               px-6 py-3 shadow-lg rounded-lg transition-all duration-1000
+               group-hover:animate-fadeLeftRight"
+            >
+              REACH OUT TO US!
+            </span>
           </h1>
+
+
           <p className="text-white text-lg font-medium leading-snug mt-5 mb-5" >
             Have an idea, question, or want to partner with us? <br />  Send us a message and hit
             <span className="font-bold text-white text-xl md:text-2xl lg:text-3xl tracking-wide"> REACH OUT!</span>
           </p>
-          <div className="flex flex-row">
+          <div className="flex flex-row gap-x-4">
             <Game />
             <div >
               <img
                 src={arrow}
                 alt="A short, descriptive text for accessibility"
-                width="50"
-                height="50"
+                width="30"
+                height="30"
               />
               <p>Try me</p>
             </div>
           </div>
 
           <div>
-            <h1 className="text-1xl font-bold text-[#E6FF00] bg-gradient-to-r from-blue-400 to-green-400 px-6 py-3 rounded-lg shadow-lg uppercase tracking-wide mt-10">
-              GO SOCIALS
+            <h1 className="relative w-full group inline-block px-6 py-3 font-bold uppercase text-black tracking-wide rounded-lg shadow-lg mt-10 overflow-hidden  text-center  cursor-pointer">
+              {/* Base gradient layer */}
+              <span
+                className="absolute inset-0 transition-opacity duration-500
+               bg-gradient-to-l from-lime-400 to-green-400 group-hover:opacity-0"
+              ></span>
+
+              {/* Hover gradient layer */}
+              <span
+                className="absolute inset-0 opacity-0 transition-opacity duration-500
+               bg-gradient-to-l from-green-400 to-lime-400 group-hover:opacity-100"
+              ></span>
+
+              {/* Button text with custom wipe effect and color transition */}
+              <span
+                className="relative block text-center transition-colors duration-500 
+               group-hover:animate-fadeLeftRight group-hover:text-black-500"
+              >
+                Go Socials
+              </span>
             </h1>
 
             {/* Icons container: row layout, spacing */}
@@ -104,8 +144,8 @@ const ReachOut = () => {
             flexDirection: "column",
             width: "50%",
             justifyContent: "center",
-            alignItems: "center",
-            gap: 20,
+            //alignItems: "center",
+            gap: 10,
           }}
         >
           <ReachOutForm />

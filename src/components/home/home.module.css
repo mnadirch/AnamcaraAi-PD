@@ -20,14 +20,22 @@
   flex: 1;
   flex-direction: column;
   gap: 0px;
-  background-color: #d9ff0f; /* Yellow Background */
+  background-color: rgba(
+    217,
+    255,
+    15,
+    0.7
+  ); /* Adjust the last value for transparency */
+  position: relative; /* For absolute positioning if needed */
   border-radius: 5px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 10px black;
   padding: 2rem; /* Example padding, adjust as needed */
   max-width: 1200px; /* Example max width, adjust as needed */
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 2rem; /* Space for icons */
 }
+
 .inputContent {
   display: flex;
   flex-direction: row;
@@ -36,8 +44,11 @@
 .iconsContent {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 20px;
   margin-top: 15px;
+  /* align-items: center; */
+  justify-items: center;
+  transform: scale(0.1);
 }
 
 .modelSection {
@@ -135,7 +146,7 @@
 }
 
 .heading {
-  color: #000; /* text-black */
+  color: white; /* text-black */
   line-height: 1.2;
   text-align: center;
   letter-spacing: -0.05em;
@@ -209,7 +220,9 @@
   font-size: 1rem; /* Example font size, adjust as needed */
   flex-grow: 1; /* Allow input to grow and take available space */
   min-width: 0; /* Prevent input from overflowing container on smaller screens */
+  color: #000;
 }
+
 .border .form .input1:focus {
   outline: 2px solid transparent; /* focus:ring-2 */
   outline-offset: 2px;
@@ -229,12 +242,23 @@
   border-radius: 0.5rem; /* rounded-lg */
   transition-property: color, background-color, border-color,
     text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
-    backdrop-filter; /* transition-colors */
+    backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
   display: flex; /* flex */
   gap: 20rem; /* space-x-2 */
   box-shadow: 0 0 15px #adff00; /* As inline style */
+}
+
+
+.Toastify__toast {
+  min-height: 60px !important;
+  padding: 12px 20px !important;
+}
+
+.Toastify__toast-body {
+  padding: 0 !important;
+  margin: 0 !important;
 }
 .border .submitButton:hover {
   background-color: #adff00; /* hover:bg-[#ADFF00] */
@@ -607,7 +631,6 @@ video::-webkit-media-controls {
   .heading {
     font-size: 0.2rem; /* Large Font Size */
     font-weight: bold;
-    color: #000; /* Black Text */
     text-align: center;
   }
   .para h2 {
@@ -638,14 +661,13 @@ video::-webkit-media-controls {
     width: 100%;
   }
 
-  .iconsContent {
+  /* .iconsContent {
     display: flex;
     flex-direction: row;
     gap: 10px;
     margin-top: 5px;
-    transform: scale(0.75); /* Scales the icon to 75% of its original size */
-    text-align: left;
-  }
+    transform: scale(0.75); 
+  } */
 }
 @media (max-width: 900px) {
   .container {
@@ -679,7 +701,6 @@ video::-webkit-media-controls {
   .heading {
     font-size: 0.2rem; /* Large Font Size */
     font-weight: bold;
-    color: #000; /* Black Text */
     text-align: center;
   }
   .para h2 {
@@ -710,14 +731,13 @@ video::-webkit-media-controls {
     width: 100%;
   }
 
-  .iconsContent {
+  /* .iconsContent {
     display: flex;
     flex-direction: row;
     gap: 10px;
     margin-top: 5px;
-    transform: scale(0.75); /* Scales the icon to 75% of its original size */
-    text-align: left;
-  }
+    transform: scale(0.75); 
+  } */
 }
 
 @media (max-width: 1920px) {
@@ -745,7 +765,6 @@ video::-webkit-media-controls {
   .heading {
     font-size: 1.2rem; /* Large Font Size */
     font-weight: bold;
-    color: #000; /* Black Text */
     text-align: center;
     margin-bottom: 0px;
     padding-bottom: 0rem; /* pb-6 */
@@ -776,12 +795,11 @@ video::-webkit-media-controls {
     flex-direction: row;
     align-items: center;
   }
-  .iconsContent {
+  /* .iconsContent {
     display: flex;
     flex-direction: row;
-    justify-content: left;
     height: 30px;
-  }
+  } */
 }
 @media (min-width: 2560px) {
   .container {
@@ -804,7 +822,6 @@ video::-webkit-media-controls {
   .heading {
     font-size: 3rem; /* Large Font Size */
     font-weight: bold;
-    color: #000; /* Black Text */
     text-align: center;
     margin-bottom: 30px;
     padding-bottom: 0rem; /* pb-6 */

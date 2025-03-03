@@ -50,7 +50,6 @@ function App() {
               </Layout>
             }
           />
-
           <Route
             path="/ai-robotics"
             element={
@@ -73,7 +72,7 @@ function App() {
           <Route
             path="/membership"
             element={
-                <Dashboard />
+              <Dashboard />
             }
           />
           <Route

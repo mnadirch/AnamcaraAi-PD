@@ -12,47 +12,47 @@ const ReachOutForm = () => {
   });
 
   const [isChecked, setIsChecked] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+    privacy: "",
+  });
+  const [errorMessage, setErrorMessage] = useState(""); // Notification message
+
   const handleChange = (e: any) => {
-    const { id, value } = e.target;
+    const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [id]: value,
+      [name]: value,
     }));
   };
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  };
-  const handleSubmit = (e: any) => {
-    console.log("click on reach out ");
-    e.preventDefault();
-    if (!formData.name) {
-      setErrorMessage("Name is required.");
-      return;
-    }
-    if (!formData.email) {
-      setErrorMessage("Email is required.");
-      return;
-    }
-    if (!isChecked) {
-      alert("You must accept the privacy policy to proceed.");
-      return;
-    }
-    if (!isChecked) {
-      alert("You must accept the privacy policy to proceed.");
-      return;
-    }
-    console.log("Form submitted:", formData);
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
 
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(e.target.checked);
+    setErrors({ ...errors, privacy: "" }); // Clear error when checkbox is checked
+  };
+
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Execute the reCAPTCHA challenge manually
-    recaptchaRef.current?.execute();
+    let newErrors = { name: "", email: "", subject: "", message: "", privacy: "" };
+
+    if (!formData.name) newErrors.name = "Name is required";
+    if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Please enter a valid email address";
+    if (!formData.subject) newErrors.subject = "Subject is required";
+    if (!formData.message) newErrors.message = "Message cannot be empty";
+    if (!isChecked) newErrors.privacy = "You must accept the Privacy Policy";
+
+    setErrors(newErrors);
+
+    if (Object.values(newErrors).every((error) => error === "")) {
+      console.log("Form submitted:", formData);
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      setIsChecked(false);
+      setErrors({ name: "", email: "", subject: "", message: "", privacy: "" });
+    }
   };
 
   // Callback for when reCAPTCHA completes
@@ -64,83 +64,107 @@ const ReachOutForm = () => {
   };
 
   return (
-    <>
-      <form className={styles.formSection} style={{ fontFamily: "Calibri, Arial, sans-serif", fontWeight: 400 }}>
-        <div className={styles.inlineFields}>
-          <div>
-            <label htmlFor="name">Your Name</label>
+    <div className="max-w-4xl" style={{ fontFamily: "Calibri, Arial, sans-serif", fontWeight: 400 }}>
+
+      {/* Form Container */}
+      <div className="relative w-full max-w-xl mx-auto p-4">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col space-y-4 p-6 md:p-8 shadow-lg bg-transparent rounded-lg" // Added background and rounded corners
+        >
+          {/* Name Field */}
+          <div className="relative">
+            <label className="block text-sm font-medium text-gray-300">Name</label>
             <input
               type="text"
-              id="name"
+              name="name"
               value={formData.name}
               onChange={handleChange}
-              required
-                      />
-                      {errorMessage && <p className={styles.error} style={{ fontFamily: "Calibri, Arial, sans-serif", textAlign: "center" }}>{errorMessage} </p>}
+              className={`w-full p-3 rounded-md border focus:outline-none text-white tracking-wide bg-transparent focus:bg-[#A9A9A9]/50 ${errors.name ? "border-red-500" : "border-[#ADFF00]"
+                }`}
+            />
+            {errors.name && (
+              <div className="mt-1 text-red-500 text-sm">{errors.name}</div>
+            )}
           </div>
-          <div>
-            <label htmlFor="email">Your Email</label>
+
+          {/* Email Field */}
+          <div className="relative">
+            <label className="block text-sm font-medium text-gray-300">Email</label>
             <input
               type="email"
-              id="email"
+              name="email"
               value={formData.email}
               onChange={handleChange}
-              required
-                      />
-                      {errorMessage && <p className={styles.error} style={{ fontFamily: "Calibri, Arial, sans-serif", textAlign: "center" }}>{errorMessage} </p>}
-
+              className={`w-full p-3 rounded-md border focus:outline-none text-white tracking-wide bg-transparent focus:bg-[#A9A9A9]/50 ${errors.email ? "border-red-500" : "border-[#ADFF00]"
+                }`}
+            />
+            {errors.email && (
+              <div className="mt-1 text-red-500 text-sm">{errors.email}</div>
+            )}
           </div>
-        </div>
 
-        <div>
-          <label htmlFor="subject">Subject</label>
-          <input
-            type="text"
-            id="subject"
-            value={formData.subject}
-            onChange={handleChange}
-          />
-        </div>
+          {/* Subject Field */}
+          <div className="relative">
+            <label className="block text-sm font-medium text-gray-300">Subject</label>
+            <input
+              type="text"
+              name="subject"
+              value={formData.subject}
+              onChange={handleChange}
+              className={`w-full p-3 rounded-md border focus:outline-none text-white bg-transparent focus:bg-[#A9A9A9]/50 ${errors.subject ? "border-red-500" : "border-[#ADFF00]"
+                }`}
+            />
+            {errors.subject && (
+              <div className="mt-1 text-red-500 text-sm">{errors.subject}</div>
+            )}
+          </div>
 
-        <div>
-          <label htmlFor="message">Your Message (Optional)</label>
-          <textarea
-            id="message"
-            value={formData.message}
-            onChange={handleChange}
-            style={{ height: 120, width: "100%" }}
-          ></textarea>
-              </div>
-              {errorMessage && <p className={styles.error} style={{ fontFamily: "Calibri, Arial, sans-serif", textAlign: "center" }}>{errorMessage} </p>}
+          {/* Message Field */}
+          <div className="relative">
+            <label className="block text-sm font-medium text-gray-300">Message</label>
+            <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              rows={4}
+              className={`w-full p-3 rounded-md border focus:outline-none text-white bg-transparent tracking-wide focus:bg-[#A9A9A9]/50 ${errors.message ? "border-red-500" : "border-[#ADFF00]"
+                }`}
+            />
+            {errors.message && (
+              <div className="mt-1 text-red-500 text-sm">{errors.message}</div>
+            )}
+          </div>
 
-      </form>
-      <div className={styles.checkcontent}>
-        <label
-          htmlFor="privacyPolicy"
-          className="flex items-center gap-2 p-2 text-gray-400 whitespace-nowrap"
-          style={{ fontFamily: "Calibri, Arial, sans-serif" }}
-        >
-          <input
-            type="checkbox"
-            id="privacyPolicy"
-            name="privacy"
-            checked={isChecked}
-            onChange={handleCheckboxChange}
-            required
-            className="accent-white"
-          />
-          <span>
-            I have read and accept the{" "}
-            <span className="underline">Privacy Policy</span>.
-          </span>
-        </label>
+          {/* Privacy Policy Checkbox */}
+          <div className="relative">
+            <label className="flex items-center gap-2 text-gray-400">
+              <input
+                type="checkbox"
+                name="privacy"
+                checked={isChecked}
+                onChange={handleCheckboxChange}
+                className="rounded border-gray-700 text-indigo-600 focus:ring-indigo-500"
+              />
+              <span>
+                I have read and accept the <span className="underline">Privacy Policy</span>.
+              </span>
+            </label>
+            {errors.privacy && (
+              <div className="mt-1 text-red-500 text-sm">{errors.privacy}</div>
+            )}
+          </div>
 
-        <div >
-          <button onClick={handleSubmit}  className={styles.reachOutButton} style={{ fontFamily: "Calibri, Arial, sans-serif" }} >
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="px-6 py-3 text-lg font-bold text-black bg-[#ADFF00] rounded-md hover:bg-black hover:text-white border-2 border-[#BCFF9D] transition-all"
+          >
             Reach Out
           </button>
-        </div>
+        </form>
       </div>
+
       <div className="fixed bottom-16 right-0.5 -translate-x-1/2 z-[999999]">
         <ReCAPTCHA
           ref={recaptchaRef}
@@ -149,7 +173,7 @@ const ReachOutForm = () => {
           onChange={onReCAPTCHAChange}
         />
       </div>
-    </>
+    </div >
   );
 };
 
