@@ -7,6 +7,8 @@ import backgroundImage4 from "../../assets/images/backgrounds/glenn-carstens-pet
 import backgroundImage5 from "../../assets/images/backgrounds/ales-nesetril-Im7lZjxeLhg-unsplash.png";
 import backgroundImage6 from "../../assets/images/backgrounds/markus-spiske-iar-afB0QQw-unsplash.png";
 import backgroundImage7 from "../../assets/images/backgrounds/donald-giannatti-Wj1D-qiOseE-unsplash.png";
+import SocialLoginModal from "./socialLoginModel";
+
 
 import { FaThumbsUp, FaBell, FaComment, FaShare, FaBookmark } from "react-icons/fa";
 
@@ -68,7 +70,7 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
     },
   ];
 
-  // Interactive counters and modal state logic (unchanged)
+  const [isSocialModalOpen, setIsSocialModalOpen] = useState(false);
   const [likes, setLikes] = useState(1200);
   const [liked, setLiked] = useState(false);
 
@@ -136,18 +138,15 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
                       content: content.content,
                     })
                   }
-                  className="relative px-6 py-3 text-lg font-bold text-black bg-[#ADFF00] rounded-md hover:bg-black hover:text-white transition-all duration-300 overflow-hidden"
+                  className="px-6 py-3 text-lg font-bold text-black bg-[#ADFF00] rounded-md hover:bg-black hover:text-white border-2 border-[#BCFF9D] transition-all"
                   style={{
-                    fontFamily: "Mowaq, sans-serif",
+                    fontFamily: 'Mowaq, sans-serif',
                     boxShadow: "0px 0px 15px #3FA604",
                     width: "220px",
                   }}
                 >
-                  Read the Story
-                  <div className="absolute inset-0 border-2 border-[#ADFF00] animate-border pointer-events-none"></div>
+                  Read the story
                 </button>
-
-
                 {/* Interactive Social Icons */}
                 <div className="flex items-center space-x-8 mt-6 text-white">
                   {/* Like Icon */}
@@ -157,8 +156,8 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
                   >
                     <FaThumbsUp
                       size={30}
-                      className={`transition ${liked ? "text-white" : "text-[#ADFF00] hover:text-white"}`}
-                    />
+                      className={`transition cursor-pointer ${liked ? "text-[#ADFF00]" : "text-white"
+                        } hover:text-[#ADFF00]`} />
                     <span className="text-lg mt-1">{likes}</span>
                   </div>
                   {/* Notification Icon */}
@@ -169,7 +168,8 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
                       (setNotifications(notifications + 1), setHasNotified(true))
                     }
                   >
-                    <FaBell size={30} className="text-[#ADFF00]" />
+                    <FaBell size={30} className={`transition cursor-pointer ${liked ? "text-[#ADFF00]" : "text-white"
+                      } hover:text-[#ADFF00]`} />
                     <span className="text-lg mt-1">{notifications}</span>
                   </div>
                   {/* Comment Icon */}
@@ -180,7 +180,8 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
                       (setComments(comments + 1), setHasCommented(true))
                     }
                   >
-                    <FaComment size={30} className="text-[#ADFF00]" />
+                    <FaComment size={30} className={`transition cursor-pointer ${liked ? "text-[#ADFF00]" : "text-white"
+                      } hover:text-[#ADFF00]`} />
                     <span className="text-lg mt-1">{comments}</span>
                   </div>
                   {/* Share Icon */}
@@ -190,20 +191,25 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
                       !hasShared && (setShares(shares + 1), setHasShared(true))
                     }
                   >
-                    <FaShare size={30} className="text-[#ADFF00]" />
+                    <FaShare size={30} className={`transition cursor-pointer ${liked ? "text-[#ADFF00]" : "text-white"
+                      } hover:text-[#ADFF00]`} />
                     <span className="text-lg mt-1">{shares}</span>
                   </div>
                   {/* Bookmark Icon */}
                   <div
                     className="flex flex-col items-center cursor-pointer"
-                    onClick={() =>
-                      toggleState(setBookmarked, setBookmarks, bookmarked, bookmarks)
-                    }
+                    // onClick={() =>
+                    //   toggleState(setBookmarked, setBookmarks, bookmarked, bookmarks)
+                    // }
                   >
                     <FaBookmark
                       size={30}
-                      className={`transition ${bookmarked ? "text-white" : "text-[#ADFF00] hover:text-white"}`}
-                    />
+                      // className={`transition ${bookmarked ? "text-white" : "text-[#ADFF00] hover:text-white"}`}
+                      onClick={() => setIsSocialModalOpen(true)}
+                    />                
+                    
+                  <SocialLoginModal isOpen={isSocialModalOpen} onClose={() => setIsSocialModalOpen(false)} />
+
                     <span className="text-lg mt-1">{bookmarks}</span>
                   </div>
                 </div>
