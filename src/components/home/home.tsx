@@ -12,9 +12,7 @@ import { useNavigate } from "react-router-dom";
 import Particle from "./childs/particlesAnimation/particlesAnimation";
 import FogAnimation from "./childs/fogAnimation/fogAnimation";
 import SmokeAnimation from "../footer/childs/component/smokeComponent/smoke";
-import { AlertCircle, CheckCircle } from 'lucide-react';
-import { ToastContainer, toast } from 'react-toastify';
-
+// import { AlertCircle, CheckCircle } from 'lucide-react';
 
 
 const Home = () => {
@@ -22,7 +20,7 @@ const Home = () => {
   const [reAnimateHeadImage, setreAnimateHeadImage] = useState(false);
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
   const [email, setEmail] = useState<string>('');
-  const [status, setStatus] = useState<'success' | 'error' | ''>('');
+  const [_status, setStatus] = useState<'success' | 'error' | ''>('');
   const [loading, setLoading] = useState<boolean>(false);
 
 
@@ -45,62 +43,6 @@ const Home = () => {
     setEmail(e.target.value);
   };
 
-
-  // const showSuccessToast = () => {
-  //   toast.success("Changes saved.", {
-  //     position: "top-right",
-  //     autoClose: 3000, 
-  //     hideProgressBar: true,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     style: {
-  //       background: "green",
-  //       color: "white",
-  //       fontSize: "16px",
-  //       fontWeight: "bold",
-  //     },
-  //     icon: "✅",
-  //   });
-  // };
-
-  // Inside your component
-  const handleEmailSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-
-    try {
-      await sendEmailToServer(email); // Your email submission logic
-      toast.success(
-        <div className="flex items-center gap-2 font-mowaq">
-          <CheckCircle className="h-5 w-5 text-green-400" />
-          Successfully subscribed! Welcome aboard.
-        </div>,
-        {
-          style: {
-            background: '#000',
-            boxShadow: '0px 0px 15px #ADFF00'
-          }
-        }
-      );
-    } catch (error) {
-      toast.error(
-        <div className="flex items-center gap-2 font-mowaq">
-          <AlertCircle className="h-5 w-5 text-red-400" />
-          There was an error. Please try again.
-        </div>,
-        {
-          style: {
-            background: '#000',
-            boxShadow: '0px 0px 15px #FF0000'
-          }
-        }
-      );
-    } finally {
-      setLoading(false);
-      setEmail('');
-    }
-  };
 
   const handleMouseEnter = (image: string) => {
     setHoveredImage(image);
@@ -186,7 +128,7 @@ const Home = () => {
                     className={styles.input1}
                     required
                   />
-                  {/* <button
+                  <button
                     type="submit"
                     disabled={loading}
                     className={styles.submitButton}
@@ -199,24 +141,6 @@ const Home = () => {
                     ) : (
                       'Subscribe Now'
                     )}
-                  </button> */}
-
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className={`${styles.submitButton} animated-border`}
-                    onClick={handleEmailSubmit}
-                    style={{
-                      fontFamily: "Mowaq, sans-serif",
-                      boxShadow: "0px 0px 15px #ADFF00",
-                    }}
-                  >
-                    {loading ? (
-                      <div className="animate-spin rounded-full border-2 border-white border-t-transparent h-5 w-5" />
-                    ) : (
-                      "Subscribe Now"
-                    )}
-                    <div className="border-effect"></div>
                   </button>
 
                 </div>

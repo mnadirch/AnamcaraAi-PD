@@ -109,105 +109,107 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
 
   return (
     <div
-       className="relative w-full h-full px-6 py-4 min-h-[500px]"
+      className="relative w-full h-full px-6 py-4 min-h-[500px]"
       style={{ fontFamily: '"Calibri", sans-serif' }}
     >
       {contentArray.map((content) => (
         <div
           key={content.id}
-          className={`absolute top-0 transition-all duration-700 ease-in-out ${
-            activeCard === content.id
-              ? "right-0 opacity-100 visible z-10"
-              : "right-[-100%] opacity-0 invisible z-0"
-          }`}
+          className={`absolute top-0 transition-all duration-700 ease-in-out ${activeCard === content.id
+            ? "right-0 opacity-100 visible z-10"
+            : "right-[-100%] opacity-0 invisible z-0"
+            }`}
           style={{ position: "absolute", width: "100%" }}
         >
-         <div className="flex items-center justify-center h-screen">
-  <div className="p-10 rounded-lg flex flex-col justify-center">
-    <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-      {content.heading}
-    </h1>
-    <p className="text-lg mb-8 leading-relaxed">{content.content}</p>
-    <div className="flex items-center gap-4">
-      <button
-        onClick={() =>
-          openModal({
-            imageSrc: content.imageSrc || Image1,
-            title: content.heading,
-            content: content.content,
-          })
-        }
-        className="px-6 py-3 text-lg font-bold text-black bg-[#ADFF00] rounded-md hover:bg-black hover:text-white border-2 border-[#BCFF9D] transition-all"
-        style={{
-          fontFamily: 'Mowaq, sans-serif',
-          boxShadow: "0px 0px 15px #3FA604",
-          width: "220px",
-        }}
-      >
-        Read the story
-      </button>
-      {/* Interactive Social Icons */}
-      <div className="flex items-center space-x-8 mt-6 text-white">
-        {/* Like Icon */}
-        <div
-          className="flex flex-col items-center cursor-pointer"
-          onClick={() => toggleState(setLiked, setLikes, liked, likes)}
-        >
-          <FaThumbsUp
-            size={30}
-            className={`transition ${liked ? "text-white" : "text-[#ADFF00] hover:text-white"}`}
-          />
-          <span className="text-lg mt-1">{likes}</span>
-        </div>
-        {/* Notification Icon */}
-        <div
-          className="flex flex-col items-center cursor-pointer"
-          onClick={() =>
-            !hasNotified &&
-            (setNotifications(notifications + 1), setHasNotified(true))
-          }
-        >
-          <FaBell size={30} className="text-[#ADFF00]" />
-          <span className="text-lg mt-1">{notifications}</span>
-        </div>
-        {/* Comment Icon */}
-        <div
-          className="flex flex-col items-center cursor-pointer"
-          onClick={() =>
-            !hasCommented &&
-            (setComments(comments + 1), setHasCommented(true))
-          }
-        >
-          <FaComment size={30} className="text-[#ADFF00]" />
-          <span className="text-lg mt-1">{comments}</span>
-        </div>
-        {/* Share Icon */}
-        <div
-          className="flex flex-col items-center cursor-pointer"
-          onClick={() =>
-            !hasShared && (setShares(shares + 1), setHasShared(true))
-          }
-        >
-          <FaShare size={30} className="text-[#ADFF00]" />
-          <span className="text-lg mt-1">{shares}</span>
-        </div>
-        {/* Bookmark Icon */}
-        <div
-          className="flex flex-col items-center cursor-pointer"
-          onClick={() =>
-            toggleState(setBookmarked, setBookmarks, bookmarked, bookmarks)
-          }
-        >
-          <FaBookmark
-            size={30}
-            className={`transition ${bookmarked ? "text-white" : "text-[#ADFF00] hover:text-white"}`}
-          />
-          <span className="text-lg mt-1">{bookmarks}</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+          <div className="flex items-center justify-center h-screen">
+            <div className="p-10 rounded-lg flex flex-col justify-center">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                {content.heading}
+              </h1>
+              <p className="text-lg mb-8 leading-relaxed">{content.content}</p>
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={() =>
+                    openModal({
+                      imageSrc: content.imageSrc || Image1,
+                      title: content.heading,
+                      content: content.content,
+                    })
+                  }
+                  className="relative px-6 py-3 text-lg font-bold text-black bg-[#ADFF00] rounded-md hover:bg-black hover:text-white transition-all duration-300 overflow-hidden"
+                  style={{
+                    fontFamily: "Mowaq, sans-serif",
+                    boxShadow: "0px 0px 15px #3FA604",
+                    width: "220px",
+                  }}
+                >
+                  Read the Story
+                  <div className="absolute inset-0 border-2 border-[#ADFF00] animate-border pointer-events-none"></div>
+                </button>
+
+
+                {/* Interactive Social Icons */}
+                <div className="flex items-center space-x-8 mt-6 text-white">
+                  {/* Like Icon */}
+                  <div
+                    className="flex flex-col items-center cursor-pointer"
+                    onClick={() => toggleState(setLiked, setLikes, liked, likes)}
+                  >
+                    <FaThumbsUp
+                      size={30}
+                      className={`transition ${liked ? "text-white" : "text-[#ADFF00] hover:text-white"}`}
+                    />
+                    <span className="text-lg mt-1">{likes}</span>
+                  </div>
+                  {/* Notification Icon */}
+                  <div
+                    className="flex flex-col items-center cursor-pointer"
+                    onClick={() =>
+                      !hasNotified &&
+                      (setNotifications(notifications + 1), setHasNotified(true))
+                    }
+                  >
+                    <FaBell size={30} className="text-[#ADFF00]" />
+                    <span className="text-lg mt-1">{notifications}</span>
+                  </div>
+                  {/* Comment Icon */}
+                  <div
+                    className="flex flex-col items-center cursor-pointer"
+                    onClick={() =>
+                      !hasCommented &&
+                      (setComments(comments + 1), setHasCommented(true))
+                    }
+                  >
+                    <FaComment size={30} className="text-[#ADFF00]" />
+                    <span className="text-lg mt-1">{comments}</span>
+                  </div>
+                  {/* Share Icon */}
+                  <div
+                    className="flex flex-col items-center cursor-pointer"
+                    onClick={() =>
+                      !hasShared && (setShares(shares + 1), setHasShared(true))
+                    }
+                  >
+                    <FaShare size={30} className="text-[#ADFF00]" />
+                    <span className="text-lg mt-1">{shares}</span>
+                  </div>
+                  {/* Bookmark Icon */}
+                  <div
+                    className="flex flex-col items-center cursor-pointer"
+                    onClick={() =>
+                      toggleState(setBookmarked, setBookmarks, bookmarked, bookmarks)
+                    }
+                  >
+                    <FaBookmark
+                      size={30}
+                      className={`transition ${bookmarked ? "text-white" : "text-[#ADFF00] hover:text-white"}`}
+                    />
+                    <span className="text-lg mt-1">{bookmarks}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </div>
       ))}

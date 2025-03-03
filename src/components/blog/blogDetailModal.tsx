@@ -20,6 +20,7 @@ import filledbookmark from "../../assets/icons/Vector (10).png";
 import data from "../../assets/data/blog.json";
 import SideBar from "./sideBar";
 import Reactions from "./reactions";
+// import SocialLoginModal from "./socialLoginModal";
 
 
 interface ModalProps {
@@ -45,6 +46,8 @@ const BlogDetailModal: React.FC<ModalProps> = ({
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(200);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
 
   // Commenting states
   const [showButton, setShowButton] = useState(false);
@@ -217,11 +220,16 @@ const BlogDetailModal: React.FC<ModalProps> = ({
                 onClick={() => handleIconClick("bookmark")}
               >
                 <img
-                  src={isBookmarked ? filledbookmark : bookmark}
+                  // src={isBookmarked ? filledbookmark : bookmark}
                   alt="Bookmark Icon"
                   className="w-4 h-4"
+                  onClick={() => setIsModalOpen(true)}
                 />
+                {/* Modal */}
+                {/* <SocialLoginModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} /> */}
               </button>
+
+
             </div>
           </div>
 
@@ -378,7 +386,7 @@ const BlogDetailModal: React.FC<ModalProps> = ({
               <div className="w-full flex justify-end">
                 <button
                   onClick={handlePostComment}
-                  className="px-6 py-3 text-lg font-bold text-black bg-[#ADFF00] rounded-md hover:bg-black hover:text-white border-2 border-[#BCFF9D] transition-all"
+                  className="relative px-6 py-3 text-lg font-bold text-black bg-[#ADFF00] rounded-md hover:bg-black hover:text-white transition-all duration-300 overflow-hidden"
                   style={{
                     fontFamily: "Mowaq, sans-serif",
                     boxShadow: "0px 0px 15px #3FA604",
@@ -386,7 +394,9 @@ const BlogDetailModal: React.FC<ModalProps> = ({
                   }}
                 >
                   Post Comment
+                  <div className="absolute inset-0 border-2 border-[#ADFF00] animate-border pointer-events-none"></div>
                 </button>
+
               </div>
             )}
 
@@ -436,7 +446,7 @@ const BlogDetailModal: React.FC<ModalProps> = ({
                 className="bg-transparent border border-[#ADFF00] rounded-md px-6 py-3 text-[#ADFF00] placeholder-[#ADFF00] w-full sm:w-2/3 focus:outline-none"
               />
               <button
-                className="px-4 py-2 text-md font-bold text-black bg-[#ADFF00] rounded-md hover:bg-black hover:text-white border-2 border-[#BCFF9D] transition-all"
+                className="relative px-4 py-2 text-md font-bold text-black bg-[#ADFF00] rounded-md hover:bg-black hover:text-white transition-all duration-300 overflow-hidden"
                 style={{
                   fontFamily: "Mowaq, sans-serif",
                   boxShadow: "0px 0px 10px #3FA604",
@@ -444,7 +454,10 @@ const BlogDetailModal: React.FC<ModalProps> = ({
                 }}
               >
                 Subscribe
+                <div className="absolute inset-0 border-2 border-[#ADFF00] animate-border pointer-events-none"></div>
               </button>
+
+
             </div>
             <div className="pt-6"></div>
           </div>
