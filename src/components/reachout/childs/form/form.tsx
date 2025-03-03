@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import styles from "./form.module.css";
+// import styles from "./form.module.css";
 import ReCAPTCHA from "react-google-recaptcha";
 
 const ReachOutForm = () => {
@@ -19,7 +19,7 @@ const ReachOutForm = () => {
     message: "",
     privacy: "",
   });
-  const [errorMessage, setErrorMessage] = useState(""); // Notification message
+  // const [errorMessage, setErrorMessage] = useState(""); // Notification message
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
