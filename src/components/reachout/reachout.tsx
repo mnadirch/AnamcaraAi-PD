@@ -58,96 +58,73 @@ const ReachOut = () => {
           style={{ width: "100%", height: "100%", background: "" }}
         ></canvas>
 
-        <div className={styles.content1} style={{ fontFamily: "Calibri, Arial, sans-serif", fontWeight: 400, width: "50vw" }}>
-
-          <h1 className="relative group inline-block overflow-hidden cursor-pointer rounded-lg shadow-lg">
-            {/* Base gradient layer (preserving your original gradient) */}
-            <span
-              className="absolute inset-0 transition-opacity duration-500
-               bg-gradient-to-r from-green-400 to-lime-400 group-hover:opacity-0"
-            ></span>
-
-            {/* Hover gradient layer (reverse effect) */}
-            <span
-              className="absolute inset-0 opacity-0 transition-opacity duration-500
-               bg-gradient-to-r from-green-400 to-lime-400 group-hover:opacity-100"
-            ></span>
-
-            {/* Heading text with original styling and wipe animation on hover */}
-            <span
-              className="relative block text-3xl font-bold uppercase tracking-wide text-black
-               px-6 py-3 shadow-lg rounded-lg transition-all duration-1000
-               group-hover:animate-fadeLeftRight"
-            >
-              REACH OUT TO US!
-            </span>
-          </h1>
-
-
-          <p className="text-white text-lg font-medium leading-snug mt-5 mb-5" >
-            Have an idea, question, or want to partner with us? <br />  Send us a message and hit
-            <span className="font-bold text-white text-xl md:text-2xl lg:text-3xl tracking-wide"> REACH OUT!</span>
-          </p>
-          <div className="flex flex-row gap-x-4">
-            <Game />
-            <div >
-              <img
-                src={arrow}
-                alt="A short, descriptive text for accessibility"
-                width="30"
-                height="30"
-              />
-              <p>Try me</p>
-            </div>
-          </div>
-
+        <div className="flex flex-col justify-center items-center text-center" style={{ fontFamily: "Calibri, Arial, sans-serif", fontWeight: 400, width: "50vw" }}>
           <div>
-            <h1 className="relative w-full group inline-block px-6 py-3 font-bold uppercase text-black tracking-wide rounded-lg shadow-lg mt-10 overflow-hidden  text-center  cursor-pointer">
+            <h1 className="relative w-full group inline-block px-6 py-3 font-bold uppercase text-black tracking-wide rounded-lg shadow-lg mt-10 overflow-hidden text-center cursor-pointer">
               {/* Base gradient layer */}
               <span
                 className="absolute inset-0 transition-opacity duration-500
-               bg-gradient-to-l from-lime-400 to-green-400 group-hover:opacity-0"
+      bg-gradient-to-l from-lime-400 to-green-400 group-hover:opacity-0"
               ></span>
 
               {/* Hover gradient layer */}
               <span
                 className="absolute inset-0 opacity-0 transition-opacity duration-500
-               bg-gradient-to-l from-green-400 to-lime-400 group-hover:opacity-100"
+      bg-gradient-to-l from-green-400 to-lime-400 group-hover:opacity-100"
               ></span>
 
               {/* Button text with custom wipe effect and color transition */}
               <span
-                className="relative block text-center transition-colors duration-500 
-               group-hover:animate-fadeLeftRight group-hover:text-black-500"
+                className="relative block text-center transition-colors duration-500
+      group-hover:animate-fadeLeftRight group-hover:text-black-500"
               >
-                Go Socials
+                REACH OUT TO US!
               </span>
             </h1>
+          </div>
 
-            {/* Icons container: row layout, spacing */}
-            <div className="flex flex-row gap-4 my-3">
-              <LinkedInIcon className="w-30 h-30 bg-black text-white rounded-full p-1" />
-              <FacebookIcon className="w-30 h-30 bg-black text-white rounded-full p-1" />
-              <TwitterIcon className="w-10 h-10 bg-black text-white rounded-full p-1" />
-              <InstagramIcon className="w-10 h-10 bg-black text-white rounded-full p-1" />
-              <YouTubeIcon className="w-10 h-10 bg-black text-white rounded-full p-1" />
-              <RedditIcon className="w-10 h-10 bg-black text-white rounded-full p-1" />
-              <PinterestIcon className="w-10 h-10 bg-black text-white rounded-full p-1" />
+          {/* MESSAGE TEXT */}
+          <p className="text-white text-sm sm:text-base md:text-lg font-medium leading-snug mt-5 mb-5">
+            Have an idea, question, or want to partner with us? <br />  Send us a message and hit
+            <span className="font-bold text-white tracking-wide" style={{ fontSize: "1.5rem" }}> REACH OUT!</span>
+          </p>
+
+          {/* GAME SECTION */}
+          <div className="relative flex flex-row items-center gap-2 ml-8">
+            <Game />
+            <div className="flex flex-col items-center mt-2">
+              <img src={arrow} alt="Arrow pointing to game" width="30" height="30" />
+              <p className="text-white text-sm pl-2">Try me</p>
             </div>
           </div>
 
+          {/* GO SOCIALS BUTTON */}
+          <button className="relative px-6 mt-2 py-3 font-bold uppercase text-black tracking-wide rounded-lg shadow-lg overflow-hidden cursor-pointer group">
+            {/* Base gradient layer */}
+            <span className="absolute inset-0 transition-opacity duration-500 bg-gradient-to-l from-lime-400 to-green-400 group-hover:opacity-0"></span>
+
+            {/* Hover gradient layer */}
+            <span className="absolute inset-0 opacity-0 transition-opacity duration-500 bg-gradient-to-l from-green-400 to-lime-400 group-hover:opacity-100"></span>
+
+            {/* Button text with custom wipe effect and color transition */}
+            <span className="relative block text-center transition-colors duration-500 group-hover:animate-fadeLeftRight group-hover:text-black-500">
+              GO SOCIALS
+            </span>
+          </button>
+
+          {/* SOCIAL ICONS */}
+          <div className="flex justify-center gap-3 my-4">
+            <LinkedInIcon className="w-10 h-10 bg-black text-white rounded-full p-2" />
+            <FacebookIcon className="w-10 h-10 bg-black text-white rounded-full p-2" />
+            <TwitterIcon className="w-10 h-10 bg-black text-white rounded-full p-2" />
+            <InstagramIcon className="w-10 h-10 bg-black text-white rounded-full p-2" />
+            <YouTubeIcon className="w-10 h-10 bg-black text-white rounded-full p-2" />
+            <RedditIcon className="w-10 h-10 bg-black text-white rounded-full p-2" />
+            <PinterestIcon className="w-10 h-10 bg-black text-white rounded-full p-2" />
+          </div>
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            width: "50%",
-            justifyContent: "center",
-            //alignItems: "center",
-            gap: 10,
-          }}
-        >
+        <div className="flex flex-col w-full sm:w-3/4 md:3/4 lg:w-1/2 justify-center gap-2 sm:gap-4">
           <ReachOutForm />
         </div>
       </div>

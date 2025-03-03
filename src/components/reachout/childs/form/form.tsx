@@ -19,7 +19,6 @@ const ReachOutForm = () => {
     message: "",
     privacy: "",
   });
-  const [errorMessage, setErrorMessage] = useState(""); // Notification message
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -64,13 +63,12 @@ const ReachOutForm = () => {
   };
 
   return (
-    <div className="max-w-4xl" style={{ fontFamily: "Calibri, Arial, sans-serif", fontWeight: 400 }}>
-
+    <div className="relative mx-auto p-6 min-lg:w-3/4 max-md:w-full sm:w-3/4" style={{ fontFamily: "Calibri, Arial, sans-serif", fontWeight: 400 }}>
       {/* Form Container */}
-      <div className="relative w-full max-w-xl mx-auto p-4">
+      <div className="relative mx-auto p-6">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col space-y-4 p-6 md:p-8 shadow-lg bg-transparent rounded-lg" // Added background and rounded corners
+          className="flex flex-col space-y-4 md:p-8 shadow-lg bg-transparent rounded-lg" // Added background and rounded corners
         >
           {/* Name Field */}
           <div className="relative">
@@ -158,14 +156,17 @@ const ReachOutForm = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="px-6 py-3 text-lg font-bold text-black bg-[#ADFF00] rounded-md hover:bg-black hover:text-white border-2 border-[#BCFF9D] transition-all"
+            className="relative px-6 py-3 text-lg font-bold text-black bg-[#ADFF00] rounded-md hover:bg-black hover:text-white transition-all duration-300 overflow-hidden"
           >
             Reach Out
+            <div className="absolute inset-0 border-2 border-[#ADFF00] animate-border pointer-events-none"></div>
           </button>
+
+
         </form>
       </div>
 
-      <div className="fixed bottom-16 right-0.5 -translate-x-1/2 z-[999999]">
+      <div className="fixed bottom-16 lg:bottom-20 max-sm:bottom-15 right-0.5 -translate-x-1/2 z-[999999]">
         <ReCAPTCHA
           ref={recaptchaRef}
           sitekey="6LdWstkqAAAAAKexIR0vyC4KcXzhjhTYpdqohU7w"
