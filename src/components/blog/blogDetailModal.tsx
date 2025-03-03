@@ -20,7 +20,7 @@ import filledbookmark from "../../assets/icons/Vector (10).png";
 import data from "../../assets/data/blog.json";
 import SideBar from "./sideBar";
 import Reactions from "./reactions";
-import SocialLoginModal from "./socialLoginModal";
+import SocialLoginModal from "./socialLoginModel";
 
 
 interface ModalProps {
@@ -220,7 +220,7 @@ const BlogDetailModal: React.FC<ModalProps> = ({
                 onClick={() => handleIconClick("bookmark")}
               >
                 <img
-                  // src={isBookmarked ? filledbookmark : bookmark}
+                  src={isBookmarked ? filledbookmark : bookmark}
                   alt="Bookmark Icon"
                   className="w-4 h-4"
                   onClick={() => setIsModalOpen(true)}
