@@ -41,27 +41,7 @@ const Home = () => {
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
-
-
-  // const showSuccessToast = () => {
-  //   toast.success("Changes saved.", {
-  //     position: "top-right",
-  //     autoClose: 3000, 
-  //     hideProgressBar: true,
-  //     closeOnClick: true,
-  //     pauseOnHover: true,
-  //     draggable: true,
-  //     style: {
-  //       background: "green",
-  //       color: "white",
-  //       fontSize: "16px",
-  //       fontWeight: "bold",
-  //     },
-  //     icon: "✅",
-  //   });
-  // };
-
-
+ 
 
   const handleMouseEnter = (image: string) => {
     setHoveredImage(image);

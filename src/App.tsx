@@ -68,7 +68,6 @@ function App() {
             }
           />
 
-
           <Route
             path="/membership"
             element={
