@@ -83,8 +83,7 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
   const [shares, setShares] = useState(45);
   const [hasShared, setHasShared] = useState(false);
 
-  const [bookmarks, setBookmarks] = useState(500);
-  const [bookmarked, setBookmarked] = useState(false);
+  const [bookmarks, _setBookmarks] = useState(500);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState({
