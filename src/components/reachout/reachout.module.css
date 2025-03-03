@@ -1,38 +1,37 @@
 .container {
   display: flex;
   flex-direction: row;
-  /* margin-top: 2px; */
-  gap: 20px;
-  /* padding: 45px 46px; */
-  z-index: 5;
-  position: relative;
-  height: 100vh;
-  /* min-height: 80vh; */
-  width: 100%;
+  align-items: center;
+  height: 90vh;
+  width: 100vw; /* w-screen equivalent */
+  /* scrollbar-width: none; Hide scrollbar for Firefox */
 }
 
-p {
-  font-size: 1em;
-  color: #9ef01a;
+.container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, Edge */
 }
+
+@media (width: 1024px) {
+  /* lg breakpoint */
+  .container {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 1920px) {
+  /* Custom 5xl breakpoint */
+  .container {
+    flex-direction: row;
+  }
+}
+
 .content1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width:50%;
+  width: 50%;
   margin-top: 10px;
-}
-
-.iconsContainer {
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
-  margin-bottom: 13px;
-}
-
-.iconsContainer:hover {
-  cursor: pointer;
 }
 
 .canvasLayer {
@@ -48,25 +47,16 @@ p {
   cursor: pointer;
 }
 
-@media (max-width: 580px) {
+@media (max-width: 1024px) {
   .container {
     display: flex;
     flex-direction: column;
-
+    margin-top: 40px;
+    padding-bottom: 100px;
     align-items: center;
     overflow-y: auto;
   }
   .container::-webkit-scrollbar {
     display: none;
-  }
-  h1 {
-    font-size: 0.8em;
-  }
-  p {
-    font-size: 0.5em;
-  }
-  .gridbox {
-    width: 20px;
-    height: 20px;
   }
 }
