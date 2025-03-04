@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./home.module.css";
 import AiImage from "../../assets/images/headimages/AI_head.png";
 import metaVerse from "../../assets/images/headimages/Metaverse_head.png";
@@ -12,30 +12,48 @@ import { useNavigate } from "react-router-dom";
 import Particle from "./childs/particlesAnimation/particlesAnimation";
 import FogAnimation from "./childs/fogAnimation/fogAnimation";
 import SmokeAnimation from "../footer/childs/component/smokeComponent/smoke";
-// import { AlertCircle, CheckCircle } from 'lucide-react';
+
 
 const Home = () => {
   const [animateHeadImage, setanimateHeadImage] = useState(false);
   const [reAnimateHeadImage, setreAnimateHeadImage] = useState(false);
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
   const [email, setEmail] = useState<string>('');
-  const [_status, setStatus] = useState<'success' | 'error' | ''>('');
+  // const [status, setStatus] = useState<'success' | 'error' | ''>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [showNotification, setShowNotification] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  // Update width on window resize
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+
+  const handleSubscribe = () => {
+    if (loading) return; // Prevent multiple clicks
+
+    setLoading(true);
+
+    // Simulate an API request delay
+    setTimeout(() => {
+      setLoading(false);
+      setShowNotification(true);
+
+      // Hide the notification after 3 seconds
+      setTimeout(() => {
+        setShowNotification(false);
+      }, 3000);
+    }, 2000);
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
-
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setStatus('success');
-    } catch (error) {
-      setStatus('error');
-    } finally {
-      setLoading(false);
-    }
+    // setLoading(true);
   };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,7 +93,6 @@ const Home = () => {
 
         <div className={styles.textArea} style={{ fontFamily: "Calibri, Arial, sans-serif", fontWeight: 400 }}>
           <div className="absolute inset-0 border-2 border-[#ADFF00] animate-border pointer-events-none"></div>
-
 
           {/* Header Section */}
           <div className={styles.textSection} >
@@ -127,26 +144,27 @@ const Home = () => {
                     className={styles.input1}
                     required
                   />
+
                   <button
                     type="submit"
                     disabled={loading}
                     className={styles.submitButton}
+                    onClick={handleSubscribe}
+
                     style={{
                       fontFamily: 'Mowaq, sans-serif',
                       boxShadow: "0px 0px 15px #ADFF00",
                     }}>
                     {loading ? (
-                      <div className="animate-spin rounded-full border-2 border-white border-t-transparent h-5 w-5 sm:h-4 sm:w-4 md:h-3.5 md:w-3.5 lg:h-3 lg:w-3 xl:h-2.5 xl:w-2.5 2xl:h-2 2xl:w-2 border-2 sm:border-2 md:border-1.5 lg:border-1.5 xl:border-1  2xl:border-1" />
+                      <div className="animate-spin rounded-full border-2 border-white border-t-transparent h-5 w-5" />
                     ) : (
-                      'Subscribe Now'
+                      "Subscribe Now"
                     )}
                   </button>
-
 
                 </div>
               </div>
             </form>
-            {/* {renderStatusMessage()} */}
           </div>
 
 
@@ -157,7 +175,25 @@ const Home = () => {
             <img src={elevenlabs} className="w-12 h-12 max-sm:w-5 max-sm:h-5 md:w-10 md:h-10 object-contain flex-shrink-0" />
             <img src={assembly2} className="w-12 h-12 max-sm:w-5 max-sm:h-5 md:w-10 md:h-10 object-contain flex-shrink-0" />
           </div>
+
+          {/* Notification Popup - Positioned at the Top Center */}
+          {showNotification && windowWidth > 900 && (
+            <div className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-16 flex justify-center">
+              <div className="absolute bg-black text-white px-4 py-2 rounded-lg shadow-lg border-2 border-[#ADFF00] animate-fade-in-out transition-opacity duration-500">
+                ✅ Subscription successful!
+              </div>
+            </div>
+          )}
         </div>
+
+        {showNotification && windowWidth <= 900 && (
+          <div className="flex justify-center">
+            <div className="absolute bg-black text-white text-sm px-3 py-1 rounded-md shadow-lg border border-[#ADFF00] animate-fade-in-out transition-opacity duration-500 w-fit"
+              style={{ fontFamily: "Calibri, Arial, sans-serif" }} >
+              ✅ Subscription successful!
+            </div>
+          </div>
+        )}
 
         <div
           className={styles.modelSection}
@@ -169,7 +205,7 @@ const Home = () => {
             src={AiAnimation}
             autoPlay
             loop
-            tabIndex={-1} // Removes an element from the natural tab order like on iphone default behaviour
+            tabIndex={-1}
             style={{ outline: "none", }}
             muted
             controls={false}

@@ -11,12 +11,12 @@
   display: none; /* Hide scrollbar for Chrome, Safari, Edge */
 }
 
-@media (width: 1024px) {
-  /* lg breakpoint */
+/* lg breakpoint */
+/* @media (width: 1024px) {
   .container {
     flex-direction: column;
   }
-}
+} */
 
 @media (min-width: 1920px) {
   /* Custom 5xl breakpoint */
