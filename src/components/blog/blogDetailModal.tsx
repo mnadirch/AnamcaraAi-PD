@@ -47,6 +47,8 @@ const BlogDetailModal: React.FC<ModalProps> = ({
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(200);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
 
   // Commenting states
@@ -89,6 +91,19 @@ const BlogDetailModal: React.FC<ModalProps> = ({
       setShowButton(false);
     }
   };
+
+  const handleSubscribe = () => {
+    console.log("Subscribe button clicked!");
+
+    setShowNotification(true);
+
+    // Hide the notification after 3 seconds
+    setTimeout(() => {
+      console.log("Hiding notification...");
+      setShowNotification(false);
+    }, 3000);
+  };
+
 
   // **Post Comment** — now using the actual user input
   const handlePostComment = () => {
@@ -446,6 +461,10 @@ const BlogDetailModal: React.FC<ModalProps> = ({
                 className="bg-transparent border border-[#ADFF00] rounded-md px-6 py-3 text-[#ADFF00] placeholder-[#ADFF00] w-full sm:w-2/3 focus:outline-none"
               />
               <button
+                onClick={() => {
+                  console.log("Button clicked!"); // Debugging log
+                  handleSubscribe();
+                }}
                 className="relative px-4 py-2 text-md font-bold text-black bg-[#ADFF00] rounded-md hover:bg-black hover:text-white transition-all duration-300 overflow-hidden"
                 style={{
                   fontFamily: "Mowaq, sans-serif",
@@ -456,14 +475,22 @@ const BlogDetailModal: React.FC<ModalProps> = ({
                 Subscribe
                 <div className="absolute inset-0 border-2 border-[#ADFF00] animate-border pointer-events-none"></div>
               </button>
-
-
             </div>
-            <div className="pt-6"></div>
+
+            {showNotification && (
+              <div className=" mt-4 flex justify-center">
+                {/* <div className="absolute bg-black text-white px-4 py-2 rounded-lg shadow-lg border-2 border-[#ADFF00] animate-fade-in-out transition-opacity duration-500"> */}
+                  ✅ Subscription successful!
+                {/* </div> */}
+              </div>
+            )}
+            <div className="pt-20"></div>
+
           </div>
         </div>
         {/* <RightSideIconsBar> with scrollToTop callback */}
-        <SideBar onScrollToTop={scrollToTop} /></div>
+        <SideBar onScrollToTop={scrollToTop} />
+      </div>
     </div>
 
 

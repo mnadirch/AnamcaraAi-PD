@@ -59,8 +59,9 @@ const ReachOut = () => {
         ></canvas>
 
         <div className="flex flex-col justify-center items-center text-center" style={{ fontFamily: "Calibri, Arial, sans-serif", fontWeight: 400, width: "50vw" }}>
+
           <div>
-            <h1 className="relative w-full group inline-block px-6 py-3 font-bold uppercase text-black tracking-wide rounded-lg shadow-lg mt-10 overflow-hidden text-center cursor-pointer">
+            <h1 className="relative w-full group inline-block px-4 sm:px-6 md:px-8 lg:px-10 py-2 sm:py-3 font-bold uppercase text-black tracking-wide rounded-lg shadow-lg mt-6 sm:mt-8 md:mt-10 overflow-hidden text-center cursor-pointer text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">
               {/* Base gradient layer */}
               <span
                 className="absolute inset-0 transition-opacity duration-500
