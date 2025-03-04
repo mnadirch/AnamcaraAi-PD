@@ -48,8 +48,6 @@ const BlogDetailModal: React.FC<ModalProps> = ({
   const [likeCount, setLikeCount] = useState(200);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
-  const [loading, setLoading] = useState<boolean>(false);
-
 
   // Commenting states
   const [showButton, setShowButton] = useState(false);
