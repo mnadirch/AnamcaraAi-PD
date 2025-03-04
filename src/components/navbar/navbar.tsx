@@ -55,15 +55,15 @@ const Navbar: React.FC = () => {
 
       {/* Links */}
       <div
-    className={`${isMenuOpen ? "flex" : "hidden"} 
+        className={`${isMenuOpen ? "flex" : "hidden"} 
     lg:flex flex-col lg:flex-row items-center justify-center md:gap-8 max-lg:gap-20
     absolute lg:static top-14 
     bg-[#111]/80 lg:bg-transparent lg:p-0 
     rounded lg:rounded-none z-50`}
-  
+
       >
         {links.map((link, index) => (
-          <div key={index} className="relative w-3/5">
+          <div key={index} className="relative w-4/5">
             {link.hasDropdown ? (
               <div
                 className="flex items-center cursor-pointer"
@@ -124,9 +124,9 @@ const Navbar: React.FC = () => {
           </div>
         ))}
       </div>
-      
+
       {/* Call-to-Action Button */}
-      <div className="relative flex justify-center items-center sm:min-w-[180px] min-h-[60px] h-full overflow-hidden">
+      <div className="relative flex justify-center items-center sm:min-w-[160px] min-h-[60px] h-full overflow-hidden">
         <button className="relative px-4 md:px-4 lg:px-4 py-2 text-xs sm:text-sm md:text-base font-medium cursor-pointer border border-[#ADFF00] transition-all duration-300 bg-[#ADFF00] text-black hover:bg-black hover:text-white">
           Get Connected
           <div className="absolute inset-0 border-2 border-[#ADFF00] animate-border pointer-events-none"></div>

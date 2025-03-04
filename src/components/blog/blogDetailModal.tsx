@@ -476,12 +476,14 @@ const BlogDetailModal: React.FC<ModalProps> = ({
             </div>
 
             {showNotification && (
-              <div className=" mt-4 flex justify-center">
-                {/* <div className="absolute bg-black text-white px-4 py-2 rounded-lg shadow-lg border-2 border-[#ADFF00] animate-fade-in-out transition-opacity duration-500"> */}
+              <div className="fixed bottom-6 right-6 z-50 flex justify-center">
+                <div className="bg-black text-white px-4 py-2 rounded-lg shadow-lg border-2 border-[#ADFF00] 
+    animate-fade-in-out transition-opacity duration-500 w-max">
                   ✅ Subscription successful!
-                {/* </div> */}
+                </div>
               </div>
             )}
+
             <div className="pt-20"></div>
 
           </div>
