@@ -102,7 +102,6 @@ const BlogDetailModal: React.FC<ModalProps> = ({
     }, 3000);
   };
 
-
   // **Post Comment** — now using the actual user input
   const handlePostComment = () => {
     if (comment.trim()) {

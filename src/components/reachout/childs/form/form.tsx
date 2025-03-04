@@ -78,11 +78,13 @@ const ReachOutForm = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className={`w-full p-3 rounded-md border focus:outline-none text-white tracking-wide bg-transparent focus:bg-[#A9A9A9]/50 ${errors.name ? "border-red-500" : "border-[#ADFF00]"
-                }`}
+              className={`w-full sm:p-3 md:p-1 rounded-md border focus:outline-none text-white tracking-wide bg-transparent 
+                focus:bg-[#A9A9A9]/50 
+                text-sm sm:text-base md:text-lg 
+                ${errors.name ? "border-red-500" : "border-[#ADFF00]"}`}
             />
             {errors.name && (
-              <div className="mt-1 text-red-500 text-sm">{errors.name}</div>
+              <div className="text-red-500 text-xs">{errors.name}</div>
             )}
           </div>
 
@@ -94,11 +96,11 @@ const ReachOutForm = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className={`w-full p-3 rounded-md border focus:outline-none text-white tracking-wide bg-transparent focus:bg-[#A9A9A9]/50 ${errors.email ? "border-red-500" : "border-[#ADFF00]"
+              className={`w-full sm:p-3 md:p-1 rounded-md border focus:outline-none text-white tracking-wide bg-transparent focus:bg-[#A9A9A9]/50 ${errors.email ? "border-red-500" : "border-[#ADFF00]"
                 }`}
             />
             {errors.email && (
-              <div className="mt-1 text-red-500 text-sm">{errors.email}</div>
+              <div className="text-red-500 text-xs">{errors.email}</div>
             )}
           </div>
 
@@ -110,11 +112,11 @@ const ReachOutForm = () => {
               name="subject"
               value={formData.subject}
               onChange={handleChange}
-              className={`w-full p-3 rounded-md border focus:outline-none text-white bg-transparent focus:bg-[#A9A9A9]/50 ${errors.subject ? "border-red-500" : "border-[#ADFF00]"
+              className={`w-full sm:p-3 md:p-1 rounded-md border focus:outline-none text-white bg-transparent focus:bg-[#A9A9A9]/50 ${errors.subject ? "border-red-500" : "border-[#ADFF00]"
                 }`}
             />
             {errors.subject && (
-              <div className="mt-1 text-red-500 text-sm">{errors.subject}</div>
+              <div className="text-red-500 text-xs">{errors.subject}</div>
             )}
           </div>
 
@@ -126,11 +128,11 @@ const ReachOutForm = () => {
               value={formData.message}
               onChange={handleChange}
               rows={4}
-              className={`w-full p-3 rounded-md border focus:outline-none text-white bg-transparent tracking-wide focus:bg-[#A9A9A9]/50 ${errors.message ? "border-red-500" : "border-[#ADFF00]"
+              className={`w-full sm:p-3 md:p-1 rounded-md border focus:outline-none text-white bg-transparent tracking-wide focus:bg-[#A9A9A9]/50 ${errors.message ? "border-red-500" : "border-[#ADFF00]"
                 }`}
             />
             {errors.message && (
-              <div className="mt-1 text-red-500 text-sm">{errors.message}</div>
+              <div className=" text-red-500 text-xs">{errors.message}</div>
             )}
           </div>
 
@@ -149,20 +151,20 @@ const ReachOutForm = () => {
               </span>
             </label>
             {errors.privacy && (
-              <div className="mt-1 text-red-500 text-sm">{errors.privacy}</div>
+              <div className="text-red-500 text-xs">{errors.privacy}</div>
             )}
           </div>
 
           {/* Submit Button */}
           <button
             type="submit"
-            className="relative px-6 py-3 text-lg font-bold text-black bg-[#ADFF00] rounded-md hover:bg-black hover:text-white transition-all duration-300 overflow-hidden"
+            className="relative px-6 py-2
+            text-lg font-bold text-black 
+            bg-[#ADFF00] rounded-md hover:bg-black hover:text-white transition-all duration-300 overflow-hidden"
           >
             Reach Out
             <div className="absolute inset-0 border-2 border-[#ADFF00] animate-border pointer-events-none"></div>
           </button>
-
-
         </form>
       </div>
 

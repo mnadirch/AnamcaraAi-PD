@@ -61,7 +61,7 @@ const ReachOut = () => {
         <div className="flex flex-col justify-center items-center text-center" style={{ fontFamily: "Calibri, Arial, sans-serif", fontWeight: 400, width: "50vw" }}>
 
           <div>
-            <h1 className="relative w-full group inline-block px-4 sm:px-6 md:px-8 lg:px-10 py-2 sm:py-3 font-bold uppercase text-black tracking-wide rounded-lg shadow-lg mt-6 sm:mt-8 md:mt-10 overflow-hidden text-center cursor-pointer text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl">
+            <h1 className="relative w-full group inline-block px-6 py-2 font-bold uppercase text-black tracking-wide rounded-lg shadow-lg mt-20 md:mt-20 lg:mt-5 overflow-hidden text-center cursor-pointer text-base">
               {/* Base gradient layer */}
               <span
                 className="absolute inset-0 transition-opacity duration-500
@@ -76,8 +76,9 @@ const ReachOut = () => {
 
               {/* Button text with custom wipe effect and color transition */}
               <span
-                className="relative block text-center transition-colors duration-500
-      group-hover:animate-fadeLeftRight group-hover:text-black-500"
+                className="relative block text-center transition-colors duration-500 
+    text-sm sm:text-lg md:text-base 
+              group-hover:animate-fadeLeftRight group-hover:text-black-500"
               >
                 REACH OUT TO US!
               </span>
@@ -85,7 +86,7 @@ const ReachOut = () => {
           </div>
 
           {/* MESSAGE TEXT */}
-          <p className="text-white text-sm sm:text-base md:text-lg font-medium leading-snug mt-5 mb-5">
+          <p className="text-white text-xs sm:text-sm md:text-sm max-lg:text-lg font-medium leading-tight sm:leading-snug md:leading-normal mt-3 sm:mt-1 md:mt-1 min-lg:mt-3 mb-3 sm:mb-4 md:mb-5">
             Have an idea, question, or want to partner with us? <br />  Send us a message and hit
             <span className="font-bold text-white tracking-wide" style={{ fontSize: "1.5rem" }}> REACH OUT!</span>
           </p>
@@ -100,7 +101,7 @@ const ReachOut = () => {
           </div>
 
           {/* GO SOCIALS BUTTON */}
-          <button className="relative px-6 mt-2 py-3 font-bold uppercase text-black tracking-wide rounded-lg shadow-lg overflow-hidden cursor-pointer group">
+          <button className="relative px-6 mt-2 py-2 font-bold uppercase text-black tracking-wide rounded-lg shadow-lg overflow-hidden cursor-pointer group">
             {/* Base gradient layer */}
             <span className="absolute inset-0 transition-opacity duration-500 bg-gradient-to-l from-lime-400 to-green-400 group-hover:opacity-0"></span>
 
