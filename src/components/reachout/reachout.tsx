@@ -61,7 +61,7 @@ const ReachOut = () => {
         <div className="flex flex-col justify-center items-center text-center" style={{ fontFamily: "Calibri, Arial, sans-serif", fontWeight: 400, width: "50vw" }}>
 
           <div>
-            <h1 className="relative w-full group inline-block px-6 py-2 font-bold uppercase text-black tracking-wide rounded-lg shadow-lg mt-20 md:mt-20 lg:mt-5 overflow-hidden text-center cursor-pointer text-base">
+            <h1 className="relative w-full group inline-block px-6 py-1 font-bold uppercase text-black tracking-wide rounded-lg shadow-lg mt-20 md:mt-20 lg:mt-5 overflow-hidden text-center cursor-pointer text-base">
               {/* Base gradient layer */}
               <span
                 className="absolute inset-0 transition-opacity duration-500
@@ -86,13 +86,13 @@ const ReachOut = () => {
           </div>
 
           {/* MESSAGE TEXT */}
-          <p className="text-white text-xs sm:text-sm md:text-sm max-lg:text-lg font-medium leading-tight sm:leading-snug md:leading-normal mt-3 sm:mt-1 md:mt-1 min-lg:mt-3 mb-3 sm:mb-4 md:mb-5">
+          <p className="text-white text-xs sm:text-sm md:text-sm max-lg:text-lg font-medium leading-tight sm:leading-snug md:leading-normal">
             Have an idea, question, or want to partner with us? <br />  Send us a message and hit
-            <span className="font-bold text-white tracking-wide" style={{ fontSize: "1.5rem" }}> REACH OUT!</span>
+            <span className="font-bold text-white tracking-wide" style={{ fontSize: "1.2rem" }}> REACH OUT!</span>
           </p>
 
           {/* GAME SECTION */}
-          <div className="relative flex flex-row items-center gap-2 ml-8">
+          <div className="relative flex flex-row items-center ml-8">
             <Game />
             <div className="flex flex-col items-center mt-2">
               <img src={arrow} alt="Arrow pointing to game" width="30" height="30" />
@@ -101,7 +101,7 @@ const ReachOut = () => {
           </div>
 
           {/* GO SOCIALS BUTTON */}
-          <button className="relative px-6 mt-2 py-2 font-bold uppercase text-black tracking-wide rounded-lg shadow-lg overflow-hidden cursor-pointer group">
+          <button className="relative px-6 py-1 mt-1 font-bold uppercase text-black tracking-wide rounded-lg shadow-lg overflow-hidden cursor-pointer group">
             {/* Base gradient layer */}
             <span className="absolute inset-0 transition-opacity duration-500 bg-gradient-to-l from-lime-400 to-green-400 group-hover:opacity-0"></span>
 
@@ -115,7 +115,7 @@ const ReachOut = () => {
           </button>
 
           {/* SOCIAL ICONS */}
-          <div className="flex justify-center gap-3 my-4">
+          <div className="flex justify-center gap-3 my-2">
             <LinkedInIcon className="w-10 h-10 bg-black text-white rounded-full p-2" />
             <FacebookIcon className="w-10 h-10 bg-black text-white rounded-full p-2" />
             <TwitterIcon className="w-10 h-10 bg-black text-white rounded-full p-2" />

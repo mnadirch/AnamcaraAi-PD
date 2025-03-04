@@ -65,10 +65,10 @@ const ReachOutForm = () => {
   return (
     <div className="relative mx-auto p-6 min-lg:w-3/4 max-md:w-full sm:w-3/4" style={{ fontFamily: "Calibri, Arial, sans-serif", fontWeight: 400 }}>
       {/* Form Container */}
-      <div className="relative mx-auto p-6">
+      <div className="relative p-2">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col space-y-4 md:p-8 shadow-lg bg-transparent rounded-lg" // Added background and rounded corners
+          className="flex flex-col space-y-1 md:p-8 shadow-lg bg-transparent rounded-lg" 
         >
           {/* Name Field */}
           <div className="relative">
@@ -146,7 +146,7 @@ const ReachOutForm = () => {
                 onChange={handleCheckboxChange}
                 className="rounded border-gray-700 text-indigo-600 focus:ring-indigo-500"
               />
-              <span>
+              <span className="text-xs">
                 I have read and accept the <span className="underline">Privacy Policy</span>.
               </span>
             </label>
@@ -158,7 +158,7 @@ const ReachOutForm = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="relative px-6 py-2
+            className="relative px-6 py-1
             text-lg font-bold text-black 
             bg-[#ADFF00] rounded-md hover:bg-black hover:text-white transition-all duration-300 overflow-hidden"
           >
