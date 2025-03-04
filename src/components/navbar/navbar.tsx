@@ -56,7 +56,7 @@ const Navbar: React.FC = () => {
       {/* Links */}
       <div
     className={`${isMenuOpen ? "flex" : "hidden"} 
-    lg:flex   flex-col lg:flex-row items-center justify-center gap-2 md:gap-8 max-xl:gap-20
+    lg:flex flex-col lg:flex-row items-center justify-center md:gap-8 max-lg:gap-20
     absolute lg:static top-14 
     bg-[#111]/80 lg:bg-transparent lg:p-0 
     rounded lg:rounded-none z-50`}
