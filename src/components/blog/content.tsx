@@ -147,6 +147,7 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
                   Read the Story
                   <div className="absolute inset-0 border-2 border-[#ADFF00] animate-border pointer-events-none"></div>
                 </button>
+
                 {/* Interactive Social Icons */}
                 <div className="flex items-center space-x-8 mt-6 text-white">
                   {/* Like Icon */}
@@ -168,7 +169,7 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
                       (setNotifications(notifications + 1), setHasNotified(true))
                     }
                   >
-                    <FaBell size={30} className={`transition cursor-pointer ${liked ? "text-[#ADFF00]" : "text-white"
+                    <FaBell size={30} className={`transition cursor-pointer ${hasNotified ? "text-[#ADFF00]" : "text-white"
                       } hover:text-[#ADFF00]`} />
                     <span className="text-lg mt-1">{notifications}</span>
                   </div>
@@ -180,7 +181,7 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
                       (setComments(comments + 1), setHasCommented(true))
                     }
                   >
-                    <FaComment size={30} className={`transition cursor-pointer ${liked ? "text-[#ADFF00]" : "text-white"
+                    <FaComment size={30} className={`transition cursor-pointer ${hasCommented ? "text-[#ADFF00]" : "text-white"
                       } hover:text-[#ADFF00]`} />
                     <span className="text-lg mt-1">{comments}</span>
                   </div>
@@ -191,10 +192,11 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
                       !hasShared && (setShares(shares + 1), setHasShared(true))
                     }
                   >
-                    <FaShare size={30} className={`transition cursor-pointer ${liked ? "text-[#ADFF00]" : "text-white"
+                    <FaShare size={30} className={`transition cursor-pointer ${hasShared ? "text-[#ADFF00]" : "text-white"
                       } hover:text-[#ADFF00]`} />
                     <span className="text-lg mt-1">{shares}</span>
                   </div>
+
                   {/* Bookmark Icon */}
                   <div
                     className="flex flex-col items-center cursor-pointer"
