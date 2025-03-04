@@ -55,21 +55,22 @@ const Navbar: React.FC = () => {
 
       {/* Links */}
       <div
-        className={`${isMenuOpen ? "flex" : "hidden"
-          } lg:flex flex-col lg:flex-row items-center 
-gap-2 md:gap-4 xl:gap-20 
-absolute lg:static top-14 left-1/2 transform -translate-x-1/2 lg:translate-x-0 
-bg-[#000000] lg:bg-transparent p-4 lg:p-0 rounded lg:rounded-none`} >
+    className={`${isMenuOpen ? "flex" : "hidden"} 
+    lg:flex   flex-col lg:flex-row items-center justify-center gap-2 md:gap-8 max-xl:gap-20
+    absolute lg:static top-14 
+    bg-[#111]/80 lg:bg-transparent lg:p-0 
+    rounded lg:rounded-none z-50`}
+  
+      >
         {links.map((link, index) => (
-          <div key={index} className="relative">
+          <div key={index} className="relative w-3/5">
             {link.hasDropdown ? (
               <div
                 className="flex items-center cursor-pointer"
                 onClick={() => setIsResourcesOpen(!isResourcesOpen)}
               >
-                <span className="relative group text-white whitespace-nowrap">
+                <span className="relative group text-white text-sm  whitespace-nowrap">
                   {link.name}
-
                   {/* Underline Effect */}
                   <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#ADFF00] transition-all duration-300 group-hover:w-full"></span>
                 </span>
@@ -87,7 +88,7 @@ bg-[#000000] lg:bg-transparent p-4 lg:p-0 rounded lg:rounded-none`} >
                   e.preventDefault();
                   handleNavigate(link.path);
                 }}
-                className="relative group text-white !text-xs md:!text-sm whitespace-nowrap"
+                className="relative group text-white text-sm whitespace-nowrap"
               >
                 {link.name}
                 {/* Underline Effect */}
@@ -95,10 +96,13 @@ bg-[#000000] lg:bg-transparent p-4 lg:p-0 rounded lg:rounded-none`} >
               </a>
             )}
 
-            {/* Dropdown Menu */}
+            {/* Dropdown Menu with Better Positioning & Auto-close */}
             {link.hasDropdown && isResourcesOpen && (
-              <div className="absolute top-full left-0 text-white shadow-lg rounded-lg mt-2 w-48"
-                style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)' }}>
+              <div
+                className="absolute top-full left-0 w-48 text-white shadow-lg rounded-lg mt-2 z-50"
+                style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
+                onMouseLeave={() => setIsResourcesOpen(false)} // Auto close when mouse leaves
+              >
                 {dropdownLinks.map((dropdownLink, idx) => (
                   <a
                     key={idx}
@@ -106,11 +110,12 @@ bg-[#000000] lg:bg-transparent p-4 lg:p-0 rounded lg:rounded-none`} >
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavigate(dropdownLink.path);
+                      setIsResourcesOpen(false); // Close after click
                     }}
                     className="relative block px-4 py-2 text-white group"
                   >
                     {dropdownLink.name}
-                    {/* Underline Effect for Dropdown Options */}
+                    {/* Underline Effect */}
                     <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-[#ADFF00] transition-all duration-300 group-hover:w-full"></span>
                   </a>
                 ))}
@@ -119,9 +124,9 @@ bg-[#000000] lg:bg-transparent p-4 lg:p-0 rounded lg:rounded-none`} >
           </div>
         ))}
       </div>
-
+      
       {/* Call-to-Action Button */}
-      <div className="relative flex justify-center items-center sm:min-w-[216px] min-h-[60px] h-full overflow-hidden">
+      <div className="relative flex justify-center items-center sm:min-w-[180px] min-h-[60px] h-full overflow-hidden">
         <button className="relative px-4 md:px-4 lg:px-4 py-2 text-xs sm:text-sm md:text-base font-medium cursor-pointer border border-[#ADFF00] transition-all duration-300 bg-[#ADFF00] text-black hover:bg-black hover:text-white">
           Get Connected
           <div className="absolute inset-0 border-2 border-[#ADFF00] animate-border pointer-events-none"></div>
