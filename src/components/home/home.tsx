@@ -98,7 +98,7 @@ const Home = () => {
           <div className={styles.textSection} >
             <h1 className={styles.heading} style={{ fontFamily: "Mowaq, sans-serif", fontWeight: 400 }}>
               Beyond Human Connection,{' '}
-              <span className="text-white heading">
+              <span className="text-black heading">
                 <br></br>
                 Empowering Every Individual
               </span>
