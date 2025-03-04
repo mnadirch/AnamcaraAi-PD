@@ -175,13 +175,7 @@ const Home = () => {
           </div>
 
           {/* Notification Popup - Positioned at the Top Center */}
-          {showNotification && windowWidth > 900 && (
-            <div className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-16 flex justify-center">
-              <div className="absolute bg-black text-white px-4 py-2 rounded-lg shadow-lg border-2 border-[#ADFF00] animate-fade-in-out transition-opacity duration-500">
-                ✅ Subscription successful!
-              </div>
-            </div>
-          )}
+          
         </div>
 
         {showNotification && windowWidth <= 900 && (
@@ -235,16 +229,16 @@ const Home = () => {
             onMouseLeave={handleMouseLeave}
           />
         </div>
+        {showNotification && windowWidth > 900 && (
+            <div className="fixed bottom-20 right-6 z-50">
+            <div className="bg-black text-white px-4 py-2 text-sm rounded-lg shadow-lg border-2 border-[#ADFF00] 
+            animate-fade-in-out transition-opacity duration-500 w-max">
+              ✅ Subscription successful!
+            </div>
+          </div>
+          )}
       </div>
 
-      {/* ✅ Notification Popup - Now placed directly below the form */}
-      {/* {showNotification && (
-        <div className="mt-4 flex justify-center">
-          <div className="bg-black text-white px-4 py-2 rounded-lg shadow-lg border-2 border-[#ADFF00] animate-fade-in-out transition-opacity duration-500">
-            ✅ Subscription successful!
-          </div>
-        </div>
-      )} */}
     </>
   );
 };
