@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../../components/navbar/navbar";
 import Content from "../../components/blog/content";
 import Cards from "../../components/blog/cards";
 import backgroundImage1 from "../../assets/images/backgrounds/pexels-cookiecutter-1148820.png";
@@ -65,7 +64,7 @@ const Blog: React.FC = () => {
   }, [nextImage]);
 
   return (
-    <div className="relative w-screen h-screen flex flex-col">
+    <div className="relative w-screen min-h-screen flex flex-col">
       {/* Background Image(s) */}
       <div className="absolute inset-0 w-full h-full z-0">
         <div
@@ -78,9 +77,8 @@ const Blog: React.FC = () => {
         ></div>
         {nextImage && (
           <div
-            className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
-              fadeIn ? "opacity-100" : "opacity-0"
-            }`}
+            className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ease-in-out ${fadeIn ? "opacity-100" : "opacity-0"
+              }`}
             style={{
               backgroundImage: `url(${nextImage})`,
               filter: "brightness(0.6)",
@@ -89,13 +87,23 @@ const Blog: React.FC = () => {
         )}
       </div>
 
-      {/* Navbar */}
-      <Navbar />
-
       {/* Main Layout */}
-      <div className="relative z-10 flex flex-row items-center justify-center min-h-screen px-6 text-white gap-8">        
-        <Cards activeCard={activeCard} setActiveCard={setActiveCard} />
-        <Content activeCard={activeCard} />
+      <div className="flex flex-col-reverse max-xl:flex-col xl:flex-row min-h-screen pt-20">
+        <div className="xl:w-1/2 w-full order-2 max-xl:order-2 xl:order-1 h-[40vh] max-xl:h-[35vh] xl:h-screen xl:pt-20 mb-8 max-xl:mb-10 xl:mb-0">
+          <div className="h-full px-4 max-xl:px-8 xl:px-12">
+            <Cards
+              activeCard={activeCard}
+              setActiveCard={setActiveCard}
+            />
+          </div>
+        </div>
+        <div className="xl:w-1/2 w-full order-1 max-xl:order-1 xl:order-2 h-[60vh] max-xl:h-[65vh] xl:h-screen xl:pt-20 flex items-center">
+          <div className="h-full w-full">
+            <Content
+              activeCard={activeCard}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

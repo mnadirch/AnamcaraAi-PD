@@ -126,6 +126,7 @@ const SideBar: React.FC<SideBarProps> = ({ onScrollToTop }) => {
       >
         <img src={scroll} alt="Scroll to top" className="w-4 h-4" />
       </button>
+    
     </div>
   );
 };

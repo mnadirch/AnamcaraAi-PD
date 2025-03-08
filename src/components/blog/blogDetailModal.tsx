@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import author from "../../assets/icons/fa6-solid_user-pen.png";
 import calender from "../../assets/icons/Vector (1).png";
 import heart from "../../assets/icons/like.png";
@@ -48,6 +48,8 @@ const BlogDetailModal: React.FC<ModalProps> = ({
   const [likeCount, setLikeCount] = useState(200);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
 
 
   // Commenting states
@@ -56,6 +58,15 @@ const BlogDetailModal: React.FC<ModalProps> = ({
   const [notification, setNotification] = useState("");
   const [comment, setComment] = useState("");
   const [commentList, setCommentList] = useState<string[]>([]);
+
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Icon Click Handler
   const handleIconClick = (type: string) => {
@@ -134,6 +145,7 @@ const BlogDetailModal: React.FC<ModalProps> = ({
       scrollableRef.current.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
+ 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
@@ -147,8 +159,8 @@ const BlogDetailModal: React.FC<ModalProps> = ({
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 text-2xl text-white hover:text-[#ADFF00] transition"
-        >
+          className="absolute top-[35px] right-3 text-2xl text-white hover:text-[#ADFF00] "
+          >
           ✕
         </button>
 
@@ -165,86 +177,114 @@ const BlogDetailModal: React.FC<ModalProps> = ({
           <h1 className="text-3xl md:text-4xl font-bold mb-4">{title}</h1>
 
           {/* Metadata and Icons */}
-          <div className="flex items-center justify-between text-white text-sm mb-6">
+          <div className="flex items-center justify-between text-white text-sm mb-6 max-sm:mb-3">
             {/* Left Metadata */}
             <div
               className="flex items-center space-x-6"
               style={{ fontFamily: "Mowaq, sans-serif" }}
             >
               <div className="flex items-center">
-                <img src={author} alt="Author Icon" className="w-4 h-4 mr-2" />
-                <span>Author Name</span>
+                <img src={author} alt="Author Icon" className="w-4 h-4 max-sm:w-3 max-sm:h-3 mr-2" />
+                <span className="text-xs sm:text-xs md:text-lg">
+                  Author Name</span>
               </div>
               <div className="flex items-center">
                 <img
                   src={calender}
                   alt="Calendar Icon"
-                  className="w-4 h-4 mr-2"
+                  className="w-3 h-3 mr-2"
                 />
-                <span>12 April 2024</span>
+                <span className="text-xs max-sm:text-xs md:text-lg ">
+                  12 April 2024</span>
               </div>
             </div>
 
             {/* Right Action Icons */}
-            <div className="flex items-center space-x-4 ml-6">
-              <button
-                className="hover:text-white transition flex items-center"
-                onClick={() => handleIconClick("upvote")}
-              >
-                <img
-                  src={isUpvoted ? filledup : up}
-                  alt="Upvote Icon"
-                  className="w-4 h-4"
-                />
-              </button>
-              <button
-                className="hover:text-white transition flex items-center"
-                onClick={() => handleIconClick("downvote")}
-              >
-                <img
-                  src={isDownvoted ? filleddown : down}
-                  alt="Downvote Icon"
-                  className="w-4 h-4"
-                />
-              </button>
-              <button
-                className="hover:text-white transition flex items-center"
-                onClick={() => handleIconClick("share")}
-              >
-                <img
-                  src={isShared ? filledshare : share}
-                  alt="Share Icon"
-                  className="w-4 h-4"
-                />
+            {windowWidth > 500 && (
+              <div className="flex flex-row items-center space-x-4 ml-6">
+                {/* Upvote Button */}
+                <button className="hover:text-white transition flex items-center" onClick={() => handleIconClick("upvote")}>
+                  <img src={isUpvoted ? filledup : up} alt="Upvote Icon" className="w-4 h-4" />
+                </button>
+
+                {/* Downvote Button */}
+                <button className="hover:text-white transition flex items-center" onClick={() => handleIconClick("downvote")}>
+                  <img src={isDownvoted ? filleddown : down} alt="Downvote Icon" className="w-4 h-4" />
+                </button>
+
+                {/* Share Button */}
+                <button className="hover:text-white transition flex items-center" onClick={() => handleIconClick("share")}>
+                  <img src={isShared ? filledshare : share} alt="Share Icon" className="w-4 h-4" />
+                </button>
+
+                {/* Social Media Icons */}
+                {isShared && (
+                  <div className="flex flex-row items-center space-x-4 transition-transform duration-300">
+                    <img src={fb} alt="Facebook Icon" className="w-5 h-5" />
+                    <img src={insta} alt="Instagram Icon" className="w-5 h-5" />
+                    <img src={linkedin} alt="LinkedIn Icon" className="w-5 h-5" />
+                  </div>
+                )}
+
+                {/* Bookmark Button */}
+                <button
+                  className="hover:text-white transition flex items-center"
+                  onClick={() => handleIconClick("bookmark")}
+                >
+                  <img
+                    src={isBookmarked ? filledbookmark : bookmark}
+                    alt="Bookmark Icon"
+                    className="w-4 h-4 max-sm:w-3 max-sm:h-3 "
+                    onClick={() => setIsModalOpen(true)}
+                  />
+                  {/* Modal */}
+                  <SocialLoginModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+                </button>
+              </div>
+            )}
+          </div>
+          {windowWidth < 500 && (
+            <div className="flex flex-row space-x-4 mb-3">
+              {/* Upvote Button */}
+              <button className="hover:text-white transition flex items-center" onClick={() => handleIconClick("upvote")}>
+                <img src={isUpvoted ? filledup : up} alt="Upvote Icon" className="w-4 h-4 " />
               </button>
 
-              {/* Social Media Icons Sliding In */}
+              {/* Downvote Button */}
+              <button className="hover:text-white transition flex items-center" onClick={() => handleIconClick("downvote")}>
+                <img src={isDownvoted ? filleddown : down} alt="Downvote Icon" className="w-4 h-4" />
+              </button>
+
+              {/* Share Button */}
+              <button className="hover:text-white transition flex items-center" onClick={() => handleIconClick("share")}>
+                <img src={isShared ? filledshare : share} alt="Share Icon" className="w-4 h-4" />
+              </button>
+
+              {/* Social Media Icons */}
               {isShared && (
-                <div className="flex items-center space-x-4 transition-transform duration-300">
-                  <img src={fb} alt="Facebook Icon" className="w-5 h-5" />
-                  <img src={insta} alt="Instagram Icon" className="w-5 h-5" />
-                  <img src={linkedin} alt="LinkedIn Icon" className="w-5 h-5" />
+                <div className="flex flex-row items-center space-x-4 transition-transform duration-300">
+                  <img src={fb} alt="Facebook Icon" className="w-5 h-5 " />
+                  <img src={insta} alt="Instagram Icon" className="w-5 h-5 " />
+                  <img src={linkedin} alt="LinkedIn Icon" className="w-5 h-5 " />
                 </div>
               )}
 
-              {/* Bookmark Icon */}
+              {/* Bookmark Button */}
               <button
-                className="hover:text-white transition flex items-center"
-                onClick={() => handleIconClick("bookmark")}
-              >
-                <img
-                  src={isBookmarked ? filledbookmark : bookmark}
-                  alt="Bookmark Icon"
-                  className="w-4 h-4"
-                  onClick={() => setIsModalOpen(true)}
-                />
-                {/* Modal */}
-                <SocialLoginModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-              </button>
-
-
+                  className="hover:text-white transition flex items-center"
+                  onClick={() => handleIconClick("bookmark")}
+                >
+                  <img
+                    src={isBookmarked ? filledbookmark : bookmark}
+                    alt="Bookmark Icon"
+                    className="w-4 h-4 max-sm:w-3 max-sm:h-3 "
+                    onClick={() => setIsModalOpen(true)}
+                  />
+                  {/* Modal */}
+                  <SocialLoginModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+                </button>
             </div>
-          </div>
+          )}
 
           {/* Main Content */}
           <div
@@ -268,6 +308,7 @@ const BlogDetailModal: React.FC<ModalProps> = ({
           {/* Comments, Views, and Action Icons Section */}
           <div className="mb-4" style={{ fontFamily: "Mowaq, sans-serif" }}>
             <div className="flex items-center justify-between text-sm text-white">
+
               {/* Left Section: Comments and Views */}
               <div className="flex items-center space-x-6">
                 <div className="flex items-center">
@@ -276,11 +317,12 @@ const BlogDetailModal: React.FC<ModalProps> = ({
                     alt="Comments Icon"
                     className="w-4 h-4 mr-2"
                   />
-                  <span>{commentList.length} comments</span>
+                  <span className="text-xs sm:text-base md:text-lg">{commentList.length} comments</span>
                 </div>
                 <div className="flex items-center">
                   <img src={view} alt="Views Icon" className="w-4 h-4 mr-2" />
-                  <span>1827 views</span>
+                  <span className="text-xs sm:text-base md:text-lg">
+                    1827 views</span>
                 </div>
               </div>
 
@@ -296,76 +338,48 @@ const BlogDetailModal: React.FC<ModalProps> = ({
                     alt="Like Icon"
                     className="w-4 h-4 mr-2"
                   />
-                  <span>{likeCount}</span>
+                  <span className="text-xs sm:text-base md:text-lg" >{likeCount}</span>
                 </div>
+                {windowWidth >= 600 && (
+                  <div className="flex items-center space-x-4">
+                    {/* Upvote Button */}
+                    <button className="hover:text-white transition flex items-center" onClick={() => handleIconClick("upvote")}>
+                      <img src={isUpvoted ? filledup : up} alt="Upvote Icon" className="w-4 h-4" />
+                    </button>
 
-                {/* Upvote Button */}
-                <button
-                  className="hover:text-white transition flex items-center"
-                  onClick={() => handleIconClick("upvote")}
-                >
-                  <img
-                    src={isUpvoted ? filledup : up}
-                    alt="Upvote Icon"
-                    className="w-4 h-4"
-                  />
-                </button>
+                    {/* Downvote Button */}
+                    <button className="hover:text-white transition flex items-center" onClick={() => handleIconClick("downvote")}>
+                      <img src={isDownvoted ? filleddown : down} alt="Downvote Icon" className="w-4 h-4" />
+                    </button>
 
-                {/* Downvote Button */}
-                <button
-                  className="hover:text-white transition flex items-center"
-                  onClick={() => handleIconClick("downvote")}
-                >
-                  <img
-                    src={isDownvoted ? filleddown : down}
-                    alt="Downvote Icon"
-                    className="w-4 h-4"
-                  />
-                </button>
+                    {/* Share Button */}
+                    <button className="hover:text-white transition flex items-center" onClick={() => handleIconClick("share")}>
+                      <img src={isShared ? filledshare : share} alt="Share Icon" className="w-4 h-4" />
+                    </button>
 
-                {/* Share Button */}
-                <button
-                  className="hover:text-white transition flex items-center"
-                  onClick={() => handleIconClick("share")}
-                >
-                  <img
-                    src={isShared ? filledshare : share}
-                    alt="Share Icon"
-                    className="w-4 h-4"
-                  />
-                </button>
+                    {/* Social Media Icons (Slide In) */}
+                    {isShared && (
+                      <div className="flex items-center space-x-4 transition-transform duration-300">
+                        <img src={fb} alt="Facebook Icon" className="w-5 h-5" />
+                        <img src={insta} alt="Instagram Icon" className="w-5 h-5" />
+                        <img src={linkedin} alt="LinkedIn Icon" className="w-5 h-5" />
+                      </div>
+                    )}
 
-                {/* Social Media Icons (Slide In) */}
-                {isShared && (
-                  <div className="flex items-center space-x-4 transition-transform duration-300">
-                    <img src={fb} alt="Facebook Icon" className="w-5 h-5" />
-                    <img src={insta} alt="Instagram Icon" className="w-5 h-5" />
-                    <img
-                      src={linkedin}
-                      alt="LinkedIn Icon"
-                      className="w-5 h-5"
-                    />
+                    {/* Bookmark Button */}
+                    <button className="hover:text-white transition flex items-center" onClick={() => handleIconClick("bookmark")}>
+                      <img src={isBookmarked ? filledbookmark : bookmark} alt="Bookmark Icon" className="w-4 h-4" />
+                    </button>
                   </div>
                 )}
 
-                {/* Bookmark Button */}
-                <button
-                  className="hover:text-white transition flex items-center"
-                  onClick={() => handleIconClick("bookmark")}
-                >
-                  <img
-                    src={isBookmarked ? filledbookmark : bookmark}
-                    alt="Bookmark Icon"
-                    className="w-4 h-4"
-                  />
-                </button>
               </div>
             </div>
 
             {/* Green Line */}
             <div className="border-t-2 border-[#ADFF00] mt-2"></div>
           </div>
-          <div className="relative flex justify-center my-4">
+          <div className="relative flex md:justify-center my-4">
             <Reactions />
           </div>
           {/* Comment Input */}
@@ -374,16 +388,16 @@ const BlogDetailModal: React.FC<ModalProps> = ({
             style={{ fontFamily: "Mowaq, sans-serif" }}
           >
 
-            <div className="flex items-center space-x-4 w-full">
+            <div className="flex items-center space-x-4 w-full max-sm:w-1/2">
               <img
                 src={pic}
                 alt="User Avatar"
-                className="w-10 h-10 rounded-full"
+                className="sm-w-4 sm-w-4 w-10 h-10 rounded-full"
               />
               <input
                 type="text"
                 placeholder="Comment your thoughts"
-                className={`flex-1 bg-transparent border rounded-md px-4 py-2 text-[#ADFF00] placeholder-[#ADFF00] focus:outline-none ${isHighlighted
+                className={`flex-1 bg-transparent border rounded-md px-4 py-2 text-[#ADFF00] text-xs sm:text-base md:text-lg placeholder-[#ADFF00] focus:outline-none ${isHighlighted
                   ? "border-[#BCFF9D] bg-[#ADFF00] text-black"
                   : "border-[#ADFF00]"
                   }`}
