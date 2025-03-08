@@ -50,7 +50,9 @@ const Navbar: React.FC = () => {
     absolute lg:static top-14 right-0
     bg-[#111]/80 lg:bg-transparent p-4 lg:p-0
     rounded-lg lg:rounded-none z-50
-    w-48 lg:w-auto`}
+    w-48 lg:w-auto
+    max-h-[calc(100vh-80px)] overflow-y-auto
+    [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']`}
       >
         {links.map((link, index) => (
           <div key={index} className="relative w-full lg:w-auto">
