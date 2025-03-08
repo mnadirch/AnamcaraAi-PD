@@ -7,7 +7,7 @@ interface CardsProps {
 
 const Cards: React.FC<CardsProps> = ({ activeCard, setActiveCard }) => {
     const cards = [
-        { id: 0, title: "GPT-5 Unveiled", description: "OpenAI has launched GPT-5 with major improvements in logical reasoning and problem-solving. OpenAI has launched GPT-5 with major improvements in logical reasoning and problem-solving." },
+        { id: 0, title: "GPT-5 Unveiled", description: "OpenAI has launched GPT-5 with major improvements in logical reasoning and problem-solving." },
         { id: 1, title: "AI Breakthrough", description: "Google's AI assistant can now understand and respond to text, voice, and images simultaneously." },
         { id: 2, title: "Quantum Computing Advances", description: "IBM achieves a major milestone in quantum computing, improving error correction and stability." },
         { id: 3, title: "Self-Driving Cars", description: "Tesla and Waymo introduce new fleets of fully autonomous vehicles for major cities." },
@@ -72,55 +72,39 @@ const Cards: React.FC<CardsProps> = ({ activeCard, setActiveCard }) => {
     return (
         <div className="w-full h-full flex flex-col relative">
             {isMobile ? (
-                <>
-                    {/* Horizontal Layout (only for xl screens and up) */}
-                    {/* Scroll Left Button */}
-                    <button
-                        onClick={scrollLeft}
-                        className="text-[#ADFF00] text-2xl sm:text-3xl absolute left-2 top-1/2 -translate-y-1/2 z-20 hover:text-white transition-colors mb-10"
-                    >
-                        ◄
-                    </button>
-
+                <div className="w-full h-full flex items-end relative mb-10">
                     {/* Scrollable Cards (Horizontal Slider) */}
                     <div
                         ref={cardsRef}
-                        className="flex h-full overflow-x-auto space-x-6 w-full scroll-smooth no-scrollbar snap-x snap-mandatory px-8"
+                        className="flex overflow-x-auto space-x-6 w-full scroll-smooth no-scrollbar snap-x snap-mandatory px-8"
                         onMouseDown={startDrag}
                         onMouseMove={onDrag}
                         onMouseUp={stopDrag}
                         onMouseLeave={stopDrag}
                         onTouchStart={startDrag}
                         onTouchMove={onDrag}
-                        onTouchEnd={stopDrag}>
+                        onTouchEnd={stopDrag}
+                    >
                         {cards.sort((a, b) => (a.id === activeCard ? -1 : b.id === activeCard ? 1 : 0))
                             .map((card) => (
                                 <div
                                     key={card.id}
                                     onClick={() => setActiveCard(card.id)}
-                                    className="bg-[#505050] bg-opacity-70 min-h-[180px] text-white p-4 sm:p-6 rounded-xl shadow-lg cursor-pointer w-[85vw] md:w-[500px] snap-center flex flex-col justify-between shrink-0 mb-10"
+                                    className="bg-[#505050] bg-opacity-70 min-h-[180px] text-white p-4 sm:p-6 rounded-xl shadow-lg cursor-pointer w-[80vw] sm:w-[500px] snap-center flex flex-col justify-between shrink-0"
                                     style={{ fontFamily: '"Calibri", sans-serif' }}
                                 >
-                                    {/* Top Line */}
+                                    {/* Card content */}
                                     <div className="h-[2px] w-full bg-gray-400 group-hover:bg-[#ADFF00] transition-all duration-300 mb-3 sm:mb-4"></div>
-                                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold transition-transform duration-700 group-hover:translate-y-[-5px]">
+                                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold">
                                         {card.title}
                                     </h3>
-                                    <p className="text-sm sm:text-base md:text-lg mt-2 transition-transform duration-400 group-hover:translate-y-[-3px]">
+                                    <p className="text-sm sm:text-base md:text-lg mt-2">
                                         {card.description}
                                     </p>
                                 </div>
                             ))}
                     </div>
-
-                    {/* Scroll Right Button */}
-                    <button
-                        onClick={scrollRight}
-                        className="text-[#ADFF00] text-2xl sm:text-3xl absolute right-2 top-1/2 -translate-y-1/2 z-20 hover:text-white transition-colors"
-                    >
-                        ►
-                    </button>
-                </>
+                </div>
             ) : (
                 <>
                     {/* Vertical Layout */}
