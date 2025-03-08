@@ -43,25 +43,25 @@ const Cards: React.FC<CardsProps> = ({ activeCard, setActiveCard }) => {
         document.body.style.userSelect = ""; // Re-enable text selection
     };
 
-    const scrollLeft = () => {
-        if (cardsRef.current) {
-            // Scroll by card width (85vw or 500px) plus margin (24px/1.5rem)
-            const scrollAmount = window.innerWidth < 768
-                ? -(window.innerWidth * 0.85 + 24)
-                : -524; // 500px + 24px
-            cardsRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
-        }
-    };
+    // const scrollLeft = () => {
+    //     if (cardsRef.current) {
+    //         // Scroll by card width (85vw or 500px) plus margin (24px/1.5rem)
+    //         const scrollAmount = window.innerWidth < 768
+    //             ? -(window.innerWidth * 0.85 + 24)
+    //             : -524; // 500px + 24px
+    //         cardsRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    //     }
+    // };
 
-    const scrollRight = () => {
-        if (cardsRef.current) {
-            // Scroll by card width (85vw or 500px) plus margin (24px/1.5rem)
-            const scrollAmount = window.innerWidth < 768
-                ? (window.innerWidth * 0.85 + 24)
-                : 524; // 500px + 24px
-            cardsRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
-        }
-    };
+    // const scrollRight = () => {
+    //     if (cardsRef.current) {
+    //         // Scroll by card width (85vw or 500px) plus margin (24px/1.5rem)
+    //         const scrollAmount = window.innerWidth < 768
+    //             ? (window.innerWidth * 0.85 + 24)
+    //             : 524; // 500px + 24px
+    //         cardsRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    //     }
+    // };
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth < 1280);
