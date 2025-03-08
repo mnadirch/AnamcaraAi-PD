@@ -28,7 +28,7 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
     },
     {
       id: 1,
-      heading: "Google’s AI Assistant Breakthrough",
+      heading: "Google's AI Assistant Breakthrough",
       content:
         "Google's AI can now process text, voice, and visuals together. This multimodal capability enables seamless user interactions, enhancing applications in customer service, education, and virtual assistants.",
       imageSrc: backgroundImage2,
@@ -42,7 +42,7 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
     },
     {
       id: 3,
-      heading: "Tesla’s Full Self-Driving Cars by 2025",
+      heading: "Tesla's Full Self-Driving Cars by 2025",
       content:
         "Tesla pushes FSD vehicles to hit roads soon. The advancements in autonomous technology bring improved safety features, real-time traffic analysis, and better route optimization, revolutionizing the future of transportation.",
       imageSrc: backgroundImage4,
@@ -84,7 +84,6 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
   const [hasShared, setHasShared] = useState(false);
 
   const [bookmarks, _setBookmarks] = useState(500);
-  // const [bookmarked, setBookmarked] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState({
@@ -111,26 +110,28 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
 
   return (
     <div
-      className="relative w-full h-full px-6 py-4 min-h-[500px]"
+      className="relative w-full px-4 max-lg:px-6 py-4 h-full flex items-center"
       style={{ fontFamily: '"Calibri", sans-serif' }}
     >
       {contentArray.map((content) => (
         <div
           key={content.id}
-          className={`absolute top-0 transition-all duration-700 ease-in-out ${activeCard === content.id
+          className={`absolute transition-all duration-700 ease-in-out ${activeCard === content.id
             ? "right-0 opacity-100 visible z-10"
             : "right-[-100%] opacity-0 invisible z-0"
             }`}
-          style={{ position: "absolute", width: "100%" }}
+          style={{ width: "100%" }}
         >
-          <div className="flex items-center justify-center h-screen">
-            <div className="p-10 rounded-lg flex flex-col justify-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+          <div className="flex item-start">
+            <div className="p-4 max-lg:p-6 lg:p-10 rounded-lg flex flex-col justify-center max-w-3xl">
+              <h1 className="text-2xl max-sm:text-xl md:text-4xl lg:text-4xl font-bold mb-3 max-sm:mb-2 md:mb-5 lg:mb-6 leading-tight">
                 {content.heading}
               </h1>
-              <p className="text-lg mb-8 leading-relaxed">{content.content}</p>
-              <div className="flex items-center gap-4">
-              <button
+              <p className="text-sm max-sm:text-xs lg:text-sm mb-4 sm:mb-5 md:mb-6 lg:mb-8 leading-relaxed">
+                {content.content}
+              </p>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <button
                   onClick={() =>
                     openModal({
                       imageSrc: content.imageSrc || Image1,
@@ -138,7 +139,7 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
                       content: content.content,
                     })
                   }
-                  className="relative px-6 py-3 text-lg font-bold text-black bg-[#ADFF00] rounded-md hover:bg-black hover:text-white transition-all duration-300 overflow-hidden"
+                  className="relative  px-6 py-3 max-sm:px-1 max-sm:py-2 text-base max-sm:text-xs font-bold text-black bg-[#ADFF00] rounded-md hover:bg-black hover:text-white transition-all duration-300 overflow-hidden"
                   style={{
                     fontFamily: "Mowaq, sans-serif",
                     boxShadow: "0px 0px 15px #3FA604",
@@ -150,17 +151,17 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
                 </button>
 
                 {/* Interactive Social Icons */}
-                <div className="flex items-center space-x-8 mt-6 text-white">
+                <div className="flex items-center space-x-4 sm:space-x-8  mt-4 sm:mt-6 text-white">
                   {/* Like Icon */}
                   <div
                     className="flex flex-col items-center cursor-pointer"
                     onClick={() => toggleState(setLiked, setLikes, liked, likes)}
                   >
                     <FaThumbsUp
-                      size={30}
+                      size={24}
                       className={`transition cursor-pointer ${liked ? "text-[#ADFF00]" : "text-white"
                         } hover:text-[#ADFF00]`} />
-                    <span className="text-lg mt-1">{likes}</span>
+                    <span className="text-sm sm:text-base mt-1">{likes}</span>
                   </div>
                   {/* Notification Icon */}
                   <div
@@ -170,9 +171,9 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
                       (setNotifications(notifications + 1), setHasNotified(true))
                     }
                   >
-                    <FaBell size={30} className={`transition cursor-pointer ${hasNotified ? "text-[#ADFF00]" : "text-white"
+                    <FaBell size={24} className={`transition cursor-pointer ${hasNotified ? "text-[#ADFF00]" : "text-white"
                       } hover:text-[#ADFF00]`} />
-                    <span className="text-lg mt-1">{notifications}</span>
+                    <span className="text-sm sm:text-base mt-1">{notifications}</span>
                   </div>
                   {/* Comment Icon */}
                   <div
@@ -182,9 +183,9 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
                       (setComments(comments + 1), setHasCommented(true))
                     }
                   >
-                    <FaComment size={30} className={`transition cursor-pointer ${hasCommented ? "text-[#ADFF00]" : "text-white"
+                    <FaComment size={24} className={`transition cursor-pointer ${hasCommented ? "text-[#ADFF00]" : "text-white"
                       } hover:text-[#ADFF00]`} />
-                    <span className="text-lg mt-1">{comments}</span>
+                    <span className="text-sm sm:text-base mt-1">{comments}</span>
                   </div>
                   {/* Share Icon */}
                   <div
@@ -193,33 +194,30 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
                       !hasShared && (setShares(shares + 1), setHasShared(true))
                     }
                   >
-                    <FaShare size={30} className={`transition cursor-pointer ${hasShared ? "text-[#ADFF00]" : "text-white"
+                    <FaShare size={24} className={`transition cursor-pointer ${hasShared ? "text-[#ADFF00]" : "text-white"
                       } hover:text-[#ADFF00]`} />
-                    <span className="text-lg mt-1">{shares}</span>
+                    <span className="text-sm sm:text-base mt-1">{shares}</span>
                   </div>
 
                   {/* Bookmark Icon */}
                   <div
                     className="flex flex-col items-center cursor-pointer"
-                    // onClick={() =>
-                    //   toggleState(setBookmarked, setBookmarks, bookmarked, bookmarks)
-                    // }
+
                   >
                     <FaBookmark
-                      size={30}
+                      size={24}
                       // className={`transition ${bookmarked ? "text-white" : "text-[#ADFF00] hover:text-white"}`}
                       onClick={() => setIsSocialModalOpen(true)}
-                    />                
-                    
-                  <SocialLoginModal isOpen={isSocialModalOpen} onClose={() => setIsSocialModalOpen(false)} />
+                    />
 
-                    <span className="text-lg mt-1">{bookmarks}</span>
+                    <SocialLoginModal isOpen={isSocialModalOpen} onClose={() => setIsSocialModalOpen(false)} />
+
+                    <span className="text-sm sm:text-base mt-1">{bookmarks}</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       ))}
 

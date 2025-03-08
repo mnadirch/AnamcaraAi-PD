@@ -38,7 +38,7 @@ const Reactions: React.FC = () => {
   const ReactionItem: React.FC<ReactionItemProps> = ({ icon, name }) => (
     <motion.div variants={variants}>
       <div
-        className="group relative w-11 h-11 rounded-full bg-black cursor-pointer transition-transform duration-200 transform hover:scale-125"
+        className="group relative w-11 h-11 max-sm:w-7 max-sm:h-7 rounded-full bg-black cursor-pointer transition-transform duration-200 transform hover:scale-125"
         data-reaction-name={name}
       >
         <img src={icon} alt={name} className="w-full h-full" />
@@ -56,14 +56,13 @@ const Reactions: React.FC = () => {
       <div>
         <section className="mx-auto">
           {/* Like button thumb */}
-          <span className="relative inline-flex items-center justify-center text-center w-[100px] py-4 px-5 rounded-full cursor-pointer">
+          <span className="relative inline-flex items-center md:justify-center text-center w-[100px] py-4 px-5 rounded-full cursor-pointer">
             {/* Reactions wrapper is always visible */}
             <motion.div
               initial="visible"
               animate="visible"
               variants={variants}
-              className="absolute w-[350px] p-2 mt-2 rounded-full  shadow-[0_5px_20px_-2px_rgba(0,0,0,0.2)] flex justify-between items-center"
-            >
+              className="absolute w-[90%] md:w-[350px] p-2 md:p-3 mt-2 md:mt-3 w-[350px] p-2 mt-2 rounded-full  shadow-[0_5px_20px_-2px_rgba(0,0,0,0.2)] flex justify-between items-center"            >
               <ReactionItem name="like" icon={likeIcon} />
               <ReactionItem name="love" icon={loveIcon} />
               <ReactionItem name="haha" icon={hahaIcon} />
