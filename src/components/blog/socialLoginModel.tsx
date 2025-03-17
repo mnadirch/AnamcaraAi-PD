@@ -77,8 +77,6 @@ const SocialLoginModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         </p>
       </div>
     </div>
-
-
   );
 };
 

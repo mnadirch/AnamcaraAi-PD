@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
     bg-[#111]/80 lg:bg-transparent p-4 lg:p-0
     rounded-lg lg:rounded-none z-50
     w-48 lg:w-auto
-    max-h-[calc(100vh-80px)] overflow-y-auto
+    max-h-[calc(100vh-80px)] lg:max-h-none overflow-y-auto lg:overflow-visible
     [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']`}
       >
         {links.map((link, index) => (
@@ -102,7 +102,7 @@ const Navbar: React.FC = () => {
                       handleNavigate(dropdownLink.path);
                       setIsResourcesOpen(false);
                     }}
-                    className="relative block px-4 py-2 text-white group hover:bg-[#222]/50"
+                    className="relative block px-4 py-2 text-white group hover:bg-[#222]/50 text-xs lg:text-sm"
                   >
                     {dropdownLink.name}
                     {/* Underline Effect */}
