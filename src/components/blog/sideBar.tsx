@@ -7,7 +7,6 @@ import whatsapp from "../../assets/icons/whatsapp-line.svg";
 import bookmark from "../../assets/icons/bookmark-line.svg";
 import comment from "../../assets/icons/chat-4-fill.svg";
 import scroll from "../../assets/icons/arrow-up-box-line.svg";
-import close from "../../assets/icons/close-line.svg";
 
 interface SideBarProps {
   onScrollToTop?: () => void;
