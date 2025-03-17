@@ -1,32 +1,27 @@
 
-/* For screens ≥1350px */
 @media (min-width: 1350px) {
   .landing-title {
     font-size: 2.5rem;
   }
 }
 
-/* For screens ≥1536px (2xl) */
 @media (min-width: 1536px) {
   .landing-title {
     font-size: 3rem;
   }
 }
 
-/* For screens ≥1600px */
 @media (min-width: 1600px) {
   .landing-title {
     font-size: 3.2rem;
   }
 }
 
-/* For screens ≥1920px */
 @media (min-width: 1920px) {
   .landing-title {
     font-size: 3.5rem;
   }
 }
-
 
 
 /* =============================== */
@@ -114,7 +109,7 @@
 /* =============================== */
 
 /* Default: Row Layout (For Small Screens ≤1270px) */
-@media (max-width: 1270px) {
+ @media (max-width: 1270px) {
   .hero-content {
     flex-direction: column;
   }
@@ -128,10 +123,10 @@
 
   .hero-content {
     height: 60%;
-    gap: 0rem; /* Add gap for spacing */
+    gap: 0rem; 
   }
   .hero-content .human-block{
     right:0%;
   }
-}
+} 
 

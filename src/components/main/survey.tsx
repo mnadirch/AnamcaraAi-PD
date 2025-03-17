@@ -81,12 +81,12 @@ const Survey: React.FC<SurveyProps> = ({ onSkipToMain }) => {
   return (
     <div
       id="survey-area"
-      className="relative p-4 md:p-8 lg:p-16 "
+      className="relative min-h-screen w-full overflow-y-auto"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
       {/* Stars Layer */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="fixed inset-0 z-0 pointer-events-none">
         {stars.map((star, index) => (
           <div
             key={index}
@@ -102,36 +102,94 @@ const Survey: React.FC<SurveyProps> = ({ onSkipToMain }) => {
         ))}
       </div>
 
-      {/* Render the robot image only if provided
-      {robotImage && (
-        <div className="robot-container flex justify-center items-center mt-20">
-        <img
-          src={robotImage}
-          alt="Robot"
-          className="w-[300px] h-[300px] object-contain"
-        />
-      </div>
-      )} */}
+      {/* Main Content Container */}
+      <div className="relative z-10 flex flex-col items-center p-4 md:p-8 lg:p-16">
+        {/* Robot Section - Only visible on sm and md screens */}
+      
 
-      {/* Survey Content */}
-      <div className="survey-content relative z-10 space-y-12 max-w-screen-md w-full">
-        {/* True/False Question */}
-        {tfQuestion && (
-          <div className="true flex flex-col space-y-6">
-            <h1 className="text-white text-2xl sm:text-2xl lg:text-2xl font-bold text-left">
-              {tfQuestion.question}
+        {/* Survey Content */}
+        <div className="survey-content space-y-12 max-w-screen-md w-full">
+          {/* True/False Question */}
+          {tfQuestion && (
+            <div className="true flex flex-col space-y-6">
+              <h1 className="text-white text-2xl sm:text-2xl lg:text-2xl font-bold text-left">
+                {tfQuestion.question}
+              </h1>
+              <div className="flex flex-wrap gap-4">
+              {tfQuestion.answers.map((answer, idx) => {
+                  const isSelected = selectedTF === answer;
+                  return (
+                    <button
+                      key={idx}
+                      onClick={() => setSelectedTF(answer)}
+                      className={`w-32 text-center px-6 py-2 text-lg font-medium rounded-full transition-all 
+                ${isSelected
+                          ? "bg-[#ADFF00] text-black border-2 border-black"
+                          : "bg-transparent text-[#ADFF00] border-2 border-[#BCFF9D] hover:bg-[#ADFF00] hover:text-black hover:border-black"
+                        }`}
+                    >
+                      {answer}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* MCQ Question */}
+          {mcqQuestion && (
+            <div className="mcq flex flex-col space-y-6">
+            <h1 className="mcq-q text-white text-2xl sm:text-3xl lg:text-2xl font-bold text-left">
+                {mcqQuestion.question}
+              </h1>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {mcqQuestion.answers.map((answer, idx) => {
+                  const optionLetter = String.fromCharCode(65 + idx);
+                  const isSelected = selectedMCQ === idx;
+                  const isHovered = hoveredOption === idx;
+                  const isActive = isSelected || isHovered; // If either hovered or selected, apply the active style
+
+                  return (
+                    <div
+                      key={idx}
+                      className="flex items-center space-x-4 cursor-pointer group"
+                      onClick={() => setSelectedMCQ(idx)} // Update selection on click
+                      onMouseEnter={() => setHoveredOption(idx)}
+                      onMouseLeave={() => setHoveredOption(null)}
+                    >
+                      <div
+                        className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 flex items-center justify-center transition-all
+                  ${isActive
+                            ? "bg-[#ADFF00] text-black border-black"
+                            : "bg-transparent text-[#ADFF00] border-[#BCFF9D]"
+                          }`}
+                      >
+                        {optionLetter}
+                      </div>
+                      <p className="text-lg font-medium text-white">{answer}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Static Question */}
+          <div className=" static flex flex-col space-y-6">
+            <h1 className="text-white text-2xl sm:text-3xl lg:text-2xl font-bold text-left">
+              Who would you rather save?
             </h1>
-            <div className="flex flex-wrap gap-4">
-            {tfQuestion.answers.map((answer, idx) => {
-                const isSelected = selectedTF === answer;
+            <div className=" option flex flex-wrap gap-4">
+            {["Self", "Partner", "Friend", "Parent"].map((answer, idx) => {
+                const isSelected = selectedSave === answer;
                 return (
                   <button
                     key={idx}
-                    onClick={() => setSelectedTF(answer)}
-                    className={`w-32 text-center px-6 py-2 text-lg font-medium rounded-full transition-all 
-              ${isSelected
+                    onClick={() => setSelectedSave(answer)} // Update selection on click
+                    className={`w-32 text-center px-6 py-2 text-lg font-medium rounded-full transition-all
+                  ${isSelected
                         ? "bg-[#ADFF00] text-black border-2 border-black"
-                        : "bg-transparent text-[#ADFF00] border-2 border-[#BCFF9D] hover:bg-[#ADFF00] hover:text-black hover:border-black"
+                        : "bg-transparent text-[#ADFF00] border border-[#BCFF9D] hover:bg-[#ADFF00] hover:text-black"
                       }`}
                   >
                     {answer}
@@ -140,89 +198,26 @@ const Survey: React.FC<SurveyProps> = ({ onSkipToMain }) => {
               })}
             </div>
           </div>
-        )}
 
-        {/* MCQ Question */}
-        {mcqQuestion && (
-          <div className="mcq flex flex-col space-y-6">
-          <h1 className="mcq-q text-white text-2xl sm:text-3xl lg:text-2xl font-bold text-left">
-              {mcqQuestion.question}
-            </h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {mcqQuestion.answers.map((answer, idx) => {
-                const optionLetter = String.fromCharCode(65 + idx);
-                const isSelected = selectedMCQ === idx;
-                const isHovered = hoveredOption === idx;
-                const isActive = isSelected || isHovered; // If either hovered or selected, apply the active style
-
-                return (
-                  <div
-                    key={idx}
-                    className="flex items-center space-x-4 cursor-pointer group"
-                    onClick={() => setSelectedMCQ(idx)} // Update selection on click
-                    onMouseEnter={() => setHoveredOption(idx)}
-                    onMouseLeave={() => setHoveredOption(null)}
-                  >
-                    <div
-                      className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 flex items-center justify-center transition-all
-                ${isActive
-                          ? "bg-[#ADFF00] text-black border-black"
-                          : "bg-transparent text-[#ADFF00] border-[#BCFF9D]"
-                        }`}
-                    >
-                      {optionLetter}
-                    </div>
-                    <p className="text-lg font-medium text-white">{answer}</p>
-                  </div>
-                );
-              })}
-            </div>
+          {/* Final Button */}
+          <div className="flex flex-wrap items-center gap-4">
+            <button
+              onClick={handleButtonClick} // Call the function on click
+              className="px-4 sm:px-6 py-2 text-sm sm:text-lg font-bold text-black bg-[#ADFF00] rounded-lg hover:bg-black hover:text-white border-2 border-[#BCFF9D] transition-all"
+              style={{
+                boxShadow: "0px 0px 15px #3FA604",
+              }}
+            >
+              I HAVE OBLIGED
+            </button>
+            <Link
+              onClick={onSkipToMain}
+              className="text-white text-sm sm:text-lg font-medium cursor-pointer"
+              to={""}
+            >
+              SKIP TO MAIN PAGE →
+            </Link>
           </div>
-        )}
-
-        {/* Static Question */}
-        <div className=" static flex flex-col space-y-6">
-          <h1 className="text-white text-2xl sm:text-3xl lg:text-2xl font-bold text-left">
-            Who would you rather save?
-          </h1>
-          <div className=" option flex flex-wrap gap-4">
-          {["Self", "Partner", "Friend", "Parent"].map((answer, idx) => {
-              const isSelected = selectedSave === answer;
-              return (
-                <button
-                  key={idx}
-                  onClick={() => setSelectedSave(answer)} // Update selection on click
-                  className={`w-32 text-center px-6 py-2 text-lg font-medium rounded-full transition-all
-                ${isSelected
-                      ? "bg-[#ADFF00] text-black border-2 border-black"
-                      : "bg-transparent text-[#ADFF00] border border-[#BCFF9D] hover:bg-[#ADFF00] hover:text-black"
-                    }`}
-                >
-                  {answer}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Final Button */}
-        <div className="flex flex-wrap items-center gap-4">
-          <button
-            onClick={handleButtonClick} // Call the function on click
-            className="px-4 sm:px-6 py-2 text-sm sm:text-lg font-bold text-black bg-[#ADFF00] rounded-lg hover:bg-black hover:text-white border-2 border-[#BCFF9D] transition-all"
-            style={{
-              boxShadow: "0px 0px 15px #3FA604",
-            }}
-          >
-            I HAVE OBLIGED
-          </button>
-          <Link
-            onClick={onSkipToMain}
-            className="text-white text-sm sm:text-lg font-medium cursor-pointer"
-            to={""}
-          >
-            SKIP TO MAIN PAGE →
-          </Link>
         </div>
       </div>
     </div>

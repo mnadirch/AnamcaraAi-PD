@@ -7,13 +7,14 @@ import whatsapp from "../../assets/icons/whatsapp-line.svg";
 import bookmark from "../../assets/icons/bookmark-line.svg";
 import comment from "../../assets/icons/chat-4-fill.svg";
 import scroll from "../../assets/icons/arrow-up-box-line.svg";
-
+import close from "../../assets/icons/close-line.svg";
 
 interface SideBarProps {
   onScrollToTop?: () => void;
+  onClose?: () => void;
 }
 
-const SideBar: React.FC<SideBarProps> = ({ onScrollToTop }) => {
+const SideBar: React.FC<SideBarProps> = ({ onScrollToTop, onClose }) => {
   // Example onClick handlers (replace with real functionality)
   const handleListenClick = () => {
     alert("Listen to the post");
@@ -66,65 +67,73 @@ const SideBar: React.FC<SideBarProps> = ({ onScrollToTop }) => {
       {/* Listen icon */}
       <button
         onClick={handleListenClick}
-        className="w-10 h-10 rounded-full border flex items-center justify-center bg-gray-200"
+        className="w-10 h-10 sm:w-10 sm:h-10 w-8 h-8 rounded-full border flex items-center justify-center bg-gray-200"
       >
-        <img src={audio} alt="Listen" className="w-4 h-4" />
+        <img src={audio} alt="Listen" className="w-3 h-3 sm:w-4 sm:h-4" />
       </button>
 
       {/* Copy link icon */}
       <button
         onClick={handleCopyLink}
-        className="w-10 h-10 rounded-full border flex items-center justify-center bg-gray-200"
+        className="w-10 h-10 sm:w-10 sm:h-10 w-8 h-8 rounded-full border flex items-center justify-center bg-gray-200"
       >
-        <img src={file} alt="Copy Link" className="w-4 h-4" />
+        <img src={file} alt="Copy Link" className="w-3 h-3 sm:w-4 sm:h-4" />
       </button>
 
       {/* Facebook */}
       <button
         onClick={handleFacebookShare}
-        className="w-10 h-10 rounded-full border flex items-center justify-center bg-gray-200"
+        className="w-10 h-10 sm:w-10 sm:h-10 w-8 h-8 rounded-full border flex items-center justify-center bg-gray-200"
       >
-        <img src={fb} alt="Facebook" className="w-4 h-4" />
+        <img src={fb} alt="Facebook" className="w-3 h-3 sm:w-4 sm:h-4" />
       </button>
 
       {/* X (Twitter) */}
       <button
         onClick={handleXShare}
-        className="w-10 h-10 rounded-full border flex items-center justify-center bg-gray-200"
+        className="w-10 h-10 sm:w-10 sm:h-10 w-8 h-8 rounded-full border flex items-center justify-center bg-gray-200"
       >
-        <img src={twitter} alt="X" className="w-4 h-4" />
+        <img src={twitter} alt="X" className="w-3 h-3 sm:w-4 sm:h-4" />
       </button>
 
       {/* WhatsApp */}
       <button
         onClick={handleWhatsAppShare}
-        className="w-10 h-10 rounded-full border flex items-center justify-center bg-gray-200"
+        className="w-10 h-10 sm:w-10 sm:h-10 w-8 h-8 rounded-full border flex items-center justify-center bg-gray-200"
       >
-        <img src={whatsapp} alt="WhatsApp" className="w-4 h-4" />
+        <img src={whatsapp} alt="WhatsApp" className="w-3 h-3 sm:w-4 sm:h-4" />
       </button>
 
       {/* Bookmark */}
       <button
         onClick={handleBookmark}
-        className="w-10 h-10 rounded-full border flex items-center justify-center bg-gray-200"
+        className="w-10 h-10 sm:w-10 sm:h-10 w-8 h-8 rounded-full border flex items-center justify-center bg-gray-200"
       >
-        <img src={bookmark} alt="Bookmark" className="w-4 h-4" />
+        <img src={bookmark} alt="Bookmark" className="w-3 h-3 sm:w-4 sm:h-4" />
       </button>
 
       {/* Comment */}
       <button
         onClick={handleCommentSection}
-        className="w-10 h-10 rounded-full border flex items-center justify-center bg-gray-200"
+        className="w-10 h-10 sm:w-10 sm:h-10 w-8 h-8 rounded-full border flex items-center justify-center bg-gray-200"
       >
-        <img src={comment} alt="Comments" className="w-4 h-4" />
+        <img src={comment} alt="Comments" className="w-3 h-3 sm:w-4 sm:h-4" />
       </button>
 
       {/* Scroll to top */}
       <button
         onClick={handleScrollToTop}
-        className="w-10 h-10 rounded-full border flex items-center justify-center bg-blue-200 bg-gray-200"
+        className="w-10 h-10 sm:w-10 sm:h-10 w-8 h-8 rounded-full border flex items-center justify-center bg-blue-200 bg-gray-200"
       >
-        <img src={scroll} alt="Scroll to top" className="w-4 h-4" />
+        <img src={scroll} alt="Scroll to top" className="w-3 h-3 sm:w-4 sm:h-4" />
+      </button>
+
+      {/* Close button - Only visible on small screens */}
+      <button
+        onClick={onClose}
+        className="w-8 h-8 rounded-full border flex items-center justify-center bg-gray-200 sm:hidden"
+      >
+        <span className="text-black text-lg">✕</span>
       </button>
     
     </div>

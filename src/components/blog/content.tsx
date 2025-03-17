@@ -110,27 +110,28 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
 
   return (
     <div
-      className="relative w-full px-4 max-lg:px-6 py-4 h-full flex items-center"
+      className="relative w-full py-4 h-full flex max-xl:items-center justify-center xl:items-start"
       style={{ fontFamily: '"Calibri", sans-serif' }}
     >
       {contentArray.map((content) => (
         <div
           key={content.id}
-          className={`absolute transition-all duration-700 ease-in-out ${activeCard === content.id
-            ? "right-0 opacity-100 visible z-10"
-            : "right-[-100%] opacity-0 invisible z-0"
-            }`}
+          className={`absolute transition-all duration-700 ease-in-out ${
+            activeCard === content.id
+              ? "right-0 opacity-100 visible z-10"
+              : "right-[-100%] opacity-0 invisible z-0"
+          }`}
           style={{ width: "100%" }}
         >
-          <div className="flex item-start">
-            <div className="p-4 max-lg:p-6 lg:p-10 rounded-lg flex flex-col justify-center max-w-3xl">
-              <h1 className="text-2xl max-sm:text-xl md:text-4xl lg:text-4xl font-bold mb-3 max-sm:mb-2 md:mb-5 lg:mb-6 leading-tight">
+          <div className="flex max-xl:items-center xl:items-start w-full">
+            <div className="p-4 max-lg:p-4 lg:p-6 rounded-lg flex flex-col justify-center max-w-3xl max-sm:mt-4">
+              <h1 className="text-xl max-sm:text-xl md:text-3xl lg:text-4xl font-bold mb-2 max-sm:mb-1.5 md:mb-3 lg:mb-4 leading-tight">
                 {content.heading}
               </h1>
-              <p className="text-sm max-sm:text-xs lg:text-sm mb-4 sm:mb-5 md:mb-6 lg:mb-8 leading-relaxed">
+              <p className="text-sm max-sm:text-xs lg:text-2xl mb-3 sm:mb-4 md:mb-4 lg:mb-5 leading-relaxed">
                 {content.content}
               </p>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
                 <button
                   onClick={() =>
                     openModal({
@@ -139,7 +140,7 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
                       content: content.content,
                     })
                   }
-                  className="relative  px-6 py-3 max-sm:px-1 max-sm:py-2 text-base max-sm:text-xs font-bold text-black bg-[#ADFF00] rounded-md hover:bg-black hover:text-white transition-all duration-300 overflow-hidden"
+                  className="relative px-6 py-2.5 max-sm:px-1 max-sm:py-2 text-base max-sm:text-xs font-bold text-black bg-[#ADFF00] rounded-md hover:bg-black hover:text-white transition-all duration-300 overflow-hidden"
                   style={{
                     fontFamily: "Mowaq, sans-serif",
                     boxShadow: "0px 0px 15px #3FA604",
@@ -151,7 +152,7 @@ const Content: React.FC<ContentProps> = ({ activeCard }) => {
                 </button>
 
                 {/* Interactive Social Icons */}
-                <div className="flex items-center space-x-4 sm:space-x-8  mt-4 sm:mt-6 text-white">
+                <div className="flex items-center space-x-4 sm:space-x-8 mt-3 sm:mt-0 text-white">
                   {/* Like Icon */}
                   <div
                     className="flex flex-col items-center cursor-pointer"

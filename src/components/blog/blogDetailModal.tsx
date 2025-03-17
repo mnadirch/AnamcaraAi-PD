@@ -158,7 +158,7 @@ const BlogDetailModal: React.FC<ModalProps> = ({
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-[35px] right-3 text-2xl text-white hover:text-[#ADFF00] "
+          className="absolute top-[35px] right-3 text-2xl text-white hover:text-[#ADFF00] sm:block hidden"
           >
           ✕
         </button>
@@ -502,7 +502,7 @@ const BlogDetailModal: React.FC<ModalProps> = ({
           </div>
         </div>
         {/* <RightSideIconsBar> with scrollToTop callback */}
-        <SideBar onScrollToTop={scrollToTop} />
+        <SideBar onScrollToTop={scrollToTop} onClose={onClose} />
       </div>
     </div>
 

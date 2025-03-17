@@ -97,7 +97,7 @@ const Blog: React.FC = () => {
             />
           </div>
         </div>
-        <div className="xl:w-1/2 w-full order-1 max-xl:order-1 xl:order-2 h-[60vh] max-xl:h-[65vh] xl:h-screen xl:pt-20 flex items-center">
+        <div className="xl:w-3/4 order-1 max-xl:order-1 xl:order-2 h-[60vh] max-xl:h-[65vh] xl:h-screen xl:pt-20 flex items-center">
           <div className="h-full w-full">
             <Content
               activeCard={activeCard}
@@ -105,6 +105,7 @@ const Blog: React.FC = () => {
           </div>
         </div>
       </div>
+
     </div>
   );
 };
